@@ -8,5 +8,6 @@ public class Main {
         System.out.println("My first commit");
         System.out.println("My second commit");
         System.out.println("New branch");
+        System.out.println("New else branch");
     }
 }
