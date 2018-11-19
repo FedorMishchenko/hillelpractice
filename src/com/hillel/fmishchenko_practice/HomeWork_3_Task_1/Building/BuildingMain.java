@@ -4,11 +4,11 @@ public class BuildingMain {
     public static void main(String[] args) {
         Building building = new Theater();
         ((Theater) building).setFloors(2);
-        ((Theater) building).setName("Театр");
+        ((Theater) building).setName("ХАТОБ");
         building.print();
 
         PublicBuilding publicBuilding = new Theater();
-        publicBuilding.setName("ХАТОБ");
+        publicBuilding.setName("Театр им.Шевченко");
         publicBuilding.setFloors(3);
 
         Building building2 = new Adapter(publicBuilding);
