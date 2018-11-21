@@ -1,5 +1,7 @@
 package com.hillel.fmishchenko_practice.HomeWork_3_Task_2.ConsoleReader;
 
+import java.util.Scanner;
+
 public class ConsoleReader {
     private static ConsoleReader instance;
 
@@ -15,5 +17,11 @@ public class ConsoleReader {
             }
         return instance;
     }
-
+    public void consoleRead(){
+             while(true) {
+                 Scanner scanner = new Scanner(System.in);
+                 String read = scanner.nextLine();
+                 System.out.println(read);
+             }
+    }
 }
