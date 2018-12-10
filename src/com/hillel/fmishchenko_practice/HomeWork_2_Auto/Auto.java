@@ -1,6 +1,6 @@
 package com.hillel.fmishchenko_practice.HomeWork_2_Auto;
 
-abstract class Auto {
+public abstract class Auto {
     int doors;
     String color;
     int tank;
