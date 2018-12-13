@@ -42,6 +42,7 @@ public class ListImplGenerics<E> extends AbstractList<E> {
         size++;
         return true;
     }
+
     public Node<E> getObjectByIndex(int index) {
         Node<E> node = null;
         if (!isEmpty() && (index >= 0 && index < size)) {
@@ -63,6 +64,7 @@ public class ListImplGenerics<E> extends AbstractList<E> {
         return element;
 
     }
+
     @Override
     public boolean contains(Object object) {
         for (int i = 0; i < size(); i++) {
@@ -71,6 +73,7 @@ public class ListImplGenerics<E> extends AbstractList<E> {
         return false;
 
     }
+
     public boolean remove(Object object) {
         Node<E> node = first;
 
@@ -82,4 +85,8 @@ public class ListImplGenerics<E> extends AbstractList<E> {
         }
         return false;
     }
+
+
+
+
 }

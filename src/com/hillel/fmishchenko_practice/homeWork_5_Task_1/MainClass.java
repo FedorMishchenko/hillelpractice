@@ -12,7 +12,8 @@ public class MainClass {
         list.addObject(new AutoSedan());
         list.addObject(new Auto4x4());
         // list.addObject(new Object());  // Can't be applied
-
+        System.out.println("List size = " + list.size);
+        System.out.println("List is empty? = " + list.isEmpty());
 
     }
 }
