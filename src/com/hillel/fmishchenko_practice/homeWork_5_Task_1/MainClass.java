@@ -1,6 +1,6 @@
 package com.hillel.fmishchenko_practice.homeWork_5_Task_1;
 
-import com.hillel.fmishchenko_practice.HomeWork_2_Auto.*;
+import com.hillel.fmishchenko_practice.homeWork_2_Auto.*;
 
 
 public class MainClass {

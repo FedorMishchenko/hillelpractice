@@ -1,6 +1,5 @@
 package com.hillel.fmishchenko_practice.homeWork_5_Task_2;
-
-class List {
+public class List {
 
     private Node Head;
     private static int size = 0;
