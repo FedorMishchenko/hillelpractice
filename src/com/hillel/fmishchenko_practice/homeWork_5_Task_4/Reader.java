@@ -3,8 +3,7 @@ package com.hillel.fmishchenko_practice.homeWork_5_Task_4;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Reader {
 
@@ -41,7 +40,11 @@ public class Reader {
             } else if (command.equals("all")) {
                 getAll();
             } else if (command.equals("sort")) {
-                sort();
+                try {
+                    sort();
+                } catch (IOException e) {
+                    System.out.println("Sort failed");
+                }
             } else if (command.equals("delete")) {
                 int key = scanner.nextInt();
                 base = deleteUser(key);
@@ -49,22 +52,55 @@ public class Reader {
 
             } else if (command.equals("exit")) {
                 System.exit(0);
-            } else System.out.println("Invalid command: ");
+            } else System.out.println("Invalid command in read: ");
             read();
 
         }
 
     }
 
-    private void sort() {
+    private void sort() throws IOException {
         System.out.println("Input field of user to sort:" +
                 " name, email, age");
-        String choice = scanner.nextLine();
+        String choice = buffer.readLine();
         if (choice.equals("name")) {
+            ArrayList<User> compareName = new ArrayList<User>(base.values());
+
+            Collections.sort(compareName, (o1, o2) -> {
+                if(o1.getName().equals(o2.getName())){
+                    return 1;
+                }else return -1;
+            });
+
+            for (User user : compareName) {
+                System.out.println(user.getName() + "\t" + user.getEmail() + "\t" +
+                        user.getAge());
+            }
 
         } else if (choice.equals("email")) {
+            ArrayList<User> compareEmail = new ArrayList<User>(base.values());
+
+            Collections.sort(compareEmail, (o1, o2) -> {
+                if(o1.getEmail().equals(o2.getEmail())){
+                    return 1;
+                }else return -1;
+
+            });
+            for (User user : compareEmail) {
+                System.out.println(user.getName() + "\t" + user.getEmail() + "\t" +
+                        user.getAge());
+            }
 
         } else if (choice.equals("age")) {
+
+            ArrayList<User> compareAge = new ArrayList<User>(base.values());
+
+            Collections.sort(compareAge, Comparator.comparingInt(User::getAge));
+
+            for (User user : compareAge) {
+                System.out.println(user.getName() + "\t" + user.getEmail() + "\t" +
+                        user.getAge());
+            }
 
         } else {
             System.out.println("Can't sort.Invalid input command.");
@@ -72,8 +108,11 @@ public class Reader {
     }
 
     private void getAll() {
-        while (!base.isEmpty()) {
-
+        if(!base.isEmpty()) {
+            ArrayList<User> list = new ArrayList<>(base.values());
+            for (User user:list){
+                System.out.println(user.toString());
+            }
         }
     }
 
