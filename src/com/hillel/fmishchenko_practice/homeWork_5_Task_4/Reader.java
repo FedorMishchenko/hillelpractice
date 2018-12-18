@@ -24,9 +24,6 @@ public class Reader {
             }
             if (command.equals("create")) {
                 base = createUser();
-
-                boolean check = base.isEmpty();
-                System.out.println("base is empty= " + check);
                 read();
             } else if (command.equals("read")) {
                 if (base.isEmpty()) System.out.println("Empty");
@@ -52,7 +49,8 @@ public class Reader {
 
             } else if (command.equals("exit")) {
                 System.exit(0);
-            } else System.out.println("Invalid command in read: ");
+            } else System.out.println("Invalid command. Input command - " +
+                    "create, read, update, delete, all, sort: ");
             read();
 
         }
@@ -60,7 +58,7 @@ public class Reader {
     }
 
     private void sort() throws IOException {
-        System.out.println("Input field of user to sort:" +
+        System.out.println("Input user's field for sort base:" +
                 " name, email, age");
         String choice = buffer.readLine();
         if (choice.equals("name")) {
@@ -122,7 +120,6 @@ public class Reader {
         int key = scanner.nextInt();
         System.out.println(base.containsKey(key));
         System.out.println(base.get(key));
-        System.out.println("Number of users= " + base.size());
         read();
 
     }
@@ -132,8 +129,6 @@ public class Reader {
         int key = user.hashCode();
         System.out.println("User id= " + key);
         base.put(key, user);
-        System.out.println(base.containsValue(user));
-        System.out.println("Number of users= " + base.size());
         return base;
 
     }
