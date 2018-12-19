@@ -1,5 +1,7 @@
 package com.hillel.fmishchenko_practice.homeWork_6_Task_1;
 
+import javax.swing.text.html.HTMLDocument;
+
 public class Demo {
     public static void main(String[] args) {
         Integer[] numbers = new Integer[]{1, 4, 7, 2, 13};
@@ -16,7 +18,5 @@ public class Demo {
         for (String str: strings){
             System.out.println(str);
         }
-
-
     }
 }
