@@ -3,7 +3,7 @@ package com.hillel.fmishchenko_practice.homeWork_6_Task_1;
 
 import java.util.Iterator;
 
-public class List<T> implements Iterable<T>{
+public class List<T> implements Iterable<T> {
 
     private T[] arrayList;
     private int currentSize;
