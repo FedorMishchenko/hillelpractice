@@ -4,6 +4,10 @@ public class VacancyCheckMiddleware extends Middleware {
     private Server server;
     private Vacancy vacancies;
 
+    public VacancyCheckMiddleware(Vacancy vacancy) {
+      this.vacancies = vacancy;
+    }
+
     @Override
     public boolean check(String email, Person person) {
         if (!server.hasEmail(email)){

@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 public class Vacancy {
 
+
+
     LinkedList<String> vacancies = new LinkedList<>();
 
     public void addVacancy(String vacancy) {
