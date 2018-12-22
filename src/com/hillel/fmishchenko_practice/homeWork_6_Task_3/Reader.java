@@ -51,7 +51,7 @@ public class Reader {
             String email = reader.readLine();
             if(server.hasEmail(email)){
                 Person person = server.getBase().get(email);
-//TO DO checks
+                middleware.check(person.email,person);
             }else if(reader.readLine().equals("exit")) reader.close();
         }else readInfo();
        }
