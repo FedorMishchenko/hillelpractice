@@ -40,4 +40,7 @@ public class Server {
     }
 
 
+    public Person getPerson(String email) {
+        return base.get(email);
+    }
 }

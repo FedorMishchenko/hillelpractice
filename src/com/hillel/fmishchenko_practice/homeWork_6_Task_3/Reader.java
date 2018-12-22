@@ -8,7 +8,6 @@ public class Reader {
     private static BufferedReader reader = new BufferedReader
             (new InputStreamReader(System.in));
     private static Server server;
-
     static {
         try {
             server = Server.class.newInstance();
@@ -18,42 +17,46 @@ public class Reader {
             e.printStackTrace();
         }
     }
-
     private static Vacancy vacancy;
     Middleware middleware;
 
+
     public void readInfo() throws IOException {
-        System.out.println("Input command: ");
         System.out.println("1.register");
         System.out.println("2.check");
         System.out.println("3.exit");
+        Person person = new Person();
 
-        if(reader.readLine().equals("register")){
-            System.out.println("input person data: 1.email");
-            Person person = new Person();
+        if (reader.readLine().equals("register")) {
+            System.out.println("input data:" + '\n' + "1.email");
             person.setEmail(reader.readLine());
             String email = person.email;
             System.out.println("2.vocation");
             person.setVocation(reader.readLine());
             System.out.println("3.age");
             person.setAge(reader.read());
-            server.register(email,person);
-            if(server.hasEmail(person.email)){
-                System.out.println("person already exists");
-                System.out.println("Input command: ");
-                reader.readLine();
-            }else server.register(person.email,person);
-            System.out.println("Input command: ");
-            reader.readLine();
-
-        }else if(reader.readLine().equals("check")){
+            if (server.hasEmail(email)) {
+                System.out.println("Person already exists");
+                readInfo();
+            } else {
+                System.out.println("Person registered");
+                server.register(email,person);
+                readInfo();
+            }
+             }
+         else if (reader.readLine().equals("check")) {
             System.out.println("Input email");
             String email = reader.readLine();
-            if(server.hasEmail(email)){
-                Person person = server.getBase().get(email);
-                middleware.check(person.email,person);
-            }else if(reader.readLine().equals("exit")) reader.close();
-        }else readInfo();
-       }
+            if (server.hasEmail(email)) {
+                person = server.getPerson(email);
+                middleware.check(person.email, person);
+                readInfo();
+            } else System.out.println("Person exists");
+            readInfo();
+        } else if (reader.readLine().equals("Exit")) {
+            reader.close();
+        } else readInfo();
+      }
     }
+
 

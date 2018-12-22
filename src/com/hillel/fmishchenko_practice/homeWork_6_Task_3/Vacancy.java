@@ -19,10 +19,10 @@ public class Vacancy {
             System.out.println(vacancy);
         }
     }
-    public String getVacancy(String vocation) {
+    public boolean getVacancy(String vocation) {
         if (vacancies.contains(vocation)) {
-            return vocation;
+            return true;
         }
-        return "No suitable vacancy";
+        return false;
     }
 }
