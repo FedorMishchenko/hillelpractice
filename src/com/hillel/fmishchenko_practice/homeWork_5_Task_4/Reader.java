@@ -20,7 +20,7 @@ public class Reader {
             try {
                 command = buffer.readLine();
             } catch (IOException e) {
-                System.out.println("Input command fail");
+                System.out.println("Input error");
             }
             if (command.equals("create")) {
                 base = createUser();

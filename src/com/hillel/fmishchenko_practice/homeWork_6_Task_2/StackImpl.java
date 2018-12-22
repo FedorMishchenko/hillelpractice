@@ -1,11 +1,14 @@
 package com.hillel.fmishchenko_practice.homeWork_6_Task_2;
 
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.function.Consumer;
 
-public class StackImpl<T> implements Stack<T> {
+public class StackImpl<T> implements Stack<T>, Iterable<T> {
 
     LinkedList<T> list = new LinkedList<>();
     int count = 0;
+    int currentSize = list.size();
 
 
     @Override
@@ -87,6 +90,36 @@ public class StackImpl<T> implements Stack<T> {
                 System.err.println("Stack is empty");
             }
         return list.getLast();
+
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        Iterator<T> it = new Iterator<T>() {
+
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < currentSize && list.get(currentIndex) != null;
+            }
+
+            @Override
+            public T next() {
+                return list.get(currentIndex++);
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+        return it;
+    }
+
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
 
     }
 }
