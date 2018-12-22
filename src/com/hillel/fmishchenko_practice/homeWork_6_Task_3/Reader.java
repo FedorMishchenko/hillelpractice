@@ -1,52 +1,47 @@
 package com.hillel.fmishchenko_practice.homeWork_6_Task_3;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Reader {
-    private static BufferedReader reader = new BufferedReader
-            (new InputStreamReader(System.in));
+    Scanner scanner = new Scanner(System.in);
     private static Server server;
-    private static Vacancy vacancy;
-    Middleware middleware;
-    Person person;
 
-
-    public void readInfo() throws IOException {
-        System.out.println("1.register");
-        System.out.println("2.check");
-        System.out.println("3.exit");
-
-
-        if (reader.readLine().equals("register")) {
-            init();
-            readInfo();
-
-        } else if (reader.readLine().equals("check")) {
-            middleware.linkWith(new PersonExistsMiddleware(server))
-                    .linkWith(new VacancyCheckMiddleware(vacancy));
-            readInfo();
-        } else if (reader.readLine().equals("Exit")) {
-            reader.close();
-        } else readInfo();
+    static {
+        try {
+            server = Server.class.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void init() throws IOException {
-        server = new Server();
-        person = new Person();
-        vacancy = new Vacancy();
 
-        System.out.println("input data:" + '\n' + "1.email");
-        person.setEmail(reader.readLine());
-        String email = person.email;
-        System.out.println("2.vocation");
-        person.setVocation(reader.readLine());
-        System.out.println("3.age");
-        person.setAge(reader.read());
-        server.register(email, person);
+    public void init() {
+        Person person = new Person();
+        System.out.println("Input email:");
+        person.setEmail(scanner.nextLine());
+        System.out.println("Input vocation:");
+        person.setVocation(scanner.nextLine());
+        System.out.println("Input age");
+        person.setAge(scanner.nextInt());
+        server.register(person.email,person);
+        System.out.println(server.contains(person.email));
+        Middleware middleware = new PersonExistMiddleware(server)
+                .linkWith(new IsAgeValidMiddleware(server));
+        readData();
+    }
 
+    String command;
+
+    public void readData(){
+        System.out.println("Input command:");
+        System.out.println("1.register");
+        System.out.println("2.exit");
+        if ((command = scanner.nextLine()).equals("register")) {
+            init();
+        }else if ((command = scanner.nextLine()).equals("exit")){
+            scanner.close();
+        }else readData();
     }
 }
-
-

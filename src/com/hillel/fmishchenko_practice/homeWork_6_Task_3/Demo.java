@@ -4,7 +4,6 @@ import java.io.IOException;
 
 public class Demo {
     public static void main(String[] args) throws IOException {
-        Reader reader = new Reader();
-        reader.readInfo();
+        new Reader().readData();
     }
 }
