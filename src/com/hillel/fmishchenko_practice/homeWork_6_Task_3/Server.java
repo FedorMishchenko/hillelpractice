@@ -1,16 +1,22 @@
 package com.hillel.fmishchenko_practice.homeWork_6_Task_3;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Server {
-    private HashMap<String, Person> users = new HashMap<>();
+public class Server{
+    public HashMap<String, Person> users = new HashMap<>();
     private Middleware middleware;
+
 
     public boolean contains(String email){
         if(users.containsKey(email)){
             return true;
         }
         return false;
+    }
+    public ArrayList<Person> getAll(){
+        ArrayList<Person> list = new ArrayList(users.entrySet());
+        return list;
     }
 
     public void setMiddleware(Middleware middleware) {

@@ -1,6 +1,6 @@
 package com.hillel.fmishchenko_practice.homeWork_6_Task_3;
 
-public class Person {
+public class Person implements Comparable<Person> {
     String email;
     String vocation;
     Integer age;
@@ -27,5 +27,10 @@ public class Person {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public int compareTo(Person person) {
+        return this.getEmail().compareTo(person.getEmail());
     }
 }
