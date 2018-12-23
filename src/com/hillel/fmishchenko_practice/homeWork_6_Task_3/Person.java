@@ -31,6 +31,6 @@ public class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person person) {
-        return this.getEmail().compareTo(person.getEmail());
+        return getEmail().compareTo(person.getEmail());
     }
 }

@@ -10,10 +10,14 @@ public class IsAgeValidMiddleware extends Middleware {
 
     @Override
     public boolean check(String email, Person person) {
-        if((person.age < 20 || person.age > 50)){
-            System.out.println("Not valid age");
+        if((person.age < 20 )) {
+            System.out.println("Too young");
+            return false;
+        }else if((person.age > 55)){
+            System.out.println("Too old");
             return false;
         }
+        else
         return checkNext(email,person);
     }
 }
