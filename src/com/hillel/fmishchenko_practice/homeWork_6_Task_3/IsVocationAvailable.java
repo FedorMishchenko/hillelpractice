@@ -4,9 +4,17 @@ import java.util.ArrayList;
 
 public class IsVocationAvailable extends Middleware {
 
+    private Server server;
+
+    public IsVocationAvailable(Server server){ this.server = server;}
     @Override
     public boolean check(String email, Person person) {
+        Reader reader = new Reader();
+        for(int i = 0; i < reader.vocations.size();i++){
 
-        return false;
+            if(person.vocation.compareTo(reader.vocations.get(i))!= 0);
+            return false;
+        }
+        return checkNext(email,person);
     }
 }

@@ -30,12 +30,16 @@ public class Reader {
         person.setAge(scanner.nextInt());
         server.register(person.email,person);
         System.out.println(server.contains(person.email));
-        Middleware middleware = new PersonExistMiddleware(server)
-                .linkWith(new IsAgeValidMiddleware(server));
+        boolean success;
+                do {
+                    Middleware middleware = new PersonExistMiddleware(server)
+                            .linkWith(new IsAgeValidMiddleware(server))
+                            .linkWith(new IsVocationAvailable(server));
+                    success = true;
+                }while (!success);
         server.users.entrySet().stream()
                 .sorted(HashMap.Entry.<String,Person>comparingByValue())
                 .forEach(System.out::println);
-        readData();
     }
 
     String command;
@@ -49,14 +53,18 @@ public class Reader {
         System.out.println("5.'exit' = exit from programm");
         if ((command = scanner.nextLine()).equals("register")) {
             init();
+            readData();
         }else if((command = scanner.nextLine()).equals("update")){
             update(server.users);
+            readData();
         }else if((command = scanner.nextLine()).equals("add")){
             System.out.println("Input vocation:");
             String vocation = scanner.nextLine();
             addVocation(vocation);
+            readData();
         }else if((command = scanner.nextLine()).equals("show")){
             showVocations();
+            readData();
         }else if ((command = scanner.nextLine()).equals("exit")){
             scanner.close();
         }else readData();
@@ -67,12 +75,10 @@ public class Reader {
     }
     public void addVocation(String vocation){
         vocations.add(vocation);
-        readData();
     }
     public void showVocations(){
         for (String vocation: vocations){
-            System.out.println(vocation + '\n');
-            readData();
+            System.out.println(vocation);
         }
     }
 }
