@@ -21,7 +21,8 @@ public class ParkingDemo {
                 " on parking: "+ parking.containsValue(peugeot));
         System.out.println("Cars on parking: " + parking.size());
         parking.clear();
-        System.out.println(parking.size());
+        System.out.println("Cars has departure");
+        System.out.println("Cars on parking: " + parking.size());
 
 
 
