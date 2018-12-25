@@ -18,6 +18,7 @@ public class Reader {
             String command = "";
             System.out.println("Input command: ");
             System.out.println("create, read, update, delete, all, sort: ");
+            System.out.println("exit: to system.exit");
             try {
                 command = buffer.readLine();
             } catch (IOException e) {
