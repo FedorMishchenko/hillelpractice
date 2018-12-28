@@ -9,6 +9,11 @@ public class User implements Comparable<User> {
 
     public User() {
     }
+    public User(String name,String email,int age){
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
 
     public String getEmail() {
         return email;
@@ -36,10 +41,10 @@ public class User implements Comparable<User> {
 
     public String toString() {
         return
-                "User name= " + this.name + '\n' +
-                        "user email= " +
+                "User name = " + this.name + '\n' +
+                        "User email = " +
                         this.email + '\n' +
-                        "user age= " +
+                        "User age = " +
                         this.age;
     }
 

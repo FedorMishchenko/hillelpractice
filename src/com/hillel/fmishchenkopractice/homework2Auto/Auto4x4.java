@@ -46,4 +46,7 @@ public class Auto4x4 extends Auto {
         this.mark = mark;
     }
 
+    public String toString(){
+        return "auto 4x4";
+    }
 }

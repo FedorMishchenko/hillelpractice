@@ -1,6 +1,6 @@
 package com.hillel.fmishchenkopractice.homework4task3;
 
-import com.hillel.fmishchenko_practice.homeWork_3_Task_2.GeometryFigures.*;
+
 import com.hillel.fmishchenkopractice.homework3task2.GeometryFigures.Figure;
 import com.hillel.fmishchenkopractice.homework3task2.GeometryFigures.Rectangle;
 import com.hillel.fmishchenkopractice.homework3task2.GeometryFigures.Rhombus;

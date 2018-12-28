@@ -3,11 +3,10 @@ package com.hillel.fmishchenkopractice.homework5task1;
 import java.util.Collection;
 
 public class ListImplGenerics<E> extends AbstractList<E> {
-    private Node<E> previous;
-    private Node<E> next;
-    private Node<E> first;
 
-    transient Node<E> last;
+    private Node<E> last;
+
+    private Node<E> first;
 
     transient int size = 0;
 
@@ -32,13 +31,13 @@ public class ListImplGenerics<E> extends AbstractList<E> {
     }
 
     public boolean addObject(E e) {
-        final Node<E> l = last;
-        final Node<E> newNode = new Node<E>();
+        Node<E> f =  first;
+        Node<E> newNode = new Node<E>(null, e, f);
         last = newNode;
-        if (l == null)
-            first = newNode;
+        if (f == null)
+            last = newNode;
         else
-            l.next = newNode;
+            f.prev = newNode;
         size++;
         return true;
     }
@@ -47,7 +46,7 @@ public class ListImplGenerics<E> extends AbstractList<E> {
         Node<E> node = null;
         if (!isEmpty() && (index >= 0 && index < size)) {
             node = first;
-            for (int i = 1; i <= index; i++) {
+            for (int i = 1; i < index; i++) {
                 node.getNext();
             }
         }
@@ -55,23 +54,10 @@ public class ListImplGenerics<E> extends AbstractList<E> {
 
     }
 
-    public E getObject(int index) {
-        E element;
-
-        if (index >= 0 && index < size()) {
-            element = getObjectByIndex(index).getT();
-        } else throw new IndexOutOfBoundsException("Index out of bounds");
-        return element;
-
-    }
 
     @Override
     public boolean contains(Object object) {
-        for (int i = 0; i < size(); i++) {
-            if (get(i).equals(object)) return true;
-        }
-        return false;
-
+        return indexOf(object) != -1;
     }
 
     public boolean remove(Object object) {

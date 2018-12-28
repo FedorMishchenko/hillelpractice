@@ -129,8 +129,9 @@ public class Reader {
     HashMap createUser() {
         User user = new User();
         int key = user.hashCode();
-        System.out.println("User id= " + key);
+        System.out.println("User id = " + key);
         base.put(key, user);
+        updateUser();
         return base;
 
     }

@@ -45,4 +45,8 @@ public class AutoHatch extends Auto {
     public void setMark(String mark) {
         this.mark = mark;
     }
+
+    public String toString(){
+        return "auto hatch";
+    }
 }
