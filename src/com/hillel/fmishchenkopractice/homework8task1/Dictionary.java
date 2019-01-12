@@ -21,10 +21,10 @@ public class Dictionary {
         dictionary.put(key,value);
     }
 
-    public String getEn(String key){
-        return "EN:  " + dictionary.get(key);
+    public String get(String key){
+        return toString(key);
     }
-    public String getRu(String key){
+/*    public String getRu(String key){
         Set<Map.Entry<String,String>> entrySet = dictionary.entrySet();
         for (Map.Entry<String,String> pair : entrySet) {
             if (key.equals(pair.getKey())) {
@@ -33,19 +33,23 @@ public class Dictionary {
         }
         System.out.println("Key is not exists");
         return "";
-    }
+    }*/
     public void remove(String key){
         dictionary.remove(key);
     }
+
     public Set<String> keySet(){
         return dictionary.keySet();
     }
+
     public Collection<String> values(){
         return dictionary.values();
     }
+
     public int size(){
         return dictionary.size();
     }
+
     public String toString(String key){
         String ru = key;
         String en = dictionary.get(key);
@@ -53,7 +57,7 @@ public class Dictionary {
             System.out.print("No such element");
             return "";
         }
-        return "RU:  " + ru + " ==> " + " EN: " + en;
+        return "EN:  " + ru + " ==> " + " RU: " + en;
     }
 
 

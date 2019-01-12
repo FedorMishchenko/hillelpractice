@@ -1,11 +1,12 @@
 package com.hillel.fmishchenkopractice.homework8task1;
 
+
 import java.io.*;
 
 import static java.lang.System.in;
 import static java.lang.System.out;
 
-public class ReaderCharArray extends Reader {
+public class CharArrayReader extends Reader {
     Dictionary dictionary = Dictionary.getInstance();
     BufferedReader reader = null;
     DataOutputStream writer = new DataOutputStream(out);
@@ -59,7 +60,8 @@ public class ReaderCharArray extends Reader {
                 strRus = reader.readLine();
                 out.print(strRus);
             } catch (IOException e) {
-                out.println("error input rus word");;
+                out.println("error input rus word");
+                e.printStackTrace();
             }
         } out.println();
     }
@@ -73,6 +75,7 @@ public class ReaderCharArray extends Reader {
                 out.print(strEng);
             } catch (IOException e) {
                 out.println("error input eng word");
+                e.printStackTrace();
             }
         }out.println();
 
@@ -82,8 +85,16 @@ public class ReaderCharArray extends Reader {
     }
 
     private void closeAndFlushQuietly(DataOutputStream writer) {
-        out.flush();
-        out.close();
+        try {
+            writer.flush();
+        } catch (IOException ignore) {
+            /*NOP*/
+        }
+        try {
+            writer.close();
+        } catch (IOException ignore) {
+            /*NOP*/
+        }
     }
 
     void closeQuietly(BufferedReader in) {
