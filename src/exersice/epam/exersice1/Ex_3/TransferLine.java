@@ -1,4 +1,4 @@
-package exersiceEpam.Cpt_1.Ex_3;
+package exersice.epam.exersice1.Ex_3;
 
 import java.util.Scanner;
 public class TransferLine {

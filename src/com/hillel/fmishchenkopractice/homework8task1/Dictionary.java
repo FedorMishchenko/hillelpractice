@@ -26,11 +26,9 @@ public class Dictionary {
     }
     public String getRu(String key){
         Set<Map.Entry<String,String>> entrySet = dictionary.entrySet();
-
-        String getValue = key;
         for (Map.Entry<String,String> pair : entrySet) {
-            if (getValue.equals(pair.getValue())) {
-                return "RU:  " + pair.getKey();
+            if (key.equals(pair.getKey())) {
+                return "RU:  " + pair.getValue();
             }
         }
         System.out.println("Key is not exists");

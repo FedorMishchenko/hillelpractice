@@ -1,4 +1,4 @@
-package exersiceEpam.Cpt_1.Ex_1;
+package exersice.epam.exersice1.Ex_1;
 
 import java.io.IOException;
 import java.util.Scanner;

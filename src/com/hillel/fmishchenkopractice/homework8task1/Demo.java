@@ -8,8 +8,5 @@ public class Demo {
         System.setProperty("console.encoding","UTF-8");
         Reader reader = new ReaderChar();
         reader.read();
-
-
-
     }
 }

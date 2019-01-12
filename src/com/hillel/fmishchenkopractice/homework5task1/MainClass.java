@@ -5,7 +5,6 @@ import com.hillel.fmishchenkopractice.homework2Auto.Auto4x4;
 import com.hillel.fmishchenkopractice.homework2Auto.AutoHatch;
 import com.hillel.fmishchenkopractice.homework2Auto.AutoSedan;
 
-import java.util.LinkedList;
 
 
 public class MainClass {
@@ -16,7 +15,6 @@ public class MainClass {
         list.addObject(hatch);
         list.addObject(new AutoSedan());
         list.addObject(new Auto4x4());
-        // list.addObject(new Object());  // Can't be applied
         System.out.println("List size = " + list.size);
         System.out.println("List is empty? = " + list.isEmpty());
         System.out.println(list.contains(hatch));

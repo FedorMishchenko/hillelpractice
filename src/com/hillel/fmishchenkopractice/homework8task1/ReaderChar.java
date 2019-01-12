@@ -90,6 +90,7 @@ public class ReaderChar extends Reader {
 
         }
         dictionary.put(strE, strR);
+        out.println(dictionary.toString(strE));//Проверка сохранения элементов успешна
     }
 
     private void translate() {
@@ -107,6 +108,7 @@ public class ReaderChar extends Reader {
                 out.println("Exception in read en word");
             }
             out.println(dictionary.getRu(command));
+            out.println(dictionary.toString(command));//Здесь элементы уже отсутствуют
         } else if (command.equals("ru")) {
             out.println("Input russian word to translate: ");
             try {

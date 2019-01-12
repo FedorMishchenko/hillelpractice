@@ -1,4 +1,4 @@
-package exersiceEpam.Cpt_2.Ex_3;
+package exersice.epam.exersice2.Ex_3;
 
 import java.util.*;
 

@@ -1,8 +1,5 @@
 package com.hillel.fmishchenkopractice.homework5task1;
 
-
-import java.util.LinkedList;
-
 public class Node<T> {
     Node<T> next;
     Node<T> prev;

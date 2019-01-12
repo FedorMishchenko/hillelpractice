@@ -1,4 +1,4 @@
-package exersiceEpam.Cpt_1.Ex_5;
+package exersice.epam.exersice1.Ex_5;
 
 import java.util.Scanner;
 

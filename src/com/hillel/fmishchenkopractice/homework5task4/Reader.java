@@ -5,13 +5,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Reader {
+ class Reader {
 
     BufferedReader buffer =
             new BufferedReader(new InputStreamReader(System.in));
     Scanner scanner = new Scanner(System.in);
 
     HashMap<Integer, User> base = new HashMap<>();
+
+    public Reader() {
+    }
 
     public void read() {
         {

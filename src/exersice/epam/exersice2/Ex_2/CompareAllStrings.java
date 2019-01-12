@@ -1,20 +1,19 @@
-package exersiceEpam.Cpt_2.Ex_1;
+package exersice.epam.exersice2.Ex_2;
 
 import java.util.*;
 
-public class CompareStrings {
+public class CompareAllStrings {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Number of strings = ");
         int lenght = 0;
-        boolean flag = true;
-        while (flag) {
+        OUT:while (true) {
             try {
                 lenght = scanner.nextInt();
                 break;
             } catch (InputMismatchException e) {
                 System.err.println("You input not number");
-                flag = false;
+                break OUT;
             }
         }
         System.out.println('\n' + "Input " + lenght + " strings:");
@@ -26,10 +25,9 @@ public class CompareStrings {
             list.add(scanner.next());
         }
         Collections.sort(list,comparator);
-        System.out.println("Short string = " + list.get(0) +
-                '\n' + "Long string = " + list.get(lenght - 1));
+        for (String str: list){
+            System.out.println(str);
+        }
 
     }
-
-
 }
