@@ -1,6 +1,7 @@
 package com.hillel.fmishchenkopractice.homework8task1;
 
 import java.io.*;
+import java.util.Arrays;
 
 
 import static java.lang.System.in;
@@ -26,18 +27,18 @@ public class CharReader extends Reader {
     void read() {
 
         while (true) {
-            out.println("Input command: ");
+            out.println("Input command:  add, tr, exit ");
             try {
                 command = reader.readLine();
             } catch (IOException e) {
-                out.println("error while input command ");
+                out.println("error while input command:");
                 e.printStackTrace();
             }
             switch (command) {
                 case "add":
                     add();
                     break;
-                case "trans":
+                case "tr":
                     translate();
                     break;
                 case "exit":
@@ -93,36 +94,28 @@ public class CharReader extends Reader {
 
         }
         dictionary.put(strE, strR);
-        out.println(dictionary.toString(strE));//Проверка сохранения элементов успешна
+        out.println(dictionary.toString(strE));   //Проверка сохранения элементов успешна
     }
 
     private void translate() {
-        out.println("Input en for english / ru for russian: ");
+        String str = null;
+        char[] arr = new char[25];
+        int index = 0;
+        out.println("Input word: ");
         try {
-            command = reader.readLine();
+            int b;
+            while ((b = reader.read()) != 10) {
+                out.print((char) b);
+                arr[index] = (char) b;
+                index++;
+            }
+            str = Arrays.toString(arr);
         } catch (IOException e) {
-            out.println("Exception in input en / ru");
+            out.println("Exception in input word");
             e.printStackTrace();
         }
-        if (command.equals("en")) {
-            out.println("Input english word to translate: ");
-            try {
-                command = reader.readLine();
-            } catch (IOException e) {
-                out.println("Exception in read en word");
-                e.printStackTrace();
-            }
-            out.println(dictionary.get(command));
-            out.println(dictionary.toString(command));//Здесь элементы уже отсутствуют
-        } else if (command.equals("ru")) {
-            out.println("Input russian word to translate: ");
-            try {
-                command = reader.readLine();
-            } catch (IOException e) {
-                out.println("Exception in read ru word");
-                e.printStackTrace();
-            }
-            out.println(dictionary.get(command));
+        if (str != null) {
+            out.println(dictionary.toString(str)); //TO DO: переделать реализацию dictionary
         } else {
             out.println("Illegal argument: " + command
                     + '\n' +

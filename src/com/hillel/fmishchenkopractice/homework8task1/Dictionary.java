@@ -22,18 +22,9 @@ public class Dictionary {
     }
 
     public String get(String key){
-        return toString(key);
+        return dictionary.get(key);
     }
-/*    public String getRu(String key){
-        Set<Map.Entry<String,String>> entrySet = dictionary.entrySet();
-        for (Map.Entry<String,String> pair : entrySet) {
-            if (key.equals(pair.getKey())) {
-                return "RU:  " + pair.getValue();
-            }
-        }
-        System.out.println("Key is not exists");
-        return "";
-    }*/
+
     public void remove(String key){
         dictionary.remove(key);
     }
@@ -51,13 +42,13 @@ public class Dictionary {
     }
 
     public String toString(String key){
-        String ru = key;
-        String en = dictionary.get(key);
+        String en = key;
+        String ru = dictionary.get(key);
         if(ru == null || en == null){
             System.out.print("No such element");
             return "";
         }
-        return "EN:  " + ru + " ==> " + " RU: " + en;
+        return "EN:  " + en + " ==> " + " RU: " + ru;
     }
 
 
