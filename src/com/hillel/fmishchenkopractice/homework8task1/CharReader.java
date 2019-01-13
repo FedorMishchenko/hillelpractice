@@ -1,7 +1,6 @@
 package com.hillel.fmishchenkopractice.homework8task1;
 
 import java.io.*;
-import java.util.Arrays;
 
 
 import static java.lang.System.in;
@@ -105,11 +104,10 @@ public class CharReader extends Reader {
         try {
             int b;
             while ((b = reader.read()) != 10) {
-                out.print((char) b);
                 arr[index] = (char) b;
                 index++;
             }
-            str = Arrays.toString(arr);
+            str = (new String(arr));
         } catch (IOException e) {
             out.println("Exception in input word");
             e.printStackTrace();
