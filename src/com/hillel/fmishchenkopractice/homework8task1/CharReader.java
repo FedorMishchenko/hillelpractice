@@ -93,7 +93,7 @@ public class CharReader extends Reader {
 
         }
         dictionary.put(strE, strR);
-        out.println(dictionary.toString(strE));   //Проверка сохранения элементов успешна
+        out.println(dictionary.toString(strE));
     }
 
     private void translate() {
@@ -113,7 +113,7 @@ public class CharReader extends Reader {
             e.printStackTrace();
         }
         if (str != null) {
-            out.println(dictionary.toString(str)); //TO DO: переделать реализацию dictionary
+            out.println(dictionary.toString(str));
         } else {
             out.println("Illegal argument: " + command
                     + '\n' +

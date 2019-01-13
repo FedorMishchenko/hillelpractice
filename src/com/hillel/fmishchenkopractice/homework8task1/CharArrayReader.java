@@ -24,7 +24,7 @@ public class CharArrayReader extends Reader {
     void read() {
 
         while (true) {
-            out.println("Input command: ");
+            out.println("Input command: add, tr, exit: ");
             try {
                 command = reader.readLine();
             } catch (IOException e) {
@@ -32,10 +32,9 @@ public class CharArrayReader extends Reader {
             }
             switch (command) {
                 case "add":
-                    addE();
-                    addR();
+                    add();
                     break;
-                case "translate":
+                case "tr":
                     translate();
                     break;
                 case "exit":
@@ -52,36 +51,47 @@ public class CharArrayReader extends Reader {
 
     }
 
-    private void addR() {
-        String strRus;
-        out.println("Input rus word: ");
-        if(reader != null){
+    private void add() {
+        String strE = null;
+        String strR = null;
+        out.println("Input eng word: ");
+        if (reader != null) {
             try {
-                strRus = reader.readLine();
-                out.print(strRus);
+                strE = reader.readLine();
+                out.println(strE);
             } catch (IOException e) {
                 out.println("error input rus word");
                 e.printStackTrace();
             }
-        } out.println();
-    }
-
-    private void addE() {
-        String strEng;
-        out.println("Input eng word: ");
-        if(reader != null){
+            out.println("Input rus word: ");
             try {
-                strEng = reader.readLine();
-                out.print(strEng);
+                strR = reader.readLine();
+                out.println(strR);
             } catch (IOException e) {
                 out.println("error input eng word");
                 e.printStackTrace();
             }
-        }out.println();
-
+        }
+        dictionary.put(strE, strR);
+        out.println(dictionary.toString(strE));
     }
-    void translate() {
 
+    void translate() {
+        String str = null;
+        out.println("Input word: ");
+            try {
+                str = reader.readLine();
+            } catch (IOException e1) {
+                out.println("exception read in translate method");
+            }
+
+        if (str != null) {
+            out.println(dictionary.toString(str));
+        } else {
+            out.println("Illegal argument: " + command
+                    + '\n' +
+                    "Try input again.");
+        }
     }
 
     private void closeAndFlushQuietly(DataOutputStream writer) {
