@@ -8,12 +8,13 @@ import static java.lang.System.out;
 
 public class CharArrayReader extends Reader {
     Dictionary dictionary = Dictionary.getInstance();
-    BufferedReader reader = null;
-    DataOutputStream writer = new DataOutputStream(out);
+    BufferedReader reader;
+    DataOutputStream writer;
 
     {
         try {
             reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+            writer = new DataOutputStream(out);
         } catch (UnsupportedEncodingException e) {
             out.println("encoding exception");
         }
@@ -24,12 +25,7 @@ public class CharArrayReader extends Reader {
     void read() {
 
         while (true) {
-            out.println("Input command: add, tr, exit: ");
-            try {
-                command = reader.readLine();
-            } catch (IOException e) {
-                out.println("error while input command " + e);
-            }
+            input();
             switch (command) {
                 case "add":
                     add();
@@ -38,8 +34,6 @@ public class CharArrayReader extends Reader {
                     translate();
                     break;
                 case "exit":
-                    closeQuietly(reader);
-                    closeAndFlushQuietly(writer);
                     System.exit(0);
                 default:
                     out.println("Invalid input: " + command
@@ -51,39 +45,52 @@ public class CharArrayReader extends Reader {
 
     }
 
+    private void input() {
+        out.println("Input command: add, tr, exit: ");
+        try {
+            command = reader.readLine();
+        } catch (IOException e) {
+            out.println("error while input command " + e);
+        }
+    }
+
     private void add() {
         String strE = null;
         String strR = null;
         out.println("Input eng word: ");
         if (reader != null) {
-            try {
-                strE = reader.readLine();
-                out.println(strE);
-            } catch (IOException e) {
-                out.println("error input rus word");
-                e.printStackTrace();
-            }
+            strE = inputEnglishWord(strE, "error input rus word");
             out.println("Input rus word: ");
-            try {
-                strR = reader.readLine();
-                out.println(strR);
-            } catch (IOException e) {
-                out.println("error input eng word");
-                e.printStackTrace();
-            }
+            strR = inputRussianWord(strR, "error input eng word");
         }
         dictionary.put(strE, strR);
         out.println();
     }
 
+    private String inputRussianWord(String strR, String s) {
+        try {
+            strR = reader.readLine();
+            out.println(strR);
+        } catch (IOException e) {
+            out.println(s);
+        }
+        return strR;
+    }
+
+    private String inputEnglishWord(String strE, String s) {
+        try {
+            strE = reader.readLine();
+            out.println(strE);
+        } catch (IOException e) {
+            out.println(s);
+        }
+        return strE;
+    }
+
     void translate() {
         String str = null;
         out.println("Input word: ");
-            try {
-                str = reader.readLine();
-            } catch (IOException e1) {
-                out.println("exception read in translate method");
-            }
+        str = inputStringToTranslate(str);
 
         if (str != null) {
             out.println(dictionary.toString(str));
@@ -95,24 +102,13 @@ public class CharArrayReader extends Reader {
         out.println();
     }
 
-    private void closeAndFlushQuietly(DataOutputStream writer) {
+    private String inputStringToTranslate(String str) {
         try {
-            writer.flush();
-        } catch (IOException ignore) {
-            /*NOP*/
+            str = reader.readLine();
+        } catch (IOException e1) {
+            out.println("exception read in translate method");
         }
-        try {
-            writer.close();
-        } catch (IOException ignore) {
-            /*NOP*/
-        }
+        return str;
     }
 
-    void closeQuietly(BufferedReader in) {
-        try {
-            in.close();
-        } catch (IOException ignore) {
-            /*NOP*/
-        }
-    }
 }
