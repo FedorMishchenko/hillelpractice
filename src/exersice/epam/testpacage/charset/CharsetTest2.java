@@ -39,7 +39,7 @@ public class CharsetTest2 {
                 }
             }
 
-            pw.println("Построчный ввод:");
+/*            pw.println("Построчный ввод:");
 
             do {
                 try {
@@ -49,7 +49,7 @@ public class CharsetTest2 {
                 }
                 pw.println(s);
 
-            } while (!s.equals("q"));
+            } while (!s.equals("q"));*/
         }
     }
 }

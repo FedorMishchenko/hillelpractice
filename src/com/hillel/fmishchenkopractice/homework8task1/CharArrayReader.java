@@ -73,7 +73,7 @@ public class CharArrayReader extends Reader {
             }
         }
         dictionary.put(strE, strR);
-        out.println(dictionary.toString(strE));
+        out.println();
     }
 
     void translate() {
@@ -92,6 +92,7 @@ public class CharArrayReader extends Reader {
                     + '\n' +
                     "Try input again.");
         }
+        out.println();
     }
 
     private void closeAndFlushQuietly(DataOutputStream writer) {

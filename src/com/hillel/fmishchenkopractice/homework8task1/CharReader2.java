@@ -2,28 +2,20 @@ package com.hillel.fmishchenkopractice.homework8task1;
 
 import java.io.*;
 
-
 import static java.lang.System.in;
 import static java.lang.System.out;
 
-public class CharReader extends Reader {
+public class CharReader2 extends Reader {
     Dictionary dictionary = Dictionary.getInstance();
-    BufferedReader reader = null;
-    DataOutputStream writer = new DataOutputStream(out);
-/*    PrintWriter pw = null;
-             {
-        try {
-            pw = new PrintWriter(new OutputStreamWriter(out, "UTF-8"), true);
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        }
-    }*/
+    StringBuilder builder = new StringBuilder();
+
+    InputStreamReader reader;
 
     {
         try {
-            reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+            reader = new InputStreamReader(in, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            out.println("encoding exception");
+            e.printStackTrace();
         }
     }
 
@@ -34,9 +26,14 @@ public class CharReader extends Reader {
     void read() {
 
         while (true) {
+            builder.delete(0, builder.length());
+            int b;
             out.println("Input command:  add, tr, exit ");
             try {
-                command = reader.readLine();
+                while ((b = reader.read()) != 10) {
+                    builder.append((char) b);
+                }
+                command = new String(builder);
             } catch (IOException e) {
                 out.println("error while input command:");
                 e.printStackTrace();
@@ -50,7 +47,6 @@ public class CharReader extends Reader {
                     break;
                 case "exit":
                     closeQuietly(reader);
-                    closeAndFlushQuietly(writer);
                     System.exit(0);
                 default:
                     out.println("Illegal argument: " + command
@@ -65,35 +61,27 @@ public class CharReader extends Reader {
     void add() {
         strE = null;
         strR = null;
-        int index = 0;
-        char[] arrE = new char[25];
-        char[] arrR = new char[25];
         if (reader != null) {
             out.println("Input eng word: ");
             try {
                 int b;
+                builder.delete(0, builder.length());
                 while ((b = reader.read()) != 10) {
-                    writer.writeChar(b);
-                    arrE[index] = (char) b;
-                    index++;
+                    builder.append((char) b);
                 }
-                out.println();
-                strE = new String(arrE);
+                strE = new String(builder);
             } catch (IOException e) {
                 out.println("error input eng word");
                 e.printStackTrace();
             }
             out.println("Input rus word: ");
-            index = 0;
             try {
                 int b;
+                builder.delete(0, builder.length());
                 while ((b = reader.read()) != 10) {
-                    out.print((char) b);
-                    arrR[index] = (char) b;
-                    index++;
+                    builder.append((char) b);
                 }
-                out.println();
-                strR = new String(arrR);
+                strR = new String(builder);
             } catch (IOException e) {
                 out.println("error input rus word");
                 e.printStackTrace();
@@ -106,16 +94,14 @@ public class CharReader extends Reader {
 
     private void translate() {
         String str = null;
-        char[] arr = new char[25];
-        int index = 0;
         out.println("Input word: ");
         try {
             int b;
+            builder.delete(0, builder.length());
             while ((b = reader.read()) != 10) {
-                arr[index] = (char) b;
-                index++;
+                builder.append((char) b);
             }
-            str = (new String(arr));
+            str = (new String(builder));
         } catch (IOException e) {
             out.println("Exception in input word");
             e.printStackTrace();
@@ -130,25 +116,11 @@ public class CharReader extends Reader {
         out.println();
     }
 
-    private void closeAndFlushQuietly(DataOutputStream out) {
-        try {
-            out.flush();
-        } catch (IOException ignore) {
-            /*NOP*/     /*NoOperation*/
-        }
-        try {
-            out.close();
-        } catch (IOException ignore) {
-            /*NOP*/
-        }
-    }
-
-    void closeQuietly(BufferedReader in) {
+    void closeQuietly(InputStreamReader in) {
         try {
             in.close();
         } catch (IOException ignore) {
             /*NOP*/
         }
     }
-
 }
