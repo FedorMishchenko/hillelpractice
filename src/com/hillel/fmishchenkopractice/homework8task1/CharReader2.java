@@ -8,36 +8,21 @@ import static java.lang.System.out;
 public class CharReader2 extends Reader {
     Dictionary dictionary = Dictionary.getInstance();
     StringBuilder builder = new StringBuilder();
-
     InputStreamReader reader;
-
-    {
-        try {
-            reader = new InputStreamReader(in, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }
 
     String command;
     String strE;
     String strR;
 
-    void read() {
+    void read() throws IOException{
+        try {
+            reader = new InputStreamReader(in,"UTF-8");
+        }catch (IOException e){
+            throw new IOException("exception in read()");
+        }
 
         while (true) {
-            builder.delete(0, builder.length());
-            int b;
-            out.println("Input command:  add, tr, exit ");
-            try {
-                while ((b = reader.read()) != 10) {
-                    builder.append((char) b);
-                }
-                command = new String(builder);
-            } catch (IOException e) {
-                out.println("error while input command:");
-                e.printStackTrace();
-            }
+            input();
             switch (command) {
                 case "add":
                     add();
@@ -46,7 +31,6 @@ public class CharReader2 extends Reader {
                     translate();
                     break;
                 case "exit":
-                    closeQuietly(reader);
                     System.exit(0);
                 default:
                     out.println("Illegal argument: " + command
@@ -58,41 +42,76 @@ public class CharReader2 extends Reader {
 
     }
 
+    private void input() {
+        builder.delete(0, builder.length());
+        int b;
+        out.println("Input command:  add, tr, exit ");
+        try {
+            while ((b = reader.read()) != 10) {
+                builder.append((char) b);
+            }
+            command = new String(builder);
+        } catch (IOException e) {
+            out.println("error while input command:");
+            e.printStackTrace();
+        }
+    }
+
     void add() {
         strE = null;
         strR = null;
+        int b;
         if (reader != null) {
             out.println("Input eng word: ");
-            try {
-                int b;
-                builder.delete(0, builder.length());
-                while ((b = reader.read()) != 10) {
-                    builder.append((char) b);
-                }
-                strE = new String(builder);
-            } catch (IOException e) {
-                out.println("error input eng word");
-                e.printStackTrace();
-            }
-            out.println("Input rus word: ");
-            try {
-                int b;
-                builder.delete(0, builder.length());
-                while ((b = reader.read()) != 10) {
-                    builder.append((char) b);
-                }
-                strR = new String(builder);
-            } catch (IOException e) {
-                out.println("error input rus word");
-                e.printStackTrace();
-            }
-
+            readEnglishWord();
+            readRussianWord();
         }
         dictionary.put(strE, strR);
         out.println();
     }
 
+    private void readRussianWord() {
+        int b;
+        try {
+            builder.delete(0, builder.length());
+            while ((b = reader.read()) != 10) {
+                builder.append((char) b);
+            }
+            strR = new String(builder);
+        } catch (IOException e) {
+            out.println("error input rus word");
+            e.printStackTrace();
+        }
+    }
+
+    private void readEnglishWord() {
+        int b;
+        try {
+            builder.delete(0, builder.length());
+            while ((b = reader.read()) != 10) {
+                builder.append((char) b);
+            }
+            strE = new String(builder);
+        } catch (IOException e) {
+            out.println("error input eng word");
+            e.printStackTrace();
+        }
+        out.println("Input rus word: ");
+    }
+
     private void translate() {
+        String str = inputStringToTranslate();
+        if (str != null) {
+            out.println(dictionary.toString(str));
+        } else {
+            out.println("Illegal argument: " + command
+                    + '\n' +
+                    "Try input again.");
+        }
+        out.println();
+    }
+
+    private String inputStringToTranslate() {
         String str = null;
         out.println("Input word: ");
         try {
@@ -106,21 +125,7 @@ public class CharReader2 extends Reader {
             out.println("Exception in input word");
             e.printStackTrace();
         }
-        if (str != null) {
-            out.println(dictionary.toString(str));
-        } else {
-            out.println("Illegal argument: " + command
-                    + '\n' +
-                    "Try input again.");
-        }
-        out.println();
+        return str;
     }
 
-    void closeQuietly(InputStreamReader in) {
-        try {
-            in.close();
-        } catch (IOException ignore) {
-            /*NOP*/
-        }
-    }
 }

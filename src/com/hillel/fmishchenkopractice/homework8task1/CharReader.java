@@ -8,39 +8,23 @@ import static java.lang.System.out;
 
 public class CharReader extends Reader {
     Dictionary dictionary = Dictionary.getInstance();
-    BufferedReader reader = null;
-    DataOutputStream writer = new DataOutputStream(out);
-/*    PrintWriter pw = null;
-             {
-        try {
-            pw = new PrintWriter(new OutputStreamWriter(out, "UTF-8"), true);
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        }
-    }*/
-
-    {
-        try {
-            reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            out.println("encoding exception");
-        }
-    }
+    BufferedReader reader;
+    DataOutputStream writer;
 
     String command;
     String strE;
     String strR;
 
     void read() {
+        try {
+            reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+            writer = new DataOutputStream(out);
+        } catch (UnsupportedEncodingException e) {
+            out.println("encoding exception");
+        }
 
         while (true) {
-            out.println("Input command:  add, tr, exit ");
-            try {
-                command = reader.readLine();
-            } catch (IOException e) {
-                out.println("error while input command:");
-                e.printStackTrace();
-            }
+            input();
             switch (command) {
                 case "add":
                     add();
@@ -49,8 +33,6 @@ public class CharReader extends Reader {
                     translate();
                     break;
                 case "exit":
-                    closeQuietly(reader);
-                    closeAndFlushQuietly(writer);
                     System.exit(0);
                 default:
                     out.println("Illegal argument: " + command
@@ -62,6 +44,16 @@ public class CharReader extends Reader {
 
     }
 
+    private void input() {
+        out.println("Input command:  add, tr, exit ");
+        try {
+            command = reader.readLine();
+        } catch (IOException e) {
+            out.println("error while input command:");
+            e.printStackTrace();
+        }
+    }
+
     void add() {
         strE = null;
         strR = null;
@@ -70,38 +62,46 @@ public class CharReader extends Reader {
         char[] arrR = new char[25];
         if (reader != null) {
             out.println("Input eng word: ");
-            try {
-                int b;
-                while ((b = reader.read()) != 10) {
-                    writer.writeChar(b);
-                    arrE[index] = (char) b;
-                    index++;
-                }
-                out.println();
-                strE = new String(arrE);
-            } catch (IOException e) {
-                out.println("error input eng word");
-                e.printStackTrace();
-            }
+            readEnglishWord(index, arrE);
             out.println("Input rus word: ");
-            index = 0;
-            try {
-                int b;
-                while ((b = reader.read()) != 10) {
-                    out.print((char) b);
-                    arrR[index] = (char) b;
-                    index++;
-                }
-                out.println();
-                strR = new String(arrR);
-            } catch (IOException e) {
-                out.println("error input rus word");
-                e.printStackTrace();
-            }
-
+            readRussianWord(arrR);
         }
         dictionary.put(strE, strR);
         out.println();
+    }
+
+    private void readRussianWord(char[] arrR) {
+        int index;
+        index = 0;
+        try {
+            int b;
+            while ((b = reader.read()) != 10) {
+                out.print((char) b);
+                arrR[index] = (char) b;
+                index++;
+            }
+            out.println();
+            strR = new String(arrR);
+        } catch (IOException e) {
+            out.println("error input rus word");
+            e.printStackTrace();
+        }
+    }
+
+    private void readEnglishWord(int index, char[] arrE) {
+        try {
+            int b;
+            while ((b = reader.read()) != 10) {
+                writer.writeChar(b);
+                arrE[index] = (char) b;
+                index++;
+            }
+            out.println();
+            strE = new String(arrE);
+        } catch (IOException e) {
+            out.println("error input eng word");
+            e.printStackTrace();
+        }
     }
 
     private void translate() {
@@ -109,6 +109,18 @@ public class CharReader extends Reader {
         char[] arr = new char[25];
         int index = 0;
         out.println("Input word: ");
+        str = inputStringToTranslate(str, arr, index);
+        if (str != null) {
+            out.println(dictionary.toString(str));
+        } else {
+            out.println("Illegal argument: " + command
+                    + '\n' +
+                    "Try input again.");
+        }
+        out.println();
+    }
+
+    private String inputStringToTranslate(String str, char[] arr, int index) {
         try {
             int b;
             while ((b = reader.read()) != 10) {
@@ -120,35 +132,7 @@ public class CharReader extends Reader {
             out.println("Exception in input word");
             e.printStackTrace();
         }
-        if (str != null) {
-            out.println(dictionary.toString(str));
-        } else {
-            out.println("Illegal argument: " + command
-                    + '\n' +
-                    "Try input again.");
-        }
-        out.println();
-    }
-
-    private void closeAndFlushQuietly(DataOutputStream out) {
-        try {
-            out.flush();
-        } catch (IOException ignore) {
-            /*NOP*/     /*NoOperation*/
-        }
-        try {
-            out.close();
-        } catch (IOException ignore) {
-            /*NOP*/
-        }
-    }
-
-    void closeQuietly(BufferedReader in) {
-        try {
-            in.close();
-        } catch (IOException ignore) {
-            /*NOP*/
-        }
+        return str;
     }
 
 }
