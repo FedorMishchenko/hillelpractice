@@ -28,7 +28,7 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
         try {
             throw new InvalidOperationException();
         } catch (InvalidOperationException e){
-            System.err.println("Stack is empty");
+            System.out.println("Stack is empty");
         }
         T result = list.getLast();
         list.removeLast();
@@ -42,7 +42,7 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
             try {
                 throw new InvalidOperationException();
             } catch (InvalidOperationException e) {
-                System.err.println("Stack is empty");
+                System.out.println("Stack is empty");
             }
         }
         else list.removeLast();
@@ -58,7 +58,7 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
             try {
                 throw new InvalidOperationException();
             } catch (InvalidOperationException e){
-                System.err.println("Stack is empty");
+                System.out.println("Stack is empty");
             }
             list.clear();
             count = 0;
@@ -76,7 +76,7 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
             try {
                 throw new InvalidOperationException();
             } catch (InvalidOperationException e){
-                System.err.println("Stack is empty");
+                System.out.println("Stack is empty");
             }
         return list.getFirst();
     }

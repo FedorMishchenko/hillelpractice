@@ -37,16 +37,16 @@ public class Reader {
 
     public void readData() {
         System.out.println("Input command:");
-        System.out.println("1.reg (registerPerson)");
-        System.out.println("2.set (setVocation)");
-        System.out.println("3.show (showVocations)");
-        System.out.println("4.exit (system.exit)");
-        System.out.println("5.per (showPersons)");
-        loop();
+        System.out.println("reg: (registerPerson)");
+        System.out.println("set: (setVocation)");
+        System.out.println("show: (showVocations)");
+        System.out.println("exit: (system.exit)");
+        System.out.println("per: (showPersons)");
+        dataInput();
 
     }
 
-    public void loop() {
+    public void dataInput() {
         switch (scanner.nextLine()) {
             case "reg":
                 init();
@@ -69,7 +69,7 @@ public class Reader {
                 readData();
                 break;
         }
-        loop();
+        dataInput();
     }
 
     private void exit() {

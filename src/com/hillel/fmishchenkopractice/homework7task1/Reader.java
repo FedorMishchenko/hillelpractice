@@ -14,15 +14,15 @@ public class Reader {
     Person person;
 
     public void read() throws IOException {
-        loop();
+        dataInput();
     }
 
-    private void loop() throws IOException {
+    private void dataInput() throws IOException {
         Person person = new Person();
-        System.out.println();
         System.out.println("exit - system.exit");
         System.out.println("press enter - to input");
         String command = reader.readLine();
+
         if (command.equals("exit")) {
             exit();
             return;
@@ -36,7 +36,7 @@ public class Reader {
         list.add(person);
         convert(person);
 
-        loop();
+        dataInput();
     }
 
     public void convert(Person person) {
