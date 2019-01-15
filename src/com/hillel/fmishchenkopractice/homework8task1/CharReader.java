@@ -11,17 +11,21 @@ public class CharReader extends Reader {
     BufferedReader reader;
     DataOutputStream writer;
 
-    String command;
-    String strE;
-    String strR;
-
-    void read() {
+    {
         try {
             reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
             writer = new DataOutputStream(out);
         } catch (UnsupportedEncodingException e) {
             out.println("encoding exception");
         }
+    }
+
+
+    String command;
+    String strE;
+    String strR;
+
+    void read() {
 
         while (true) {
             input();
@@ -33,7 +37,7 @@ public class CharReader extends Reader {
                     translate();
                     break;
                 case "exit":
-                    System.exit(0);
+                    exit();
                 default:
                     out.println("Illegal argument: " + command
                             + '\n' +
@@ -42,6 +46,16 @@ public class CharReader extends Reader {
             }
         }
 
+    }
+
+    private void exit() {
+        try {
+            reader.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
 
     private void input() {

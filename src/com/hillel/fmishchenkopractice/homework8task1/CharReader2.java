@@ -10,16 +10,20 @@ public class CharReader2 extends Reader {
     StringBuilder builder = new StringBuilder();
     InputStreamReader reader;
 
+    {
+        try {
+            reader = new InputStreamReader(in, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     String command;
     String strE;
     String strR;
 
-    void read() throws IOException{
-        try {
-            reader = new InputStreamReader(in,"UTF-8");
-        }catch (IOException e){
-            throw new IOException("exception in read()");
-        }
+    void read(){
 
         while (true) {
             input();
@@ -31,7 +35,7 @@ public class CharReader2 extends Reader {
                     translate();
                     break;
                 case "exit":
-                    System.exit(0);
+                    exit();
                 default:
                     out.println("Illegal argument: " + command
                             + '\n' +
@@ -40,6 +44,15 @@ public class CharReader2 extends Reader {
             }
         }
 
+    }
+
+    private void exit(){
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
 
     private void input() {

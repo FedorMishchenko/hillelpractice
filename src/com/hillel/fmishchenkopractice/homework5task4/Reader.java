@@ -58,6 +58,11 @@ import java.util.*;
              read();
 
          } else if (command.equals("exit")) {
+             try {
+                 buffer.close();
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
              System.exit(0);
          } else System.out.println("Invalid command. Input command - " +
                  "create, read, update, delete, all, sort: ");

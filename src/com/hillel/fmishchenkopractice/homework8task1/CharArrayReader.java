@@ -34,7 +34,7 @@ public class CharArrayReader extends Reader {
                     translate();
                     break;
                 case "exit":
-                    System.exit(0);
+                    exit();
                 default:
                     out.println("Invalid input: " + command
                             + '\n' +
@@ -43,6 +43,16 @@ public class CharArrayReader extends Reader {
             }
         }
 
+    }
+
+    private void exit() {
+        try {
+            reader.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
 
     private void input() {
