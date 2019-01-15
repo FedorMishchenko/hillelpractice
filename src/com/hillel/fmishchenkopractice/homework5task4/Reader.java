@@ -18,51 +18,60 @@ import java.util.*;
 
     public void read() {
         {
-            String command = "";
-            System.out.println("Input command: ");
-            System.out.println("create, read, update, delete, all, sort: ");
-            System.out.println("exit: to system.exit");
+            String command = inputCommand();
             try {
                 command = buffer.readLine();
             } catch (IOException e) {
                 System.out.println("Input error");
             }
-            if (command.equals("create")) {
-                base = createUser();
-                read();
-            } else if (command.equals("read")) {
-                if (base.isEmpty()) System.out.println("Empty");
-                else {
-                    readData();
-                }
-                read();
-            } else if (command.equals("update")) {
-                base = updateUser();
-                read();
-            } else if (command.equals("all")) {
-                getAll();
-            } else if (command.equals("sort")) {
-                try {
-                    sort();
-                } catch (IOException e) {
-                    System.out.println("Sort failed");
-                }
-            } else if (command.equals("delete")) {
-                int key = scanner.nextInt();
-                base = deleteUser(key);
-                read();
-
-            } else if (command.equals("exit")) {
-                System.exit(0);
-            } else System.out.println("Invalid command. Input command - " +
-                    "create, read, update, delete, all, sort: ");
+            crud(command);
             read();
 
         }
 
     }
 
-    private void sort() throws IOException {
+     private void crud(String command) {
+         if (command.equals("create")) {
+             base = createUser();
+             read();
+         } else if (command.equals("read")) {
+             if (base.isEmpty()) System.out.println("Empty");
+             else {
+                 readData();
+             }
+             read();
+         } else if (command.equals("update")) {
+             base = updateUser();
+             read();
+         } else if (command.equals("all")) {
+             getAll();
+         } else if (command.equals("sort")) {
+             try {
+                 sort();
+             } catch (IOException e) {
+                 System.out.println("Sort failed");
+             }
+         } else if (command.equals("delete")) {
+             int key = scanner.nextInt();
+             base = deleteUser(key);
+             read();
+
+         } else if (command.equals("exit")) {
+             System.exit(0);
+         } else System.out.println("Invalid command. Input command - " +
+                 "create, read, update, delete, all, sort: ");
+     }
+
+     private String inputCommand() {
+         String command = "";
+         System.out.println("Input command: ");
+         System.out.println("create, read, update, delete, all, sort: ");
+         System.out.println("exit: to system.exit");
+         return command;
+     }
+
+     private void sort() throws IOException {
         System.out.println("Input user's field for sort base:" +
                 " name, email, age");
         String choice = buffer.readLine();
