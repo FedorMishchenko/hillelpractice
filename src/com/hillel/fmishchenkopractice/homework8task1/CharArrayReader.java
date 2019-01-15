@@ -36,13 +36,17 @@ public class CharArrayReader extends Reader {
                 case "exit":
                     exit();
                 default:
-                    out.println("Invalid input: " + command
-                            + '\n' +
-                            "Try input again.");
+                    errorMassege("Invalid input: ");
                     break;
             }
         }
 
+    }
+
+    private void errorMassege(String s) {
+        out.println(s + command
+                + '\n' +
+                "Try input again.");
     }
 
     private void exit() {
@@ -105,9 +109,7 @@ public class CharArrayReader extends Reader {
         if (str != null) {
             out.println(dictionary.toString(str));
         } else {
-            out.println("Illegal argument: " + command
-                    + '\n' +
-                    "Try input again.");
+            errorMassege("Illegal argument: ");
         }
         out.println();
     }

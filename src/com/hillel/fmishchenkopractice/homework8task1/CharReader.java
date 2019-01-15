@@ -39,13 +39,17 @@ public class CharReader extends Reader {
                 case "exit":
                     exit();
                 default:
-                    out.println("Illegal argument: " + command
-                            + '\n' +
-                            "Try input again.");
+                    errorMassege();
                     break;
             }
         }
 
+    }
+
+    private void errorMassege() {
+        out.println("Illegal argument: " + command
+                + '\n' +
+                "Try input again.");
     }
 
     private void exit() {
@@ -127,9 +131,7 @@ public class CharReader extends Reader {
         if (str != null) {
             out.println(dictionary.toString(str));
         } else {
-            out.println("Illegal argument: " + command
-                    + '\n' +
-                    "Try input again.");
+            errorMassege();
         }
         out.println();
     }
