@@ -1,4 +1,4 @@
-package exersice.epam.testpacage.exceptiontest;
+package exersice.epam.testpacage.exceptions;
 
 public class Demo {
 

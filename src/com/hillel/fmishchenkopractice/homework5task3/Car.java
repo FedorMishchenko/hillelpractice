@@ -13,9 +13,6 @@ class Car implements Comparable<Car>{
         key = this.hashCode();
         return key;
     }
-    public Car (){
-
-    }
     public Car(String model) {
         this.model = model;
     }

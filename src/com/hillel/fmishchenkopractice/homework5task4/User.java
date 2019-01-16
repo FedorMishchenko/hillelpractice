@@ -7,8 +7,6 @@ public class User implements Comparable<User> {
     private String email;
     Integer id = this.hashCode();
 
-    public User() {
-    }
     public User(String name,String email,int age){
         this.name = name;
         this.email = email;
