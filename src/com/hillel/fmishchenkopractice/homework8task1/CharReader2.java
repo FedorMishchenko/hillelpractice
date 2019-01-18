@@ -1,7 +1,9 @@
 package com.hillel.fmishchenkopractice.homework8task1;
 
 import java.io.*;
+import java.util.Locale;
 
+import static java.lang.System.getProperty;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
@@ -10,12 +12,9 @@ public class CharReader2 extends Reader {
     StringBuilder builder = new StringBuilder();
     InputStreamReader reader;
 
+
     {
-        try {
-            reader = new InputStreamReader(in, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        reader = new InputStreamReader(in);
     }
 
 

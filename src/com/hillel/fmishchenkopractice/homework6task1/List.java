@@ -13,6 +13,10 @@ public class List<T> implements Iterable<T> {
         this.currentSize = arrayList.length;
     }
 
+    public List() {
+
+    }
+
     @Override
     public Iterator<T> iterator() {
         Iterator<T> it = new Iterator<T>() {

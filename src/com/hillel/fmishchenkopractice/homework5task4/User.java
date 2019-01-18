@@ -13,6 +13,10 @@ public class User implements Comparable<User> {
         this.age = age;
     }
 
+    public User() {
+
+    }
+
     public String getEmail() {
         return email;
     }

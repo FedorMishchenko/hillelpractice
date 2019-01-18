@@ -3,10 +3,10 @@ package com.hillel.fmishchenkopractice.homework6task1;
 
 public class Demo {
     public static void main(String[] args) {
-        Integer[] numbers = new Integer[]{1, 4, 7, 2, 13};
-        List<Integer> list = new List<>(numbers);
+        Integer[] arr  = new Integer[]{1, 4, 7, 2, 13};
+        List<Integer> list = new List<>();
         System.out.print("[ ");
-        for (Integer num: list){
+        for (Integer num: arr){
             System.out.print(num + ", ");
         }
         System.out.println("]");
