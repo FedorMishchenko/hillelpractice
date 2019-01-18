@@ -34,23 +34,32 @@ public class Reader {
         System.out.println("Email:");
         person.setEmail(reader.readLine());
         list.add(person);
-        convert(person);
-
+        /*System.out.println(convert(person));*/
+        System.out.println('\n' + "convert input user data 1: ");
+        System.out.println(convertInputToString1(person));
+        System.out.println('\n' + "convert input user data 2: ");
+        System.out.println(convertInputToString2(person));
+        System.out.println('\n' + "convert input user data 3: ");
+        System.out.println(convertInputToString3(person));
+        System.out.println('\n' + "convert input user data 4: ");
+        System.out.println(convertInputToString4(person));
+        System.out.println();
         dataInput();
     }
 
-    public void convert(Person person) {
-        System.out.println(convert1(person));
-        System.out.println(convert2(person));
-        System.out.println(convert3(person));
-        System.out.println(convert4(person));
+    public String convert(Person person) {
+        return
+        convertInputToString1(person) +
+        convertInputToString2(person) +
+        convertInputToString3(person) +
+        convertInputToString4(person);
     }
 
     private void exit() throws IOException {
         reader.close();
     }
 
-    public static String convert1(Person person) {
+    public static String convertInputToString1(Person person) {
         buffer = new StringBuffer();
         buffer.append(person.getLogin() + " ==> "
                 + person.getEmail());
@@ -58,7 +67,7 @@ public class Reader {
         return buffer.toString();
     }
 
-    public static String convert2(Person person) {
+    public static String convertInputToString2(Person person) {
         buffer = new StringBuffer();
         buffer.append(person.getName() + " " +
                 "(email: " + person.getEmail() + " )");
@@ -66,7 +75,7 @@ public class Reader {
         return buffer.toString();
     }
 
-    public String convert3(Person person) {
+    public String convertInputToString3(Person person) {
         buffer = new StringBuffer();
         buffer.append(person.getEmail());
         int index = buffer.indexOf("@");
@@ -82,7 +91,7 @@ public class Reader {
         }
         return buffer.toString();
     }
-    public String convert4(Person person){
+    public String convertInputToString4(Person person){
         buffer = new StringBuffer();
         buffer.append("Login; Name; Email; Password" + '\n');
         buffer.append(person.getLogin() + ", " +

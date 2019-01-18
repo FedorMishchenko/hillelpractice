@@ -6,10 +6,6 @@ public class Person implements Comparable<Person> {
     private String name;
     StringBuffer buffer = new StringBuffer();
 
-    public Person() {
-
-    }
-
     public String getName() {
         return name;
     }

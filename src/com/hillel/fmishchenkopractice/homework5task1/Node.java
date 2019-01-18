@@ -3,7 +3,7 @@ package com.hillel.fmishchenkopractice.homework5task1;
 public class Node<T> {
     Node<T> next;
     Node<T> prev;
-    T item;
+     T item;
 
 
     Node(Node<T> prev, T element, Node<T> next) {

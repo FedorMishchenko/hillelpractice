@@ -15,7 +15,5 @@ public class EmployeeMain {
         Engineer engineer = new Position(3,"Сидоров","зам.руководителя",800);
         Employee newEmployee = new Adaptor(engineer);
         newEmployee.print();
-
-
     }
 }

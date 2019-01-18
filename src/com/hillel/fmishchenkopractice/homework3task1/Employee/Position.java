@@ -9,7 +9,6 @@ public class Position extends Engineer implements Employee {
         this.name = name;
         this.position = position;
         this.salary = salary;
-
     }
 
 }
