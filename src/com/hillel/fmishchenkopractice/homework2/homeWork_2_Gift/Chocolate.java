@@ -40,5 +40,13 @@ abstract class Chocolate {
         this.name = name;
     }
 
+    public boolean equals(Chocolate c){
+        if(this.name == c.name)return true;
+        else return false;
+    }
+    public int hashcode(){
+        return this.hashCode();
+    }
+
 
 }

@@ -62,5 +62,9 @@ public class User implements Comparable<User> {
         }
         return Integer.compare(age, user.age);
     }
+    public boolean equals(User u){
+        if(this.email == u.email)return true;
+        return false;
+    }
 
 }

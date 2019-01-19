@@ -47,4 +47,12 @@ public abstract class Flowers {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public boolean equals(Flowers f){
+        if(this.name == f.name)return true;
+        else return false;
+    }
+    public int hashcode(){
+        return this.hashCode();
+    }
 }

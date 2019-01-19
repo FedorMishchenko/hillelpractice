@@ -5,9 +5,6 @@ public class Rectangle implements Figure {
     private int tangle;
     private int perimeter;
 
-    public Rectangle() {
-    }
-
     public Rectangle(int side) {
         this.side = side;
     }
@@ -34,5 +31,16 @@ public class Rectangle implements Figure {
         return "out ->  " + this.getSide() + " side, " + this.getTangle()
                 + " tangle, " + this.getPerimeter(side) + " perimeter." + '\n';
 
+    }
+
+    @Override
+    public boolean equals(Figure f) {
+        if(this.getPerimeter(this.getSide()) == f.getSide())return true;
+        return false;
+    }
+
+    @Override
+    public int hashcode() {
+        return this.hashcode();
     }
 }

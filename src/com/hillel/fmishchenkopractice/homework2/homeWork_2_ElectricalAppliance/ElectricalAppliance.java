@@ -65,4 +65,11 @@ abstract class ElectricalAppliance {
         }
         return res;
     }
+    public boolean equals(ElectricalAppliance e){
+        if(this.name == e.name)return true;
+        else return false;
+    }
+    public int hashcode(){
+        return this.hashCode();
+    }
 }

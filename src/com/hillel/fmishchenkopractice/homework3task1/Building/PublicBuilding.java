@@ -25,4 +25,5 @@ abstract class PublicBuilding implements Building{
     public void print(){
         System.out.println("Building name = " + name + '\n' + "building has floors = " + floors + '\n');
          }
+
 }

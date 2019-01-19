@@ -33,4 +33,9 @@ public class Person implements Comparable<Person> {
     public int compareTo(Person person) {
         return getEmail().compareTo(person.getEmail());
     }
+
+    public boolean equals(Person p){
+        if(this.email == p.email)return true;
+        return false;
+    }
 }

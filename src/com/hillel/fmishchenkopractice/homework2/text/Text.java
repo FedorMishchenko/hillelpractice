@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework2;
+package com.hillel.fmishchenkopractice.homework2.text;
 
 abstract class Text {
 
@@ -7,6 +7,8 @@ abstract class Text {
     abstract void outText(String text);
 
     abstract void addText(String addText);
+
+
 
 
 }

@@ -45,4 +45,8 @@ public class Person implements Comparable<Person> {
         }
         return -1;
     }
+    public boolean equals(Person p){
+        if(this.email == p.email)return true;
+        return false;
+    }
 }

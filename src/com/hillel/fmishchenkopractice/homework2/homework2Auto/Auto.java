@@ -21,4 +21,12 @@ public abstract class Auto {
     public abstract String getModel();
 
     public abstract void setModel(String model);
+
+    public boolean equals(Auto auto){
+        if(this.model == auto.model)return true;
+        else return false;
+    }
+    public int hashcode(){
+        return this.hashCode();
+    }
 }

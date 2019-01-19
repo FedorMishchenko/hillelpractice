@@ -1,4 +1,7 @@
-package com.hillel.fmishchenkopractice.homework2;
+package com.hillel.fmishchenkopractice.homework2.text;
+
+import com.hillel.fmishchenkopractice.homework2.text.Paragraph;
+import com.hillel.fmishchenkopractice.homework2.text.Text;
 
 import java.util.Scanner;
 
