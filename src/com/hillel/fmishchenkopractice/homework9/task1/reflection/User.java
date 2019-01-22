@@ -1,7 +1,5 @@
 package com.hillel.fmishchenkopractice.homework9.task1.reflection;
 
-import java.math.BigInteger;
-
 public class User {
     private String name;
     private String login;
@@ -105,12 +103,15 @@ public class User {
     }
     @Override
     public int hashCode() {
-        int result = email != null ? email.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        return result;
+        if(this.isValidUser()) {
+            int result = email != null ? email.hashCode() : 0;
+            result = 31 * result + (name != null ? name.hashCode() : 0);
+            result = 31 * result + (login != null ? login.hashCode() : 0);
+            result = 31 * result + (id != null ? id.hashCode() : 0);
+            result = 31 * result + (phone != null ? phone.hashCode() : 0);
+            return result;
+        }
+        throw new RuntimeException("User by id " + this.getId() + " is not valid.");
     }
 
     @Override
