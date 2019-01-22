@@ -12,7 +12,7 @@ public class reflectionServise {
         try {
             clazz = Class.forName(className);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Class not found: " + clazz.getName());
+            throw new RuntimeException("Class not found: " + className);
         }
     }
         private void getInstance() {
