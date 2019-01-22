@@ -3,10 +3,10 @@ package com.hillel.fmishchenkopractice.homework9.task1.reflection;
 import java.lang.reflect.Method;
 
 public class UserServise {
-    Class clazz;
-    Object object;
-    Method[] methods;
-    Method enclosingMethod;
+    private Class clazz;
+    private Object object;
+    private Method[] methods;
+    private Method enclosingMethod;
 
         private void getClazz(String className) {
         try {
@@ -26,8 +26,8 @@ public class UserServise {
             throw new RuntimeException("Illegal access to class: " + clazz.getName());
         }
     }
-    public void createUser(){
-            getClazz("User");
+    public void createInstance(String className){
+            getClazz(className);
             getInstance();
     }
 
