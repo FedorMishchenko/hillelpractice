@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework9.task2.reflection;
+package com.hillel.fmishchenkopractice.homework9.task2;
 
 import java.lang.reflect.Method;
 

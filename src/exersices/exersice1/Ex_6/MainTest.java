@@ -10,9 +10,9 @@ public class MainTest {
         String name = sc.nextLine();
         Date getTime = new Date();
         Date passTime;
-        System.out.println(name.toUpperCase() + " get the task : " + getTime.toString());
+        System.out.println(name.toUpperCase() + " get the task2 : " + getTime.toString());
 
-        System.out.println("For pass the task input PASS");
+        System.out.println("For pass the task2 input PASS");
         boolean flag = true;
         while(flag) {
             String str = sc.nextLine();
@@ -20,7 +20,7 @@ public class MainTest {
                 flag = false;
                 passTime = new Date();
             } else continue;
-            System.out.println(name.toUpperCase() + " pass the task : " + passTime.toString());
+            System.out.println(name.toUpperCase() + " pass the task2 : " + passTime.toString());
         }
 
     }
