@@ -2,7 +2,7 @@ package com.hillel.fmishchenkopractice.homework9.task1.reflection;
 
 import java.lang.reflect.Method;
 
-public class UserServise {
+public class reflectionServise {
     private Class clazz;
     private Object object;
     private Method[] methods;
