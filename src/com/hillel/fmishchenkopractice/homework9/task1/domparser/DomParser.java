@@ -10,6 +10,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 
+/**
+ * DOM Parser realisation
+ */
 class DomParser {
 
     public String parse(Document input) {

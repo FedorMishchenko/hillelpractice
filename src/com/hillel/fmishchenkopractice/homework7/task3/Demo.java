@@ -1,5 +1,8 @@
 package com.hillel.fmishchenkopractice.homework7.task3;
 
+/**
+ * revers input
+ */
 public class Demo {
     public static void main(String[] args) {
         String input = "The ponies run, the girls are young," +

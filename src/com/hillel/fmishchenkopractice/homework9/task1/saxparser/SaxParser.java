@@ -10,7 +10,7 @@ import java.io.File;
 
 public class SaxParser {
 
-    /**
+    /**SAX Parser realisation
      * main method
      */
     public void parseSax(String path) {

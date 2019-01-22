@@ -4,7 +4,9 @@ package com.hillel.fmishchenkopractice.homework8;
 import java.io.*;
 
 
-
+/**
+ * Dictionary realisation
+ */
 public class Demo {
     public static void main(String[] args) throws IOException {
 

@@ -2,6 +2,9 @@ package com.hillel.fmishchenkopractice.homework9.task2.reflection;
 
 import java.lang.reflect.Method;
 
+/**
+ * реализация билдера через рефлексию
+ */
 public class reflectionServise {
     private Class clazz;
     private Object object;

@@ -1,5 +1,8 @@
 package com.hillel.fmishchenkopractice.homework7.task5;
 
+/**
+ * Transformation decimal to roman
+ */
 public class Demo {
     public static void main(String[] args) {
         System.out.println(new IntToRoman().convert(545));
