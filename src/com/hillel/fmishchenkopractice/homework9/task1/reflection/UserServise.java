@@ -1,11 +1,16 @@
 package com.hillel.fmishchenkopractice.homework9.task1.reflection;
 
+import java.lang.reflect.Method;
+
 public class UserServise {
     Class clazz;
     Object object;
-        private void getClazz() {
+    Method[] methods;
+    Method enclosingMethod;
+
+        private void getClazz(String className) {
         try {
-            clazz = Class.forName("User");
+            clazz = Class.forName(className);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Class not found: " + clazz.getName());
         }
@@ -13,6 +18,8 @@ public class UserServise {
         private void getInstance() {
         try {
             object = clazz.newInstance();
+            methods = object.getClass().getMethods();
+            enclosingMethod = object.getClass().getEnclosingMethod();
         } catch (InstantiationException e) {
             throw new RuntimeException("InstantiationException in class: " + clazz.getName());
         } catch (IllegalAccessException e) {
@@ -20,8 +27,9 @@ public class UserServise {
         }
     }
     public void createUser(){
-            getClazz();
+            getClazz("User");
             getInstance();
     }
+
 
 }
