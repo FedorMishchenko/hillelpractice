@@ -1,7 +1,6 @@
-package com.hillel.fmishchenkopractice.homework8task1;
+package com.hillel.fmishchenkopractice.homework8;
 
 import java.io.*;
-import java.util.Locale;
 
 import static java.lang.System.getProperty;
 import static java.lang.System.in;

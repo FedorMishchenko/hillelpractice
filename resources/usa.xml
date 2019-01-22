@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Country xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="countries.xsd">
+    <name>United states of America</name>
+    <language>american english</language>
+    <currency>dollar</currency>
+    <population>325.000.000</population>
+    <capital>Washington</capital>
+    <index>US</index>
+</Country>

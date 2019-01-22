@@ -1,8 +1,7 @@
-package com.hillel.fmishchenkopractice.homework8task1;
+package com.hillel.fmishchenkopractice.homework8;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 public class Dictionary {

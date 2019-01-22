@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Country xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="countries.xsd">
+    <name>Great Britain</name>
+    <language>english</language>
+    <currency>pound</currency>
+    <population>55.000.000</population>
+    <capital>London</capital>
+    <index>UK</index>
+</Country>

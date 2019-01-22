@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework8task1;
+package com.hillel.fmishchenkopractice.homework8;
 
 
 import java.io.*;
