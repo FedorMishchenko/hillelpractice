@@ -1,17 +1,19 @@
 package com.hillel.fmishchenkopractice.homework9.task1.reflection;
 
+import java.math.BigInteger;
+
 public class User {
     private String name;
     private String login;
     private Integer id;
     private int age;
     private String email;
-    private Integer phone;
+    private String phone;
     private boolean isMarried;
 
     public User(String name,Integer id,
-                String login,Integer age,
-                String email,Integer phone,
+                String login,int age,
+                String email,String phone,
                 boolean isMarried) {
         this.name = name;
         this.id = id;
@@ -61,11 +63,11 @@ public class User {
         this.id = id;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -90,6 +92,15 @@ public class User {
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
 
+        return true;
+    }
+    public boolean isValidUser(){
+        if(name == null || name.isEmpty())return false;
+        if(login == null || login.isEmpty())return false;
+        if((email == null || !email.contains("@") || email.isEmpty()))return false;
+        if(age < 0 || age > 100)return false;
+        if(id == null || id.intValue() < 1 || id.intValue() > Integer.MAX_VALUE)return false;
+        if(phone == null || phone.length() != 10)return false;
         return true;
     }
     @Override
