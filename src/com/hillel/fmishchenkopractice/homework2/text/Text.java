@@ -8,7 +8,7 @@ abstract class Text {
 
     abstract void addText(String addText);
 
-
+/*ldkfgj*/
 
 
 }
