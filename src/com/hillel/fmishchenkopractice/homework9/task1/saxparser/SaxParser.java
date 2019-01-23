@@ -13,7 +13,8 @@ public class SaxParser {
     /**SAX Parser realisation
      * main method
      */
-    public void parseSax(String path) {
+    public void parseSax(String fileName) {
+        fileName = "usa.xml";
         try {
             SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
             SAXParser saxParser = saxParserFactory.newSAXParser();
@@ -47,7 +48,7 @@ public class SaxParser {
                     }
                 }
             };
-            String s = ClassLoader.getSystemClassLoader().getResource("usa.xml").getFile();
+            String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
             File xmlFile = new File(s);
             saxParser.parse(xmlFile, defaultHandler);
         } catch (Exception ex) {

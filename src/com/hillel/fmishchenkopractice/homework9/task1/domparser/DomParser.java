@@ -8,12 +8,13 @@ import org.w3c.dom.NamedNodeMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.util.HashMap;
 
 
 /**
  * DOM Parser realisation
  */
-class DomParser {
+public class DomParser {
 
     public String parse(Document input) {
         return parseNode(input.getDocumentElement());
@@ -67,8 +68,9 @@ class DomParser {
     /**
      * main method
      */
-    public void parseDom() {
-        String s = ClassLoader.getSystemClassLoader().getResource("eng.xml").getFile();
+    public void parseDom(String fileName) {
+        /*fileName = "eng.xml";*/
+        String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
         File xmlFile = new File(s);
 
         try {

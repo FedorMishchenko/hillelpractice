@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="User">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string" />
+                <xs:element name="email" type="xs:string" />
+                <xs:element name="address" type="xs:string" />
+                <xs:element name="age" type="xs:decimal" />
+                <xs:element name="county" type="xs:string" minOccurs="0" />
+                <xs:element name="profession">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="president" />
+                            <xs:enumeration value="minister" />
+                            <xs:enumeration value="senator" />
+                            <xs:enumeration value="vice president" />
+                            <xs:enumeration value="congressman" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
