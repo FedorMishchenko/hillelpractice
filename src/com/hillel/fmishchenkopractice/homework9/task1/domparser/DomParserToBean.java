@@ -12,7 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
-public class DomParser2 {
+public class DomParserToBean {
     private Person person;
 
     public Person parseXMLToBin(String fileName) throws IOException, SAXException, ParserConfigurationException {
