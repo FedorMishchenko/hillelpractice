@@ -1,41 +1,41 @@
 package com.hillel.fmishchenkopractice.homework9.task2;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 /**
  * реализация билдера через рефлексию
  */
-public class ReflectionServise {
-    private Class clazz;
-    private Object object;
-    private Method[] methods;
-    private Method enclosingMethod;
-
-    private void getClazz(String className) {
+public class ReflectionServise<T> {
+    String className = "Person";
+    Class<T> clazz;
+    Constructor constructor;
+    Method [] methods;
+    {
         try {
-            clazz = Class.forName(className);
+            clazz = (Class<T>) Class.forName(className);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Class not found: " + className);
+            e.printStackTrace();
         }
     }
-
-    private void getInstance() {
+    {
         try {
-            object = clazz.newInstance();
-            methods = object.getClass().getMethods();
-            enclosingMethod = object.getClass().getEnclosingMethod();
-        } catch (InstantiationException e) {
-            throw new RuntimeException("InstantiationException in class: " + clazz.getName());
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException("Illegal access to class: " + clazz.getName());
+            constructor = clazz.getConstructor();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
         }
     }
-
-    public void createInstance(String className) {
-        getClazz(className);
-        getInstance();
+    Class<T>[] params = constructor.getParameterTypes();
+    {
+        for (Class<?> param : params) {
+            System.out.println(param.getName());
+        }
     }
-
-
+    {
+        methods = clazz.getMethods();
+        for (Method method: methods){
+            String string = method.getName();
+        }
+    }
 
 }
