@@ -1,15 +1,15 @@
 package com.hillel.fmishchenkopractice.homework9.task2;
 
-public class User {
+public class Person {
     private String name;
     private String adress;
     private String profession;
     private int age;
     private String email;
 
-    public User(String name, String profession,
-                String adress, int age,
-                String email) {
+    public Person(String name, String profession,
+                  String adress, int age,
+                  String email) {
         this.name = name;
         this.profession = profession;
         this.email = email;
@@ -17,7 +17,7 @@ public class User {
         this.adress = adress;
     }
 
-    public User() {
+    public Person() {
 
     }
 
@@ -78,13 +78,13 @@ public class User {
 /*        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;*/
 
-        User user = (User) o;
+        Person person = (Person) o;
 
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (profession != null ? !user.equals(user.profession) : user.profession != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (age > 0 && age < 100 ? age != (user.age) : user.age > 0 && user.age < 100) return false;
-        if (adress != null ? !adress.equals(user.adress) : user.adress != null) return false;
+        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        if (profession != null ? !person.equals(person.profession) : person.profession != null) return false;
+        if (email != null ? !email.equals(person.email) : person.email != null) return false;
+        if (age > 0 && age < 100 ? age != (person.age) : person.age > 0 && person.age < 100) return false;
+        if (adress != null ? !adress.equals(person.adress) : person.adress != null) return false;
 
         return true;
     }
@@ -112,12 +112,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Person[" +
                 "name='" + name + '\'' +
                 ", address='" + adress + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", profession=" + profession +
-                '}';
+                ']';
     }
 }

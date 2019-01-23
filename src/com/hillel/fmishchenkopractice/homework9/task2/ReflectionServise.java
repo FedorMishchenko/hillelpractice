@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 /**
  * реализация билдера через рефлексию
  */
-public class reflectionServise {
+public class ReflectionServise {
     private Class clazz;
     private Object object;
     private Method[] methods;

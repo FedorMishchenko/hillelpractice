@@ -1,6 +1,6 @@
 package com.hillel.fmishchenkopractice.homework9.task1.domparser;
 
-import com.hillel.fmishchenkopractice.homework9.task2.User;
+import com.hillel.fmishchenkopractice.homework9.task2.Person;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -13,9 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class DomParser2 {
-    User user;
+    Person person;
 
-    public User parseXMLToBin(String fileName) throws IOException, SAXException, ParserConfigurationException {
+    public Person parseXMLToBin(String fileName) throws IOException, SAXException, ParserConfigurationException {
         String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
         File xmlFile = new File(s);
 
@@ -30,33 +30,33 @@ public class DomParser2 {
 
         Node u = doc.getElementsByTagName("user").item(0);
         NodeList userAttributes = u.getChildNodes();
-        User parsedUser = new User();
+        Person parsedPerson = new Person();
 
         for (int i = 0; i < userAttributes.getLength(); i++) {
             Node node = userAttributes.item(i);
             if ("name".equals(node.getNodeName())) {
-                parsedUser.setName(node.getTextContent());
+                parsedPerson.setName(node.getTextContent());
                 continue;
             }
             if ("profession".equals(node.getNodeName())) {
-                parsedUser.setProfession(node.getTextContent());
+                parsedPerson.setProfession(node.getTextContent());
                 continue;
             }
             if ("email".equals(node.getNodeName())) {
-                parsedUser.setEmail(node.getTextContent());
+                parsedPerson.setEmail(node.getTextContent());
                 continue;
             }
             if ("adress".equals(node.getNodeName())) {
-                parsedUser.setAdress(node.getTextContent());
+                parsedPerson.setAdress(node.getTextContent());
                 continue;
             }
             if ("age".equals(node.getNodeName())) {
-                parsedUser.setAge(node.getTextContent());
+                parsedPerson.setAge(node.getTextContent());
                 continue;
             }
 
         }
-        return parsedUser;
+        return parsedPerson;
 
     }
 }
