@@ -61,8 +61,10 @@ public class User {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(String age) {
+        checkForEmpty(age);
+        int number = Integer.parseInt(age);
+        this.age = number;
     }
 
     private void checkForEmpty(String value) {
@@ -91,7 +93,7 @@ public class User {
         if (name == null || name.isEmpty()) return false;
         if (profession == null || profession.isEmpty()) return false;
         if ((email == null || !email.contains("@") || email.isEmpty())) return false;
-        if (age < 0 || age > 100) return false;
+        if (age < 20 || age > 65) return false;
         if (adress == null || adress.isEmpty()) return false;
         return true;
     }
@@ -105,14 +107,14 @@ public class User {
             result = 31 * result + (adress != null ? adress.hashCode() : 0);
             return result;
         }
-        throw new RuntimeException("User by id " + this.getEmail() + " is not valid.");
+        throw new RuntimeException("User by email " + this.getEmail() + " is not valid.");
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
-                ", adress='" + adress + '\'' +
+                ", address='" + adress + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", profession=" + profession +

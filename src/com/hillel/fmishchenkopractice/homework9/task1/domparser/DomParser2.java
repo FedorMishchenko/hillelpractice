@@ -50,6 +50,10 @@ public class DomParser2 {
                 parsedUser.setAdress(node.getTextContent());
                 continue;
             }
+            if ("age".equals(node.getNodeName())) {
+                parsedUser.setAge(node.getTextContent());
+                continue;
+            }
 
         }
         return parsedUser;
