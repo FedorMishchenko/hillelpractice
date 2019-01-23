@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<User xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<Person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="person.xsd">
     <name>Obama</name>
     <email>obama@com</email>
-    <address>white house</address>
+    <address>Washington D.C.</address>
     <age>50</age>
     <profession>president</profession>
-</User>
+</Person>

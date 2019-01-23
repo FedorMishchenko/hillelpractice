@@ -2,7 +2,7 @@ package com.hillel.fmishchenkopractice.homework9.task2;
 
 public class Person {
     private String name;
-    private String adress;
+    private String address;
     private String profession;
     private int age;
     private String email;
@@ -14,7 +14,7 @@ public class Person {
         this.profession = profession;
         this.email = email;
         this.age = age;
-        this.adress = adress;
+        this.address = adress;
     }
 
     public Person() {
@@ -22,12 +22,12 @@ public class Person {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
-    public void setAdress(String adress) {
-        checkForEmpty(adress);
-        this.adress = adress;
+    public void setAdress(String address) {
+        checkForEmpty(address);
+        this.address = address;
     }
 
     public String getProfession() {
@@ -84,7 +84,7 @@ public class Person {
         if (profession != null ? !person.equals(person.profession) : person.profession != null) return false;
         if (email != null ? !email.equals(person.email) : person.email != null) return false;
         if (age > 0 && age < 100 ? age != (person.age) : person.age > 0 && person.age < 100) return false;
-        if (adress != null ? !adress.equals(person.adress) : person.adress != null) return false;
+        if (address != null ? !address.equals(person.address) : person.address != null) return false;
 
         return true;
     }
@@ -94,7 +94,7 @@ public class Person {
         if (profession == null || profession.isEmpty()) return false;
         if ((email == null || !email.contains("@") || email.isEmpty())) return false;
         if (age < 20 || age > 65) return false;
-        if (adress == null || adress.isEmpty()) return false;
+        if (address == null || address.isEmpty()) return false;
         return true;
     }
 
@@ -104,7 +104,7 @@ public class Person {
             int result = email != null ? email.hashCode() : 0;
             result = 31 * result + (name != null ? name.hashCode() : 0);
             result = 31 * result + (profession != null ? profession.hashCode() : 0);
-            result = 31 * result + (adress != null ? adress.hashCode() : 0);
+            result = 31 * result + (address != null ? address.hashCode() : 0);
             return result;
         }
         throw new RuntimeException("User by email " + this.getEmail() + " is not valid.");
@@ -112,12 +112,12 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person[" +
-                "name='" + name + '\'' +
-                ", address='" + adress + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                ", profession=" + profession +
+        return "Person [" +
+                "name = " + name  +
+                "; address = " + address  +
+                "; age = " + age +
+                "; email = " + email  +
+                "; profession = " + profession +
                 ']';
     }
 }

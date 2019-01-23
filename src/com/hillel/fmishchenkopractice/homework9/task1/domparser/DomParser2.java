@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class DomParser2 {
-    Person person;
+    private Person person;
 
     public Person parseXMLToBin(String fileName) throws IOException, SAXException, ParserConfigurationException {
         String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
@@ -28,8 +28,8 @@ public class DomParser2 {
         domParser.parse(doc);
 
 
-        Node u = doc.getElementsByTagName("user").item(0);
-        NodeList userAttributes = u.getChildNodes();
+        Node root = doc.getElementsByTagName("Person").item(0);
+        NodeList userAttributes = root.getChildNodes();
         Person parsedPerson = new Person();
 
         for (int i = 0; i < userAttributes.getLength(); i++) {
@@ -46,7 +46,7 @@ public class DomParser2 {
                 parsedPerson.setEmail(node.getTextContent());
                 continue;
             }
-            if ("adress".equals(node.getNodeName())) {
+            if ("address".equals(node.getNodeName())) {
                 parsedPerson.setAdress(node.getTextContent());
                 continue;
             }
