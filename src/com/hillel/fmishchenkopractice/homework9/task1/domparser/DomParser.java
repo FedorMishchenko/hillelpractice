@@ -68,8 +68,8 @@ public class DomParser {
     /**
      * main method
      */
-    public void parseDom(String fileName) {
-        /*fileName = "eng.xml";*/
+    public void parseXML(String fileName) {
+        fileName = "eng.xml";
         String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
         File xmlFile = new File(s);
 

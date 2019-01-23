@@ -6,7 +6,7 @@
                 <xs:element name="name" type="xs:string" />
                 <xs:element name="email" type="xs:string" />
                 <xs:element name="address" type="xs:string" />
-                <xs:element name="age" type="xs:decimal" />
+                <xs:element name="age" type="xs:string" />
                 <xs:element name="county" type="xs:string" minOccurs="0" />
                 <xs:element name="profession">
                     <xs:simpleType>
