@@ -12,10 +12,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
-public class DomParserToBean {
+public class XMLDomParser {
     private Person person;
 
-    public Person parseXMLToBin(String fileName) throws IOException, SAXException, ParserConfigurationException {
+    public Person parseXML(String fileName) throws IOException, SAXException, ParserConfigurationException {
         String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
         File xmlFile = new File(s);
 
