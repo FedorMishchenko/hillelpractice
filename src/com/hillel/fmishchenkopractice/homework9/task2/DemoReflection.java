@@ -3,8 +3,10 @@ package com.hillel.fmishchenkopractice.homework9.task2;
 import java.io.*;
 
 public class DemoReflection {
+    public DemoReflection(){
 
-
+    }
+    private static String className;
     public void getClassNameFromXML() throws IllegalAccessException,
             InstantiationException, ClassNotFoundException {
 
@@ -16,7 +18,7 @@ public class DemoReflection {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String className = null;
+        className = null;
         try {
             className = reader.readLine();
         } catch (IOException e) {
@@ -28,21 +30,33 @@ public class DemoReflection {
 
     }
 
-    private  void getInstanceByReflection(String className) throws ClassNotFoundException,
+    private  Person getInstanceByReflection(String className) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
 
             Class cl = Class.forName(className);
-            Person person = (Person) cl.newInstance();
-            builder(person);
+            Builder builder = new Builder();
+            Person person = builder.createInstance(cl.newInstance());
+            person = buildObject(person);
+            return person;
+
     }
 
-    private void builder(Person person) {
+    private Person buildObject(Person person) {
         person.setName("Senya");
         person.setEmail("Gorbunkov@com");
         person.setAdress("Bobrovka");
         person.setAge("50");
         person.setProfession("Contrabandist");
+        return person;
+
+
     }
 
+    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InstantiationException {
+        DemoReflection demo = new DemoReflection();
+        demo.getClassNameFromXML();
+        Person p = demo.getInstanceByReflection(className);
+        System.out.println(p.toString());
+    }
 
 }
