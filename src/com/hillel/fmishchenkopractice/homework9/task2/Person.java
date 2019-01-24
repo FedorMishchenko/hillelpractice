@@ -90,11 +90,11 @@ public class Person {
     }
 
     public boolean isValidUser() {
-        if (name == null || name.isEmpty()) return false;
-        if (profession == null || profession.isEmpty()) return false;
-        if ((email == null || !email.contains("@") || email.isEmpty())) return false;
-        if (age < 20 || age > 65) return false;
-        if (address == null || address.isEmpty()) return false;
+        if (name == null | name.isEmpty()) return false;
+        if (profession == null | profession.isEmpty()) return false;
+        if ((email == null | !email.contains("@") | email.isEmpty())) return false;
+        if (age < 20 | age > 65) return false;
+        if (address == null | address.isEmpty()) return false;
         return true;
     }
 
