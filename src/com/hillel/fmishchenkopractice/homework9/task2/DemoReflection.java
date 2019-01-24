@@ -35,7 +35,7 @@ public class DemoReflection {
             try {
                 setDataToPrivateFields("Semen Semenich","gorbunkov@com",
                         "Dubrovka","contrabandist","50");
-                getMethod();
+                getPrivateMethod();
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
                 e.getMessage();
@@ -50,7 +50,7 @@ public class DemoReflection {
         return object;
     }
 
-    private void getMethod() throws NoSuchMethodException {
+    private void getPrivateMethod() throws NoSuchMethodException {
         method = object.getClass().getDeclaredMethod("isValidUser");
         method.setAccessible(true);
     }

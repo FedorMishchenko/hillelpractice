@@ -89,7 +89,7 @@ public class Person {
         return true;
     }
 
-    public boolean isValidUser() {
+    private boolean isValidUser() {
         if (name == null | name.isEmpty()) return false;
         if (profession == null | profession.isEmpty()) return false;
         if ((email == null | !email.contains("@") | email.isEmpty())) return false;
