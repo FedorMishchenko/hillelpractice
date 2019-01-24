@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework9.task3;
+package com.hillel.fmishchenkopractice.homework9.task1.domparser;
 
 import com.hillel.fmishchenkopractice.homework9.task1.domparser.XMLDomParser;
 import com.hillel.fmishchenkopractice.homework9.task2.Person;
