@@ -1,14 +1,13 @@
 package com.hillel.fmishchenkopractice.homework9.task2;
 
 import java.io.*;
+import java.lang.reflect.Field;
 
 public class DemoReflection {
-    public DemoReflection(){
+    private static Person person;
 
-    }
-    private static String className = null;
-    public void getClassNameFromXML() throws IllegalAccessException,
-            InstantiationException, ClassNotFoundException {
+
+    public static String getClassNameFromXML() {
 
         String s = ClassLoader.getSystemClassLoader().getResource("resources.properties").getFile();
         File f = new File(s);
@@ -18,44 +17,59 @@ public class DemoReflection {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        String className = null;
         try {
             className = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(className);
-
-        getInstanceByReflection(className);
-
+        return className;
     }
 
-    private  Person getInstanceByReflection(String className) throws ClassNotFoundException,
-            IllegalAccessException, InstantiationException {
+    private Person createInstanceByReflection(String className) {
+        try {
+            Class clazz = Class.forName(className);
+            person = (Person) clazz.newInstance();
+            Field name, email, address, profession, age;
+            try {
+                name = person.getClass().getDeclaredField("name");
+                name.setAccessible(true);
 
-            Class cl = Class.forName(className);
-            Builder builder = new Builder();
-            Person person = builder.createInstance(cl.newInstance());
-            person = buildObject(person);
-            return person;
+                email = person.getClass().getDeclaredField("email");
+                email.setAccessible(true);
 
-    }
+                address = person.getClass().getDeclaredField("address");
+                address.setAccessible(true);
 
-    private Person buildObject(Person person) {
-        person.setName("Senya");
-        person.setEmail("Gorbunkov@com");
-        person.setAdress("Bobrovka");
-        person.setAge("50");
-        person.setProfession("Contrabandist");
+                profession = person.getClass().getDeclaredField("profession");
+                profession.setAccessible(true);
+
+                age = person.getClass().getDeclaredField("age");
+                age.setAccessible(true);
+
+                name.set(person, "Semen Semenich");
+                email.set(person, "gorbunkov@com");
+                address.set(person, "Dubrovka");
+                profession.set(person, "contrabandist");
+                age.set(person, Integer.parseInt("50"));
+
+
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+
+        } catch (
+                ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
         return person;
-
-
     }
 
-    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InstantiationException {
-        DemoReflection demo = new DemoReflection();
-        demo.getClassNameFromXML();
-        Person p = demo.getInstanceByReflection(className);
-        System.out.println(p.toString());
+
+    public static void main(String[] args) {
+        person = new DemoReflection().createInstanceByReflection(getClassNameFromXML());
+        System.out.println(person.toString());
     }
+
 
 }
