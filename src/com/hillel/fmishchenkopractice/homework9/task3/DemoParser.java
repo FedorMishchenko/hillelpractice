@@ -8,7 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 
-public class Demo {
+public class DemoParser {
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
         Person person;
@@ -18,6 +18,7 @@ public class Demo {
         person2 = parser.parseXML("bush.xml");
         System.out.println(person.toString());
         System.out.println(person2.toString());
+
 
     }
 
