@@ -6,7 +6,7 @@ public class DemoReflection {
     public DemoReflection(){
 
     }
-    private static String className;
+    private static String className = null;
     public void getClassNameFromXML() throws IllegalAccessException,
             InstantiationException, ClassNotFoundException {
 
@@ -18,7 +18,6 @@ public class DemoReflection {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        className = null;
         try {
             className = reader.readLine();
         } catch (IOException e) {
