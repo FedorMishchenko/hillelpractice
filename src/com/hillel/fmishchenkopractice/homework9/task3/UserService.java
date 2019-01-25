@@ -30,11 +30,13 @@ public class UserService {
         Node root = doc.getElementsByTagName("Person").item(0);
         NodeList userAttributes = root.getChildNodes();
         fillMap(userAttributes, valueFromXML);
+        System.out.println("UserService.initService");
 
     }
     @InitObject
     public void initObject() throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
+        System.out.println("UserService.initObject");
         Class<?> clazz = Class.forName("com.hillel.fmishchenkopractice.homework9.task2.Person");
         Object object = clazz.newInstance();
         person = (Person) object;
@@ -70,12 +72,14 @@ public class UserService {
                 continue;
             }
         }
+        System.out.println("UserService.fillMap");
     }
     @Init
     private Document getDocument(String fileName) throws ParserConfigurationException, SAXException, IOException {
         String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
         File xmlFile = new File(s);
 
+        System.out.println("UserService.getDocument");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory
                 .newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

@@ -29,24 +29,26 @@ public class AnnotationsProcessor {
                 }
             }
         }
+        for (Method method: methods){
+            if(method.isAnnotationPresent(InitObject.class)){
+                try {
+                    method.invoke(object);
+                }catch (Exception e){
+                    InitObject ann =  method.getAnnotation(InitObject.class);
+                }
+            }
+        }
     }
 
 
     static void inspectService(Class<?> service){
         if (service.isAnnotationPresent(Service.class)) {
             Service annotation = service.getAnnotation(Service.class);
-            System.out.println(annotation.name());
         }
     }
     static void inspectServiceForMethod(Method[] methods, Object o) {
         for (int i = 0; i < methods.length; i++) {
             Annotation[] ann = methods[i].getAnnotations();
-            if (ann.length > 0) {
-                for (int j = 0; j < ann.length; j++) {
-                    System.out.println("Annotation: " + ann[j].annotationType().getName() +
-                            '\n' + "Class: " + o.getClass().getName());
-                }
-            }
         }
     }
     static Object loadService(String className) throws ClassNotFoundException,
