@@ -10,6 +10,7 @@ public class AnnotationsProcessor {
             IllegalAccessException, InstantiationException {
         String className1 = "com.hillel.fmishchenkopractice.homework9.task4.SimpleService" ;
         String className2 = "com.hillel.fmishchenkopractice.homework9.task4.LazyService" ;
+
         inspectService(SimpleService.class);
         inspectService(LazyService.class);
         inspectService(String.class);
@@ -21,18 +22,34 @@ public class AnnotationsProcessor {
         Class<?> clazz2 = Class.forName(className2);
         Object object2 = clazz2.newInstance();
         LazyService test2 = (LazyService) object2;
+
         Method[] methods1 = clazz1.getMethods();
         Method[] methods2 = clazz2.getMethods();
 
-
         System.out.println();
         inspectServiceForMethod(methods1, test1);
+
         System.out.println();
         inspectServiceForMethod(methods2, test2);
 
         Map<String,Object> map = new HashMap<>();
         map.put(className1,loadService(className1));
         map.put(className2,loadService(className2));
+
+        for (Method method: methods2){
+            if(method.isAnnotationPresent(Init.class)){
+                try {
+                    method.invoke(object2);
+                }catch (Exception e){
+                    Init ann = method.getAnnotation(Init.class);
+                    if(ann.suppressException()){
+                        System.err.println(e.getMessage());
+                    }else throw new RuntimeException(e);
+                }
+            }
+        }
+
+
 
     }
 
