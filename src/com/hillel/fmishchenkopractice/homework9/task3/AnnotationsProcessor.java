@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AnnoProcessor {
+public class AnnotationsProcessor {
     public static void main(String[] args) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
         String className = "com.hillel.fmishchenkopractice.homework9.task3.UserService" ;
