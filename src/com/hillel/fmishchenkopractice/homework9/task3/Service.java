@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework9.task4;
+package com.hillel.fmishchenkopractice.homework9.task3;
 
 import java.lang.annotation.*;
 
@@ -8,6 +8,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Service {
     String name();
-    boolean lazyLoad() default false;
+    boolean setData() default false;
 }
 

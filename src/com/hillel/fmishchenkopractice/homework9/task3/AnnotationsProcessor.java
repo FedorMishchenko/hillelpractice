@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework9.task4;
+/*package com.hillel.fmishchenkopractice.homework9.task3;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -8,20 +8,20 @@ import java.util.Map;
 public class AnnotationsProcessor {
     public static void main(String[] args) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
-        String className1 = "com.hillel.fmishchenkopractice.homework9.task4.SimpleService" ;
-        String className2 = "com.hillel.fmishchenkopractice.homework9.task4.LazyService" ;
+        String className1 = "com.hillel.fmishchenkopractice.homework9.task3.UserService" ;
+        String className2 = "com.hillel.fmishchenkopractice.homework9.task3.TransactionService" ;
 
-        inspectService(SimpleService.class);
-        inspectService(LazyService.class);
+        inspectService(UserService.class);
+        inspectService(TransactionService.class);
         inspectService(String.class);
 
         Class<?> clazz1 = Class.forName(className1);
         Object object1 = clazz1.newInstance();
-        SimpleService test1 = (SimpleService) object1;
+        UserService test1 = (UserService) object1;
 
         Class<?> clazz2 = Class.forName(className2);
         Object object2 = clazz2.newInstance();
-        LazyService test2 = (LazyService) object2;
+        TransactionService test2 = (TransactionService) object2;
 
         Method[] methods1 = clazz1.getMethods();
         Method[] methods2 = clazz2.getMethods();
@@ -80,4 +80,4 @@ public class AnnotationsProcessor {
             ob =  clazz.newInstance();
         }return ob;
     }
-}
+}*/

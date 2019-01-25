@@ -16,18 +16,11 @@ public class XMLDomParser {
     private Person person;
 
     public Person parseXML(String fileName) throws IOException, SAXException, ParserConfigurationException {
-        String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
-        File xmlFile = new File(s);
+        Document doc = getDocument(fileName);
+        return getPerson(doc);
+    }
 
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-                .newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(xmlFile);
-        doc.getDocumentElement().normalize();
-        DomParser domParser = new DomParser();
-        domParser.parse(doc);
-
-
+    private Person getPerson(Document doc) {
         Node root = doc.getElementsByTagName("Person").item(0);
         NodeList userAttributes = root.getChildNodes();
         Person parsedPerson = new Person();
@@ -47,7 +40,7 @@ public class XMLDomParser {
                 continue;
             }
             if ("address".equals(node.getNodeName())) {
-                parsedPerson.setAdress(node.getTextContent());
+                parsedPerson.setAddress(node.getTextContent());
                 continue;
             }
             if ("age".equals(node.getNodeName())) {
@@ -57,6 +50,19 @@ public class XMLDomParser {
 
         }
         return parsedPerson;
+    }
 
+    private Document getDocument(String fileName) throws ParserConfigurationException, SAXException, IOException {
+        String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
+        File xmlFile = new File(s);
+
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory
+                .newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(xmlFile);
+        doc.getDocumentElement().normalize();
+        DomParser domParser = new DomParser();
+        domParser.parse(doc);
+        return doc;
     }
 }
