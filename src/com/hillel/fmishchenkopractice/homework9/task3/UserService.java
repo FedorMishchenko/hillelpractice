@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service(name = "SimpleService",
+@Service(name = "Service",
         setData = true)
 public class UserService {
     Person person;
