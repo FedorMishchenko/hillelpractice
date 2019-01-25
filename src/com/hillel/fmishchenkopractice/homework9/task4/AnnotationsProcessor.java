@@ -23,8 +23,10 @@ public class AnnotationsProcessor {
         Method[] methods1 = clazz1.getMethods();
         Method[] methods2 = clazz2.getMethods();
 
-        inspectServiceForMethod(methods1);
-        inspectServiceForMethod(methods2);
+        System.out.println();
+        inspectServiceForMethod(methods1, test1);
+        System.out.println();
+        inspectServiceForMethod(methods2, test2);
     }
     static void inspectService(Class<?> service){
         if(service.isAnnotationPresent(Service.class)){
@@ -33,14 +35,15 @@ public class AnnotationsProcessor {
         }
         else System.out.println("Annotation not found");
     }
-    static void inspectServiceForMethod(Method[] methods){
+    static void inspectServiceForMethod(Method[] methods, Object o){
         for(int i = 0; i < methods.length; i++){
             Annotation[] ann = methods[i].getAnnotations();
             if(ann.length > 0) {
                 for (int j = 0; j < ann.length; j++) {
-                    System.out.println(ann[j]);
+                    System.out.println("Annotation: " + ann[j].toString() +
+                           '\n' + "Class: " + o.getClass().getName());
                 }
-            }else System.out.println("No method annotations");
+            }
         }
     }
 }
