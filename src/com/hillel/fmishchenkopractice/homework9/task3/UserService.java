@@ -18,34 +18,37 @@ import java.util.Map;
 @Service(name = "Service",
         setData = true)
 public class UserService {
+    Class<?> clazz = Class.forName("com.hillel.fmishchenkopractice.homework9.task2.Person");
     Person person;
     String fileName = "obama.xml";
     Map<String,String> valueFromXML = new HashMap<>();
     Map<String,Object> entities = new HashMap<>();
 
+    public UserService() throws ClassNotFoundException {
+    }
+
     @Init(suppressException = true)
     public void initService() throws IOException,
             SAXException, ParserConfigurationException {
+        System.out.println("initService");
         Document doc = getDocument(fileName);
         Node root = doc.getElementsByTagName("Person").item(0);
         NodeList userAttributes = root.getChildNodes();
         fillMap(userAttributes, valueFromXML);
-        System.out.println("UserService.initService");
-
     }
     @InitObject
     public void initObject() throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
-        System.out.println("UserService.initObject");
-        Class<?> clazz = Class.forName("com.hillel.fmishchenkopractice.homework9.task2.Person");
         Object object = clazz.newInstance();
         person = (Person) object;
         person.setName(valueFromXML.get("name"));
         person.setEmail(valueFromXML.get("email"));
-        person.setProfession(valueFromXML.get("profession"));
         person.setAddress(valueFromXML.get("address"));
-        person.setAge("age");
+        /*person.setAge("age");*/
+        person.setProfession(valueFromXML.get("profession"));
         entities.put(clazz.getName(),person);
+        System.out.print("initObject : ");
+        System.out.println(entities.get(clazz.getName()).toString());
     }
     @Init
     private void fillMap(NodeList userAttributes, Map<String, String> map) {
@@ -72,14 +75,16 @@ public class UserService {
                 continue;
             }
         }
-        System.out.println("UserService.fillMap");
+        System.out.println("fillMap");
+
     }
     @Init
-    private Document getDocument(String fileName) throws ParserConfigurationException, SAXException, IOException {
+    private Document getDocument(String fileName) throws ParserConfigurationException,
+            SAXException, IOException {
         String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
         File xmlFile = new File(s);
 
-        System.out.println("UserService.getDocument");
+        System.out.println("getDocument");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory
                 .newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
