@@ -44,11 +44,11 @@ public class UserService {
         person.setName(valueFromXML.get("name"));
         person.setEmail(valueFromXML.get("email"));
         person.setAddress(valueFromXML.get("address"));
-        /*person.setAge("age");*/
+        person.setAge(valueFromXML.get("age"));
         person.setProfession(valueFromXML.get("profession"));
         entities.put(clazz.getName(),person);
-        System.out.print("initObject : ");
-        System.out.println(entities.get(clazz.getName()).toString());
+        System.out.println("initObject");
+        System.out.println("put in map: " + entities.get(clazz.getName()).toString());
     }
     @Init
     private void fillMap(NodeList userAttributes, Map<String, String> map) {
