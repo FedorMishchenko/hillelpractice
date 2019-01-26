@@ -1,14 +1,16 @@
 package com.hillel.fmishchenkopractice.homework9.task2;
 
+import java.util.Objects;
+
 public class Person {
     private String name;
     private String address;
     private String profession;
-    private int age;
+    private String age;
     private String email;
 
     public Person(String name, String profession,
-                  String adress, int age,
+                  String adress, String age,
                   String email) {
         this.name = name;
         this.profession = profession;
@@ -58,13 +60,13 @@ public class Person {
     }
 
     public int getAge() {
-        return age;
+        return Integer.parseInt(age);
     }
 
     public void setAge(String age) {
         checkForEmpty(age);
-        int number = Integer.parseInt(age);
-        this.age = number;
+        /*int number = Integer.parseInt(age);*/
+        this.age = age;
     }
 
     private void checkForEmpty(String value) {
@@ -80,11 +82,10 @@ public class Person {
 
         Person person = (Person) o;
 
-        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        if (!Objects.equals(name, person.name)) return false;
         if (profession != null ? !person.equals(person.profession) : person.profession != null) return false;
-        if (email != null ? !email.equals(person.email) : person.email != null) return false;
-        if (age > 0 && age < 100 ? age != (person.age) : person.age > 0 && person.age < 100) return false;
-        if (address != null ? !address.equals(person.address) : person.address != null) return false;
+        if (!Objects.equals(email, person.email)) return false;
+        if (!Objects.equals(address, person.address)) return false;
 
         return true;
     }
@@ -93,7 +94,7 @@ public class Person {
         if (name == null | name.isEmpty()) return false;
         if (profession == null | profession.isEmpty()) return false;
         if ((email == null | !email.contains("@") | email.isEmpty())) return false;
-        if (age < 20 | age > 65) return false;
+        if (Integer.parseInt(age) < 20 | Integer.parseInt(age) > 65) return false;
         if (address == null | address.isEmpty()) return false;
         return true;
     }

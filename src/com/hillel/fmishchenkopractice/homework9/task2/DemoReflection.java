@@ -13,19 +13,15 @@ public class DemoReflection {
 
         String s = ClassLoader.getSystemClassLoader().getResource("resources.properties").getFile();
         File f = new File(s);
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(s));
+        try (BufferedReader reader = new BufferedReader(new FileReader(s))) {
+            return reader.readLine();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        String className = null;
-        try {
-            className = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return className;
+
+        return "";
     }
 
     private Object createInstanceByReflection(String className) {
@@ -33,8 +29,8 @@ public class DemoReflection {
             Class clazz = Class.forName(className);
             object = clazz.newInstance();
             try {
-                setDataToPrivateFields("Semen Semenich","gorbunkov@com",
-                        "Dubrovka","contrabandist","50");
+                setDataToPrivateFields("Semen Semenich", "gorbunkov@com",
+                        "Dubrovka", "contrabandist", "50");
                 getPrivateMethod();
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
@@ -43,7 +39,8 @@ public class DemoReflection {
 
         } catch (
                 ClassNotFoundException | IllegalAccessException |
-                InstantiationException | NoSuchMethodException e) {
+                        InstantiationException | NoSuchMethodException |
+                        InvocationTargetException e) {
             e.printStackTrace();
             e.getMessage();
         }
@@ -55,33 +52,31 @@ public class DemoReflection {
         method.setAccessible(true);
     }
 
-    private void setDataToPrivateFields(String aName,String aEmail,
-                                       String aAddress,String aProfession,
-                                       String aAge) throws NoSuchFieldException, IllegalAccessException {
+    private void setDataToPrivateFields(String aName, String aEmail,
+                                        String aAddress, String aProfession,
+                                        String aAge)
+            throws NoSuchFieldException,
+            IllegalAccessException, NoSuchMethodException,
+            InvocationTargetException {
         Field name;
         Field email;
         Field address;
         Field profession;
         Field age;
         name = object.getClass().getDeclaredField("name");
-        name.setAccessible(true);
-        name.set(object, aName);
+        object.getClass().getMethod("setName", name.getType()).invoke(object,aName);
 
         email = object.getClass().getDeclaredField("email");
-        email.setAccessible(true);
-        email.set(object, aEmail);
+        object.getClass().getMethod("setEmail", email.getType()).invoke(object,aEmail);
 
         address = object.getClass().getDeclaredField("address");
-        address.setAccessible(true);
-        address.set(object, aAddress);
+        object.getClass().getMethod("setAddress", address.getType()).invoke(object,aAddress);
 
         profession = object.getClass().getDeclaredField("profession");
-        profession.setAccessible(true);
-        profession.set(object, aProfession);
+        object.getClass().getMethod("setProfession", profession.getType()).invoke(object,aProfession);
 
         age = object.getClass().getDeclaredField("age");
-        age.setAccessible(true);
-        age.set(object, Integer.parseInt(aAge));
+        object.getClass().getMethod("setAge", age.getType()).invoke(object,aAge);
     }
 
 
