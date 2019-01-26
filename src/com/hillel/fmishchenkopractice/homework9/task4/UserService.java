@@ -23,8 +23,7 @@ public class UserService {
             randomint = ThreadLocalRandom.current().nextInt(min, max + 2);
             dbService.delete(randomint);
         } catch (RuntimeException e) {
-            System.out.println("Exception in " + e.getMessage());
-            System.out.println("List is empty");
+            System.out.println("Exception in method " + e.getMessage() + ": rollback()");
         }
     }
 }

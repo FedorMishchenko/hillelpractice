@@ -7,49 +7,65 @@ public class DBService {
 
     public void create(int randomint) {
         if (randomint >= 0 & randomint <= 5) {
-            System.out.println("create = " + randomint);
-            list.add(randomint);
+            print(randomint, "create = ");
+            add(randomint);
         } else {
-            list.clear();
-            throw new RuntimeException("create: " + randomint);
+            rollback();
+            throw new RuntimeException("create() invalid value = " + randomint);
         }
     }
 
     public void find(int randomint) {
         if (randomint >= 0 & randomint <= 5) {
-            System.out.println("find = " + randomint);
-            list.add(randomint);
+            print(randomint, "find = ");
+            add(randomint);
         } else {
-            list.clear();
-            throw new RuntimeException("find: " + randomint);
+            rollback();
+            throw new RuntimeException("find() invalid value = " + randomint);
         }
 
     }
 
     public void update(int randomint) {
         if (randomint >= 0 & randomint <= 5) {
-            System.out.println("update = " + randomint);
-            list.add(randomint);
+            print(randomint, "update = ");
+            add(randomint);
         } else {
-            list.clear();
-            throw new RuntimeException("update: " + randomint);
+            rollback();
+            throw new RuntimeException("update() invalid value = " + randomint);
         }
 
     }
 
     public void delete(int randomint) {
-        if (randomint >= 0 & randomint <= 5){
-            System.out.println("delete = " + randomint);
-            list.add(randomint);
-            System.out.print("List values: ");
-            for(int i = 0; i < list.size(); i++){
-                System.out.print(list.get(i) + ", ");
-            }
+        if (randomint >= 0 & randomint <= 5) {
+            print(randomint, "delete = ");
+            add(randomint);
+            printList();
+        } else {
+            rollback();
+            throw new RuntimeException("delete() invalid value = " + randomint);
         }
-        else{
-            list.clear();
-            throw new RuntimeException("delete: " + randomint);
+    }
+
+    private void print(int randomint, String s) {
+        System.out.println(s + randomint);
+    }
+
+    private void add(int randomint) {
+        list.add(randomint);
+    }
+
+    private void rollback() {
+        list.clear();
+    }
+
+    private void printList() {
+        System.out.print("List values { ");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print(list.get(i) + ", ");
         }
+        System.out.print("}");
     }
 }
 
