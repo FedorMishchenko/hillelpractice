@@ -6,6 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,8 +22,8 @@ public class UserService {
     Class<?> clazz = Class.forName("com.hillel.fmishchenkopractice.homework9.task2.Person");
     Person person;
     String fileName = "obama.xml";
-    Map<String,String> valueFromXML = new HashMap<>();
-    Map<String,Object> entities = new HashMap<>();
+    Map<String, String> valueFromXML = new HashMap<>();
+    Map<String, Object> entities = new HashMap<>();
 
     public UserService() throws ClassNotFoundException {
     }
@@ -36,6 +37,7 @@ public class UserService {
         NodeList userAttributes = root.getChildNodes();
         fillMap(userAttributes, valueFromXML);
     }
+
     @InitObject
     public void initObject() throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
@@ -46,7 +48,7 @@ public class UserService {
         person.setAddress(valueFromXML.get("address"));
         person.setAge(valueFromXML.get("age"));
         person.setProfession(valueFromXML.get("profession"));
-        entities.put(clazz.getName(),person);
+        entities.put(clazz.getName(), person);
         System.out.println("initObject");
         System.out.println("put in map: " + entities.get(clazz.getName()).toString());
     }
@@ -55,30 +57,30 @@ public class UserService {
         for (int i = 0; i < userAttributes.getLength(); i++) {
             Node node = userAttributes.item(i);
             if ("name".equals(node.getNodeName())) {
-                map.put(("name"),node.getTextContent());
+                map.put(("name"), node.getTextContent());
                 continue;
             }
             if ("email".equals(node.getNodeName())) {
-                map.put(("email"),node.getTextContent());
+                map.put(("email"), node.getTextContent());
                 continue;
             }
             if ("address".equals(node.getNodeName())) {
-                map.put(("address"),node.getTextContent());
+                map.put(("address"), node.getTextContent());
                 continue;
             }
             if ("profession".equals(node.getNodeName())) {
-                map.put(("profession"),node.getTextContent());
+                map.put(("profession"), node.getTextContent());
                 continue;
             }
             if ("age".equals(node.getNodeName())) {
-                map.put(("age"),node.getTextContent());
+                map.put(("age"), node.getTextContent());
                 continue;
             }
         }
         System.out.println("fillMap");
 
     }
-    
+
     private Document getDocument(String fileName) throws ParserConfigurationException,
             SAXException, IOException {
         String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
