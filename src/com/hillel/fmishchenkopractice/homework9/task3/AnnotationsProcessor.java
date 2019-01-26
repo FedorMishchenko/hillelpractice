@@ -4,15 +4,15 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 public class AnnotationsProcessor {
+    public static String className =
+            "com.hillel.fmishchenkopractice.homework9.task3.UserService";
+
     public static void main(String[] args) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
-        String className = "com.hillel.fmishchenkopractice.homework9.task3.UserService";
         inspectService(UserService.class);
         Class<?> clazz = Class.forName(className);
         Object object = clazz.newInstance();
-        UserService test = (UserService) object;
         Method[] methods = clazz.getMethods();
-        inspectServiceForMethod(methods, test);
         initMethod(object, methods);
         initObj(object, methods);
     }
@@ -48,17 +48,17 @@ public class AnnotationsProcessor {
     static void inspectService(Class<?> service) {
         if (service.isAnnotationPresent(Service.class)) {
             Service annotation = service.getAnnotation(Service.class);
-            //todo: если классов много можно выбрать какой стартовать
+                if(service.isAnnotationPresent(Service.class)){
+                    try {
+                        loadService(className);
+                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
         }
     }
 
-    static void inspectServiceForMethod(Method[] methods, Object o) {
-        for (int i = 0; i < methods.length; i++) {
-            Annotation[] ann = methods[i].getAnnotations();
-        }
-    }
-
-/*    static Object loadService(String className) throws ClassNotFoundException,
+    static Object loadService(String className) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
         Object ob = null;
         Class<?> clazz = Class.forName(className);
@@ -66,5 +66,5 @@ public class AnnotationsProcessor {
             ob = clazz.newInstance();
         }
         return ob;
-    }*/
+    }
 }
