@@ -5,29 +5,26 @@ import java.util.concurrent.ThreadLocalRandom;
 public class UserService {
     private DBService dbService;
     int min = 0;
-    int max = 6;
+    int max = 5;
 
-
-    public void createUser(){
+    @Transactional
+    public void createUser() {
         dbService = new DBService();
         try {
-            int randomint = ThreadLocalRandom.current().nextInt(min, max + 1);
-            System.out.println(randomint);
+            int randomint = ThreadLocalRandom.current().nextInt(min, max + 2);
             dbService.create(randomint);
 
-            randomint = ThreadLocalRandom.current().nextInt(min, max + 1);
-            System.out.println(randomint);
+            randomint = ThreadLocalRandom.current().nextInt(min, max + 2);
             dbService.find(randomint);
 
-            randomint = ThreadLocalRandom.current().nextInt(min, max + 1);
-            System.out.println(randomint);
+            randomint = ThreadLocalRandom.current().nextInt(min, max + 2);
             dbService.update(randomint);
 
-            randomint = ThreadLocalRandom.current().nextInt(min, max + 1);
-            System.out.println(randomint);
+            randomint = ThreadLocalRandom.current().nextInt(min, max + 2);
             dbService.delete(randomint);
-        }catch (Exception e){
-            System.out.println("Exception in: " + e);
+        } catch (RuntimeException e) {
+            System.out.println("Exception in " + e.getMessage());
+            System.out.println("List is empty");
         }
     }
 }
