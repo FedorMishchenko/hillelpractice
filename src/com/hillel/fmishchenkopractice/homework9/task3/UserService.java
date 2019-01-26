@@ -50,7 +50,7 @@ public class UserService {
         System.out.println("initObject");
         System.out.println("put in map: " + entities.get(clazz.getName()).toString());
     }
-    @Init
+
     private void fillMap(NodeList userAttributes, Map<String, String> map) {
         for (int i = 0; i < userAttributes.getLength(); i++) {
             Node node = userAttributes.item(i);
@@ -78,7 +78,7 @@ public class UserService {
         System.out.println("fillMap");
 
     }
-    @Init
+    
     private Document getDocument(String fileName) throws ParserConfigurationException,
             SAXException, IOException {
         String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
