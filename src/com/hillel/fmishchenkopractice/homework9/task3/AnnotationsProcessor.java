@@ -8,7 +8,7 @@ public class AnnotationsProcessor {
 
     public static void main(String[] args) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
-        inspectService(UserService.class);
+        inspectService(className.getClass());
         Class<?> clazz = Class.forName(className);
         Object object = clazz.newInstance();
         Method[] methods = clazz.getMethods();
@@ -22,7 +22,7 @@ public class AnnotationsProcessor {
                 try {
                     method.invoke(object);
                 } catch (Exception e) {
-                    InitObject ann = method.getAnnotation(InitObject.class);
+                    throw new RuntimeException(e);
                 }
             }
         }

@@ -8,6 +8,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Service {
     String name();
-    boolean setData() default false;
+    boolean lazyLoad() default false;
 }
 

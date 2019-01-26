@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service(name = "Service",
-        setData = true)
+        lazyLoad = false)
 public class UserService {
     Class<?> clazz = Class.forName("com.hillel.fmishchenkopractice.homework9.task2.Person");
     Person person;
