@@ -2,8 +2,6 @@ package com.hillel.fmishchenkopractice.homework9.task3;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AnnotationsProcessor {
     public static void main(String[] args) throws ClassNotFoundException,
@@ -15,8 +13,23 @@ public class AnnotationsProcessor {
         UserService test = (UserService) object;
         Method[] methods = clazz.getMethods();
         inspectServiceForMethod(methods, test);
-        Map<String, Object> map = new HashMap<>();
-        map.put(className, loadService(className));
+        initMethod(object, methods);
+        initObj(object, methods);
+    }
+
+    private static void initObj(Object object, Method[] methods) {
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(InitObject.class)) {
+                try {
+                    method.invoke(object);
+                } catch (Exception e) {
+                    InitObject ann = method.getAnnotation(InitObject.class);
+                }
+            }
+        }
+    }
+
+    private static void initMethod(Object object, Method[] methods) {
         for (Method method : methods) {
             if (method.isAnnotationPresent(Init.class)) {
                 try {
@@ -26,15 +39,6 @@ public class AnnotationsProcessor {
                     if (ann.suppressException()) {
                         System.err.println(e.getMessage());
                     } else throw new RuntimeException(e);
-                }
-            }
-        }
-        for (Method method : methods) {
-            if (method.isAnnotationPresent(InitObject.class)) {
-                try {
-                    method.invoke(object);
-                } catch (Exception e) {
-                    InitObject ann = method.getAnnotation(InitObject.class);
                 }
             }
         }
@@ -54,7 +58,7 @@ public class AnnotationsProcessor {
         }
     }
 
-    static Object loadService(String className) throws ClassNotFoundException,
+/*    static Object loadService(String className) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
         Object ob = null;
         Class<?> clazz = Class.forName(className);
@@ -62,5 +66,5 @@ public class AnnotationsProcessor {
             ob = clazz.newInstance();
         }
         return ob;
-    }
+    }*/
 }
