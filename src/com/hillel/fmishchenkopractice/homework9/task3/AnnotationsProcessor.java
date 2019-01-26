@@ -1,6 +1,5 @@
 package com.hillel.fmishchenkopractice.homework9.task3;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 public class AnnotationsProcessor {
@@ -47,16 +46,14 @@ public class AnnotationsProcessor {
 
     static void inspectService(Class<?> service) {
         if (service.isAnnotationPresent(Service.class)) {
-            Service annotation = service.getAnnotation(Service.class);
-                if(service.isAnnotationPresent(Service.class)){
-                    try {
-                        loadService(className);
-                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                }
+            try {
+                loadService(className);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
     }
+
 
     static Object loadService(String className) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
