@@ -15,7 +15,6 @@ public class UserService {
     public synchronized void createUser() {
         dbService = new DBService();
         int randomint = 0;
-        for (int i = 0; i < 5; i++) {
             threadsPool();
             index = 0;
             try {
@@ -40,18 +39,20 @@ public class UserService {
                 rollback();
                 print("-----------------------------");
             }
-        }
+
         print(Thread.currentThread().getName() + ": " + "List save values: " + arrayList);
 
     }
 
     public void threadsPool() {
-        Thread thread = new Thread(() -> {
-            createUser();
-            dbService.list.add(arrayList);
-        });
-        thread.setPriority(10);
-        thread.start();
+        for (int i = 0; i < 5; i++) {
+            Thread thread = new Thread(() -> {
+                createUser();
+                dbService.list.add(arrayList);
+            });
+            thread.setPriority(10);
+            thread.start();
+        }
     }
 
 
