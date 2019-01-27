@@ -7,7 +7,7 @@ public class DBService {
 
     public void create(int randomint) {
         if (randomint >= 0 & randomint <= 5) {
-            print(randomint, "create = ");
+            print(Thread.currentThread().getName()+ ": ", randomint, "create = ");
             add(randomint);
         } else {
             throw new DBCheckedException();
@@ -17,7 +17,7 @@ public class DBService {
 
     public void find(int randomint) {
         if (randomint >= 0 & randomint <= 5) {
-            print(randomint, "find = ");
+            print(Thread.currentThread().getName() + ": ",randomint, "find = ");
             add(randomint);
         } else {
             throw new DBCheckedException();
@@ -27,7 +27,7 @@ public class DBService {
 
     public void update(int randomint) {
         if (randomint >= 0 & randomint <= 5) {
-            print(randomint, "update = ");
+            print(Thread.currentThread().getName()+ ": ", randomint, "update = ");
             add(randomint);
         } else {
             throw new DBCheckedException();
@@ -37,15 +37,15 @@ public class DBService {
 
     public void delete(int randomint) {
         if (randomint >= 0 & randomint <= 5) {
-            print(randomint, "delete = ");
+            print(Thread.currentThread().getName()+ ": ", randomint, "delete = ");
             add(randomint);
         } else {
             throw new DBCheckedException();
         }
     }
 
-    private void print(int randomint, String s) {
-        System.out.println(s + randomint);
+    private void print(String name, int randomint, String s) {
+        System.out.println(name + s + randomint);
     }
 
     private void add(int randomint) {

@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class UserService {
+
     private DBService dbService;
     private ArrayList arrayList = new ArrayList();
     int min = 0;
     int max = 5;
     int index = 0;
     @Transactional
-    public void createUser() {
+    public synchronized void  createUser() {
 
         dbService = new DBService();
         int randomint = 0;
         for (int i = 0; i < 5; i++) {
+            threadsPool();
             index = 0;
             try {
                 randomint = ThreadLocalRandom.current().nextInt(min, max + 2);
@@ -39,8 +41,19 @@ public class UserService {
                 print("-----------------------------");
             }
         }
-        print("List save values: " + arrayList);
+        print(Thread.currentThread().getName()+ ": " + "List save values: " + arrayList);
+
     }
+
+    public void threadsPool() {
+        Thread thread = new Thread(()->{
+                createUser();
+            dbService.list.add(arrayList);
+        });
+        thread.setPriority(10);
+        thread.start();
+    }
+
 
     private void print(String s) {
         System.out.println(s);
