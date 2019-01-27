@@ -10,9 +10,9 @@ public class UserService {
     int min = 0;
     int max = 5;
     int index = 0;
-    @Transactional
-    public synchronized void  createUser() {
 
+    @Transactional
+    public synchronized void createUser() {
         dbService = new DBService();
         int randomint = 0;
         for (int i = 0; i < 5; i++) {
@@ -41,13 +41,13 @@ public class UserService {
                 print("-----------------------------");
             }
         }
-        print(Thread.currentThread().getName()+ ": " + "List save values: " + arrayList);
+        print(Thread.currentThread().getName() + ": " + "List save values: " + arrayList);
 
     }
 
     public void threadsPool() {
-        Thread thread = new Thread(()->{
-                createUser();
+        Thread thread = new Thread(() -> {
+            createUser();
             dbService.list.add(arrayList);
         });
         thread.setPriority(10);
@@ -66,8 +66,8 @@ public class UserService {
         }
     }
 
-    private void rollback(){
-        while (index != 0){
+    private void rollback() {
+        while (index != 0) {
             arrayList.remove(arrayList.size() - 1);
             index--;
         }
