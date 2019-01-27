@@ -6,8 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class DemoReflection {
-    private static Object object;
-    private static Method method;
+    private  static Object object;
+    private  static Method method;
 
     private static String getClassNameFromXML() {
 

@@ -32,14 +32,18 @@ public class UserService {
                 randomint = ThreadLocalRandom.current().nextInt(min, max + 2);
                 dbService.delete(randomint);
                 add(randomint);
-                System.out.println("-----------------------------");
+                print("-----------------------------");
             } catch (DBCheckedException e) {
                 e.getMassege(randomint);
                 rollback();
-                System.out.println("-----------------------------");
+                print("-----------------------------");
             }
         }
-        System.out.println("List final values: " + arrayList);
+        print("List save values: " + arrayList);
+    }
+
+    private void print(String s) {
+        System.out.println(s);
     }
 
     private void add(int randomint) {

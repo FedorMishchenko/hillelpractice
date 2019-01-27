@@ -1,7 +1,13 @@
 package com.hillel.fmishchenkopractice.homework9.task4;
 
-public class Demo {
-    public static void main(String[] args) {
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class TransactionManagerDemoTest {
+
+    @Test
+    public void start() {
         TransactionManager manager = new TransactionManager();
         manager.process(new UserService());
     }

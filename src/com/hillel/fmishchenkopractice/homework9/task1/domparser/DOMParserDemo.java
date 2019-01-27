@@ -1,17 +1,12 @@
 package com.hillel.fmishchenkopractice.homework9.task1.domparser;
 
-import com.hillel.fmishchenkopractice.homework9.task1.domparser.XMLDomParser;
 import com.hillel.fmishchenkopractice.homework9.task2.Person;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 
-public class DemoParser {
+public class DOMParserDemo {
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
         Person person;
