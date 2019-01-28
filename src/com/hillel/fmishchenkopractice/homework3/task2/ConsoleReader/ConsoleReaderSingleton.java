@@ -2,25 +2,22 @@ package com.hillel.fmishchenkopractice.homework3.task2.ConsoleReader;
 
 import java.util.Scanner;
 
-public class ConsoleReader {
-    private static ConsoleReader instance;
+public class ConsoleReaderSingleton {
+    private static ConsoleReaderSingleton instance;
 
-    private ConsoleReader() {
-
-    }
-
-    public static ConsoleReader getInstance() {
+    public static ConsoleReaderSingleton getInstance() {
         if (instance == null)
-            synchronized (ConsoleReader.class) {
+            synchronized (ConsoleReaderSingleton.class) {
                 if (instance == null)
-                    instance = new ConsoleReader();
+                    instance = new ConsoleReaderSingleton();
             }
         return instance;
     }
     public void consoleRead(){
+        String read = new String();
              while(true) {
                  Scanner scanner = new Scanner(System.in);
-                 String read = scanner.nextLine();
+                 read = scanner.nextLine();
                  System.out.println(read);
              }
     }

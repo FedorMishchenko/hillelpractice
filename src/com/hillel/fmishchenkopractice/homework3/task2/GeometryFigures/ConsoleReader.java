@@ -17,32 +17,48 @@ public class ConsoleReader {
             }
         return instance;
     }
-    public void consoleRead(){
-        while(true) {
-            Scanner scanner = new Scanner(System.in);
-            String read = scanner.nextLine();
-            if(read.equals("triangle")){
-                Triangle tr = new Triangle(8);
-                System.out.println(tr.toString());
-            } else if(read.equals("square")){
-                Square sq = new Square(15);
-                System.out.println(sq.toString());
-            } else if(read.equals("rhombus")){
-                Rhombus r = new Rhombus(6);
-                System.out.println(r.toString());
-            }else if(read.equals("rectangle")){
-                Rectangle rec = new Rectangle(11);
-                System.out.println(rec.toString());
-            }else if(read.equals("round")) {
-                Round rnd = new Round(60);
-                System.out.println(rnd.toString());
-            }else if(read.equals("close")){
-                System.out.print("Scanner close.");
-                scanner.close();
-                break;
-            }
-            else continue;
 
+    public void consoleRead() {
+        while (true) {
+            input();
+            Scanner scanner = new Scanner(System.in);
+            String command = scanner.nextLine();
+            switchCommand(command);
         }
+    }
+
+    private void switchCommand(String command) {
+        switch (command) {
+            case "tr":
+                System.out.println(new Triangle(8).toString()+ '\n');
+                break;
+            case "sq":
+                System.out.println(new Square(15).toString()+ '\n');
+                break;
+            case "rh":
+                System.out.println(new Rhombus(6).toString()+ '\n');
+                break;
+            case "rec":
+                System.out.println(new Rectangle(11).toString()+ '\n');
+                break;
+            case "rou":
+                System.out.println(new Round(60).toString() + '\n');
+                break;
+            case "exit":
+                System.exit(0);
+            default:
+                System.out.println("Illegal argument: " + command + '\n');
+                break;
+        }
+    }
+
+    private void input() {
+        System.out.println("Input command:" + '\n' +
+                "tr: triangle" + '\n' +
+                "sq: square" + '\n' +
+                "rh: rhombus" + '\n' +
+                "rec: rectangle" + '\n' +
+                "rou: round" + '\n' +
+                "exit: to program exit");
     }
 }
