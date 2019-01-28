@@ -45,7 +45,7 @@ public class UserService {
                 add(randomint);
                 print("-----------------------------");
             } catch (DBCheckedException e) {
-                e.getMassege(randomint);
+                e.getMassage(randomint);
                 rollback();
                 print("-----------------------------");
             }
