@@ -4,9 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class TransactionManagerDemo {
-
-
-
     public static void main(String[] args) {
         TransactionManager<UserService> manager = (service) -> {
             Method[] methods = UserService.class.getMethods();
