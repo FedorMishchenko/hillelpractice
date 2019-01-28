@@ -1,18 +1,29 @@
 package exersices.java8.lambda;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
+import java.lang.reflect.Array;
 
 public class Lambda {
-    public void demo(String[] args) {
-        List<String> list = Arrays.asList("oneeeee","two","three");
-        Collections.sort(list, (String a,String b) ->{
-            return b.compareTo(a);
-        });
-        /*Можно так*/
-        Collections.sort(list, (String a, String b) -> b.compareTo(a));
-        /*Можно и так*/
+
+    public Lambda(FuncInterface funcInterface) {
+    }
+
+    public Lambda(FuncInterface2 funcInterface2) {
+    }
+
+    public static void main(String[] args) {
+        FuncInterface<String, Integer> interface1 = (from) -> Integer.valueOf(from);
+        Integer convertedNumber = interface1.abstractFunction("123");
+        System.out.println(convertedNumber);
+
+        FuncInterface2<String> interface2 = (massege) -> {
+            massege += massege;
+            return massege;
+        };
+        String str = interface2.abstractFunc2("Massege");
+        System.out.println(str);
+
+
     }
 }
 
