@@ -7,17 +7,26 @@ public class UserService {
 
     private DBService dbService;
     private ArrayList arrayList = new ArrayList();
+
     int min = 0;
     int max = 5;
     int index = 0;
 
     @Transactional
+    public void createPool() {
+        for (int i = 0; i < 5; i++) {
+            threadsPool();
+        }
+
+    }
+
     public synchronized void createUser() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             dbService = new DBService();
             int randomint = 0;
             /*threadsPool();*/
             index = 0;
+
             try {
                 randomint = ThreadLocalRandom.current().nextInt(min, max + 2);
                 dbService.create(randomint);
@@ -42,9 +51,9 @@ public class UserService {
             }
 
             print(Thread.currentThread().getName() + ": " + "List save values: " + arrayList);
-
         }
     }
+
 
     public void threadsPool() {
         Thread thread = new Thread(() -> {
