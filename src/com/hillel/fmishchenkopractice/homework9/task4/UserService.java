@@ -24,7 +24,6 @@ public class UserService {
         for (int i = 0; i < 5; i++) {
             dbService = new DBService();
             int randomint = 0;
-            /*threadsPool();*/
             index = 0;
 
             try {
