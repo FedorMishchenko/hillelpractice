@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework4.task1.part1;
+package com.hillel.fmishchenkopractice.homework4.task1.part3;
 
 import java.util.Iterator;
 
@@ -26,7 +26,9 @@ public class LinkedListRealization<T> implements Iterable<T> {
         this.size = 0;
 
     }
-
+    public int getSize(){
+        return size;
+    }
     public void add(T item) {
         Node node = new Node(item);
         if (first == null) {

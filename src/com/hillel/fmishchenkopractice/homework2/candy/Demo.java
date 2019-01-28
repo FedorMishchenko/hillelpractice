@@ -7,7 +7,7 @@ import java.util.function.Function;
 public class Demo {
     public static void main(String[] args) {
         List<Candy> list = new ArrayList<>();
-        List<Candy> check = new ArrayList<>();
+        List<Candy> check;
         CandyFactory factory = Candy::new;
         list.add((Candy) factory.create("Avk","black",true,70));
         list.add((Candy) factory.create("Roshen","white",false,35));
