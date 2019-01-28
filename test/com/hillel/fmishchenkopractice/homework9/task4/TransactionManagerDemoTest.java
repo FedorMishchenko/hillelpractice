@@ -8,7 +8,7 @@ public class TransactionManagerDemoTest {
 
     @Test
     public void start() {
-        TransactionManager manager = new TransactionManager();
-        manager.process(new UserService());
+       /* TransactionManager manager = new TransactionManager();
+        manager.process(new UserService());*/
     }
 }
