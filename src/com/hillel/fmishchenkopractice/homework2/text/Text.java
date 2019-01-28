@@ -1,14 +1,23 @@
 package com.hillel.fmishchenkopractice.homework2.text;
 
-abstract class Text {
+public class Text {
+    private String headLine;
+    private String text;
 
-    abstract void setHeadline(String headLine);
+    public Text(String headLine,String text) {
+        this.headLine = headLine;
+        this.text = text;
+    }
 
-    abstract void outText(String text);
+    public void setHeadline(String headLine) {
+        this.headLine = headLine;
+    }
 
-    abstract void addText(String addText);
-
-/*ldkfgj*/
-
-
+    public void outText(String text) {
+        this.text = text;
+        if(headLine != null){
+            System.out.println("\t\t\t" + headLine);
+        }
+        System.out.print(text + '\n');
+    }
 }

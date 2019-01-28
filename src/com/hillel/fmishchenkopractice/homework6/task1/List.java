@@ -1,12 +1,21 @@
 package com.hillel.fmishchenkopractice.homework6.task1;
 
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class List<T> implements Iterable<T> {
 
-    private T[] arrayList;
+    public T[] arrayList;
     private int currentSize;
+
+    @Override
+    public String toString() {
+        return "List{" +
+                "arrayList=" + Arrays.toString(arrayList) +
+                ", currentSize=" + currentSize +
+                '}';
+    }
 
     public List(T[] newArray) {
         this.arrayList = newArray;

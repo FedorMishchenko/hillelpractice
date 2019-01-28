@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class TransactionManagerDemo {
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         TransactionManager<UserService> manager = (service) -> {
             Method[] methods = UserService.class.getMethods();
             for (Method method : methods) {
@@ -12,11 +12,11 @@ public class TransactionManagerDemo {
                     try {
                         method.invoke(service);
                     } catch (IllegalAccessException | InvocationTargetException e){
-                        /*NOP*/
+                        *//*NOP*//*
                     }
                 }
             }
         };
         manager.process(new UserService());
-    }
+    }*/
 }

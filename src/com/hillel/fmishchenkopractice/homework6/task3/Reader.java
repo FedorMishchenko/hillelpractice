@@ -28,8 +28,8 @@ public class Reader {
         person.setVocation(scanner.nextLine());
         System.out.println("Input age");
         person.setAge(scanner.nextInt());
-        server.register(person.email, person);
-        System.out.println(server.contains(person.email));
+        server.register(person.getEmail(), person);
+        System.out.println(server.contains(person.getEmail()));
         checkAll();
     }
 
