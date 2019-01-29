@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework5.task2.part3.set;
+package com.hillel.fmishchenkopractice.homework5.task2.part3;
 
 import java.util.ArrayList;
 import java.util.Comparator;
