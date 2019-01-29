@@ -3,13 +3,6 @@ package com.hillel.fmishchenkopractice.homework5.task2.part2;
 import java.util.*;
 
 public class Main {
-    private class Sort implements Comparator<String>{
-
-        @Override
-        public int compare(String a, String b) {
-            return b.compareTo(a);
-        }
-    }
     private static final String SONNET =
 
                     "From fairest creatures we desire increase," + '\n' +
@@ -31,7 +24,7 @@ public class Main {
                     "To eat the world's due, by the grave and thee";
 
     public static void main(String[] args) {
-        TreeSet<String> set = new TreeSet<>();
+        TreeSet<String> set = new TreeSet<>(Comparator.comparingInt(String::length));
         List<String> lines = Arrays.asList(SONNET.split("\n"));
         set.addAll(lines);
         String [] line = lines.toArray(new String[lines.size()]);
