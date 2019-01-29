@@ -28,10 +28,10 @@ public class StackImplTest<T> {
         Integer value2 = new Integer(20);
         list.add((T)value);
         list.add((T)value2);
-        System.out.println("list size before get() = " + list.size());
+        System.out.println("set size before get() = " + list.size());
         T res;
         res = list.get();
-        System.out.println("list size after get() = " + list.size());
+        System.out.println("set size after get() = " + list.size());
         System.out.println(list);
         assertEquals(value2,res);
     }
@@ -43,9 +43,9 @@ public class StackImplTest<T> {
         Integer value2 = new Integer(20);
         list.add((T)value);
         list.add((T)value2);
-        System.out.println("list size before remove() = " + list.size());
+        System.out.println("set size before remove() = " + list.size());
         list.remove();
-        System.out.println("list size after remove() = " + list.size());
+        System.out.println("set size after remove() = " + list.size());
         T res;
         res = list.get();
         assertEquals(value,res);
@@ -58,7 +58,7 @@ public class StackImplTest<T> {
         Integer value2 = new Integer(20);
         list.add((T)value);
         list.add((T)value2);
-        System.out.println("list size before clear() = " + list.size());
+        System.out.println("set size before clear() = " + list.size());
         list.clear();
         assertEquals(0,list.currentSize);
 

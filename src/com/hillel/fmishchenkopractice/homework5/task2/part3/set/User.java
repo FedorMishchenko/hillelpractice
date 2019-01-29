@@ -1,10 +1,16 @@
-package com.hillel.fmishchenkopractice.homework5.task2.part4;
+package com.hillel.fmishchenkopractice.homework5.task2.part3.set;
 
 public class User implements Comparable<User> {
 
     private int age;
     private String name;
     private String email;
+
+    public User(String name, String email, int age) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
 
     public String getEmail() {
         return email;
@@ -41,14 +47,6 @@ public class User implements Comparable<User> {
 
     @Override
     public int compareTo(User user) {
-        if (!getName().equals(user.getName())) {
-            if (getName().compareTo(user.name) > 0) return 1;
-            else return -1;
-        }
-        if (!getEmail().equals(user.getEmail())) {
-            if (getEmail().compareTo(user.email) > 0) return 1;
-            else return -1;
-        }
         return Integer.compare(age, user.age);
     }
     public boolean equals(User u){

@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework5.task2.part1;
+package com.hillel.fmishchenkopractice.homework5.task2.part1.stack;
 
 import com.hillel.fmishchenkopractice.homework6.task2.Stack;
 import com.hillel.fmishchenkopractice.homework6.task2.StackImpl;

@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework5.task2.part3;
+package com.hillel.fmishchenkopractice.homework5.task2.part2.list;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,19 +26,14 @@ public class Main {
     "Pity the world, or else this glutton be," + '\n' +
     "To eat the world's due, by the grave and thee";
 
-    private static final Comparator<String> LINE_LENGTH_COMPARATOR = new Comparator<String>() {
-        @Override
-        public int compare(String o1, String o2) {
-            return o1.length() - o2.length();
-        }
-    };
+    private static final Comparator<String> LINE_LENGTH_COMPARATOR = Comparator.comparingInt(String::length);
     public static void main(String[] args) {
         List<String> lines = Arrays.asList(SONNET.split("\n"));
         System.out.println(lines );
         System.out.println('\n');
 
         Collections.sort(lines, LINE_LENGTH_COMPARATOR);
-        System.out.println(lines);
+        lines.forEach(System.out::println);
     }
     }
 

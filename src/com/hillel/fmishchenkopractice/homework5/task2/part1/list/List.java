@@ -1,4 +1,5 @@
-package com.hillel.fmishchenkopractice.homework5.task2.part2;
+package com.hillel.fmishchenkopractice.homework5.task2.part1.list;
+
 
 public class List {
 
