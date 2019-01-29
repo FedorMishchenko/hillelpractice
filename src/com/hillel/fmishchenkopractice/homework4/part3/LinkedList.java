@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework4.task1.part3;
+package com.hillel.fmishchenkopractice.homework4.part3;
 
 import java.util.Iterator;
 

@@ -3,9 +3,24 @@ package com.hillel.fmishchenkopractice.homework5.task2.part2;
 import java.util.*;
 
 public class Main {
+
+    public static void main(String[] args) {
+        TreeSet<String> set = new TreeSet<>(Comparator.comparingInt(String::length));
+        List<String> lines = Arrays.asList(SONNET.split("\n"));
+        set.addAll(lines);
+        String [] line = lines.toArray(new String[lines.size()]);
+        System.out.println('\n');
+        Arrays.sort(line, Comparator.comparingInt(String::length));
+        System.out.println(Arrays.toString(line));
+        System.out.println("---------------------------------------");
+        Collections.sort(lines, Comparator.comparingInt(String::length));
+        lines.forEach(System.out::println);
+        System.out.println("---------------------------------------");
+        set.forEach(System.out::println);
+    }
     private static final String SONNET =
 
-                    "From fairest creatures we desire increase," + '\n' +
+            "From fairest creatures we desire increase," + '\n' +
                     "That thereby beauty's rose might never die," + '\n' +
                     "But as the riper should by time decease," + '\n' +
                     "His tender heir might bear his memory:" + '\n' +
@@ -22,20 +37,5 @@ public class Main {
 
                     "Pity the world, or else this glutton be," + '\n' +
                     "To eat the world's due, by the grave and thee";
-
-    public static void main(String[] args) {
-        TreeSet<String> set = new TreeSet<>(Comparator.comparingInt(String::length));
-        List<String> lines = Arrays.asList(SONNET.split("\n"));
-        set.addAll(lines);
-        String [] line = lines.toArray(new String[lines.size()]);
-        System.out.println('\n');
-        Arrays.sort(line, Comparator.comparingInt(String::length));
-        System.out.println(Arrays.toString(line));
-        System.out.println("---------------------------------------");
-        Collections.sort(lines, Comparator.comparingInt(String::length));
-        lines.forEach(System.out::println);
-        System.out.println("---------------------------------------");
-        set.forEach(System.out::println);
-    }
 }
 

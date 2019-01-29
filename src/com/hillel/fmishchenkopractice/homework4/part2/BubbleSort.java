@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework4.task1.part2;
+package com.hillel.fmishchenkopractice.homework4.part2;
 
 import java.util.Arrays;
 

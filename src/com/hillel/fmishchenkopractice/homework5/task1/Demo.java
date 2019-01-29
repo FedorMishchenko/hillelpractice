@@ -1,6 +1,6 @@
 package com.hillel.fmishchenkopractice.homework5.task1;
 
-import com.hillel.fmishchenkopractice.homework4.task1.part3.LinkedList;
+import com.hillel.fmishchenkopractice.homework4.part3.LinkedList;
 
 import java.util.concurrent.ThreadLocalRandom;
 

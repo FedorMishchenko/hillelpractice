@@ -1,6 +1,6 @@
-package com.hillel.fmishchenkopractice.homework4.task1.part1;
+package com.hillel.fmishchenkopractice.homework4.part1;
 
-import com.hillel.fmishchenkopractice.homework4.task1.part3.LinkedList;
+import com.hillel.fmishchenkopractice.homework4.part3.LinkedList;
 
 public class IosifFlaviy {
     public static void main(String[] args) {
