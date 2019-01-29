@@ -2,7 +2,7 @@ package com.hillel.fmishchenkopractice.homework4.task1.part3;
 
 import java.util.Iterator;
 
-public class LinkedListRealization<T> implements Iterable<T> {
+public class LinkedList<T> implements Iterable<T> {
     private Node first;
     private Node last;
     private int size;
@@ -20,7 +20,7 @@ public class LinkedListRealization<T> implements Iterable<T> {
         }
     }
 
-    public LinkedListRealization() {
+    public LinkedList() {
         this.first = null;
         this.last = null;
         this.size = 0;
