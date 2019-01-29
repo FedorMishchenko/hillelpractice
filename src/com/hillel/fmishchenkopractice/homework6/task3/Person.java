@@ -2,18 +2,18 @@ package com.hillel.fmishchenkopractice.homework6.task3;
 
 import java.util.Objects;
 
-public class Person implements Comparable<Person> {
+public class Person {
     private String email;
-    /*private*/ String vocation;
-    private Integer age;
+    private String profession;
+    private int age;
 
-    public Integer getAge() {
-        return age;
+    public Person(String email,String profession,int age) {
+        this.email = email;
+        this.profession = profession;
+        this.age = age;
     }
 
-    public String getVocation() {
-        return vocation;
-    }
+    public Person() {}
 
     public String getEmail() {
         return email;
@@ -23,17 +23,16 @@ public class Person implements Comparable<Person> {
         this.email = email;
     }
 
-    public void setVocation(String vocation) {
-        this.vocation = vocation;
+    public String getProfession() {
+        return profession;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setProfession(String profession) {
+        this.profession = profession;
     }
 
-    @Override
-    public int compareTo(Person person) {
-        return getEmail().compareTo(person.getEmail());
+    public int getAge() {
+        return age;
     }
 
     @Override
@@ -41,23 +40,26 @@ public class Person implements Comparable<Person> {
         if (this == o) return true;
         if (!(o instanceof Person)) return false;
         Person person = (Person) o;
-        return Objects.equals(getEmail(), person.getEmail()) &&
-                Objects.equals(getVocation(), person.getVocation()) &&
-                Objects.equals(getAge(), person.getAge());
+        return getAge() == person.getAge() &&
+                Objects.equals(getEmail(), person.getEmail()) &&
+                Objects.equals(getProfession(), person.getProfession());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmail(), getVocation(), getAge());
+        return Objects.hash(getEmail(), getProfession(), getAge());
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
     public String toString() {
         return "Person{" +
                 "email='" + email + '\'' +
-                ", vocation='" + vocation + '\'' +
+                ", profession='" + profession + '\'' +
                 ", age=" + age +
                 '}';
     }
-
 }
