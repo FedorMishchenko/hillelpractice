@@ -22,11 +22,11 @@ public class Reader {
 
     public void init() {
         Person person = new Person();
-        System.out.println("Input email:");
+        print("Input email:");
         person.setEmail(scanner.nextLine());
-        System.out.println("Input vocation:");
+        print("Input vocation:");
         person.setVocation(scanner.nextLine());
-        System.out.println("Input age");
+        print("Input age");
         person.setAge(scanner.nextInt());
         server.register(person.getEmail(), person);
         System.out.println(server.contains(person.getEmail()));
@@ -36,14 +36,18 @@ public class Reader {
     String command;
 
     public void readData() {
-        System.out.println("Input command:");
-        System.out.println("reg: (registerPerson)");
-        System.out.println("set: (setVocation)");
-        System.out.println("show: (showVocations)");
-        System.out.println("exit: (system.exit)");
-        System.out.println("per: (showPersons)");
+        print("Input command:");
+        print("reg: (registerPerson)");
+        print("set: (setVocation)");
+        print("show: (showVocations)");
+        print("exit: (system.exit)");
+        print("per: (showPersons)");
         dataInput();
 
+    }
+
+    public void print(String s) {
+        System.out.println(s);
     }
 
     public void dataInput() {
@@ -52,7 +56,7 @@ public class Reader {
                 init();
                 break;
             case "set":
-                System.out.println("Input vocation:");
+                print("Input vocation:");
                 String vocation = scanner.nextLine();
                 addVocation(vocation);
                 break;
@@ -84,7 +88,7 @@ public class Reader {
 
     public void showVocations() {
         for (String vocation : vocations) {
-            System.out.println(vocation);
+            print(vocation);
         }
     }
 
