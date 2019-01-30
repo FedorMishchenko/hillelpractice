@@ -13,11 +13,15 @@ public class Reader {
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
                 setPersonValue(reader);
-                if(check(person)){
-                    base.register(person.getEmail(),person);
-                }
+                register();
                 showAndExit(reader);
             }
+        }
+    }
+
+    public void register() {
+        if(check(person)){
+            base.register(person.getEmail(),person);
         }
     }
 
