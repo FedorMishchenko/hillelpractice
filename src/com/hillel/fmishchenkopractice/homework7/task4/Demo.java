@@ -5,9 +5,13 @@ package com.hillel.fmishchenkopractice.homework7.task4;
  */
 public class Demo {
     public static void main(String[] args) {
-        System.out.println(new HashDigest().hash("password", "MD5"));
-        System.out.println(new HashDigest().hash("password1", "SHA-256"));
-        System.out.println(new HashDigest().hash("password2", "SHA-512"));
+        print("password", "MD5");
+        print("password1", "SHA-256");
+        print("password2", "SHA-512");
 
+    }
+
+    public static void print(String password, String md5) {
+        System.out.println(new HashDigest().hash(password, md5));
     }
 }
