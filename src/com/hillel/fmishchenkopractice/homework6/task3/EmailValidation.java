@@ -11,8 +11,7 @@ public class EmailValidation extends Middleware {
     @Override
     public boolean check(Person person) {
         if(!person.getEmail().contains("@")){
-            System.out.println("Not valid email: " + person.getEmail());
-            return false;
+            throw new IllegalArgumentException("Not valid email: " + person.getEmail());
         }
         else return checkNext(person);
     }

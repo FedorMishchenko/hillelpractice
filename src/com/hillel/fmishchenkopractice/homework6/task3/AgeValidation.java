@@ -11,8 +11,7 @@ public class AgeValidation extends Middleware {
     @Override
     public boolean check(Person person) {
         if((person.getAge() < 20 | person.getAge() > 55)){
-            System.out.println("Not valid age: " + person.getAge());
-            return false;
+            throw new IllegalArgumentException("Not valid age: " + person.getAge());
         }
         else return checkNext(person);
     }

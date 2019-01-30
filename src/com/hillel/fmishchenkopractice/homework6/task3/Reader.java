@@ -8,6 +8,7 @@ public class Reader {
     private DataBase base = new DataBase();
     private Person person;
     private String str;
+    boolean flag;
 
     public void read() throws IOException {
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -19,23 +20,28 @@ public class Reader {
                 person.setProfession(reader.readLine());
                 print("set age:");
                 person.setAge(Integer.parseInt(reader.readLine()));
-                check(person);
-                print("save person press: y, continue press: n, exit press: e ");
-                str = reader.readLine();
-                if(str.equals("y")){
+                if(check(person)){
                     base.register(person.getEmail(),person);
-                }else if(str.equals("e")){
-                    System.exit(0);
-                }else continue;
-                print("show base press: s, continue: n");
+                }
+                print("exit press: e , show persons press: s");
                 str = reader.readLine();
-                if(str.equals("s")) base.server.entrySet().stream()
-                        .sorted().forEach(System.out::println);
+                if(str.equals("e")){
+                    System.exit(0);
+                }else if(str.equals("s")){
+                    base.server.entrySet().stream()
+                            .sorted().forEach(System.out::println);
+                }else continue;
             }
         }
     }
-    private void check(Person person) {
-        Middleware ware = new EmailValidation(person).linkWith(new AgeValidation(person));
+    private boolean check(Person person) {
+        try {
+            Middleware ware = new EmailValidation(person).linkWith(new AgeValidation(person));
+        }catch (IllegalArgumentException e){
+            print(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     public void print(String s) {
