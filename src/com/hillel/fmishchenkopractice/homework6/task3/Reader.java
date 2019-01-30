@@ -16,13 +16,13 @@ public class Reader {
                 if(check(person)){
                     base.register(person.getEmail(),person);
                 }
-                print("exit press: e , show persons press: s, continue press: Enter");
                 showAndExit(reader);
             }
         }
     }
 
     public void showAndExit(BufferedReader reader) throws IOException {
+        print("exit press: e , show persons press: s, continue press: Enter");
         str = reader.readLine();
         if(str.equals("e")){
             System.exit(0);
