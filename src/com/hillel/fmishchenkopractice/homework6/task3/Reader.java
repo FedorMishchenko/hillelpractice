@@ -44,7 +44,7 @@ public class Reader {
 
     private boolean check(Person person) {
         try {
-            /*Middleware ware = */new EmailValidation(person).linkWith(new AgeValidation(person));
+            new EmailValidation(person).linkWith(new AgeValidation(person));
         }catch (IllegalArgumentException e){
             print(e.getMessage());
             return false;
