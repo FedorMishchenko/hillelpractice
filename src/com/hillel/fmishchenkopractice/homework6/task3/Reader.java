@@ -17,15 +17,19 @@ public class Reader {
                     base.register(person.getEmail(),person);
                 }
                 print("exit press: e , show persons press: s, continue press: Enter");
-                str = reader.readLine();
-                if(str.equals("e")){
-                    System.exit(0);
-                }else if(str.equals("s")){
-                    base.server.entrySet().stream()
-                            .sorted().forEach(System.out::println);
-                }else continue;
+                showAndExit(reader);
             }
         }
+    }
+
+    public void showAndExit(BufferedReader reader) throws IOException {
+        str = reader.readLine();
+        if(str.equals("e")){
+            System.exit(0);
+        }else if(str.equals("s")){
+            base.server.entrySet().stream()
+                    .sorted().forEach(System.out::println);
+        }else return;
     }
 
     public void setPersonValue(BufferedReader reader) throws IOException {
