@@ -18,7 +18,7 @@ public class Reader {
     }
 
     private void dataInput() throws IOException {
-        Person person = new Person();
+        person = new Person();
         print("exit - system.exit");
         print("press enter - to input");
         String command = reader.readLine();
