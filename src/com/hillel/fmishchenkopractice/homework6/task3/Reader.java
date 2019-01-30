@@ -8,7 +8,6 @@ public class Reader {
     private DataBase base = new DataBase();
     private Person person;
     private String str;
-    boolean flag;
 
     public void read() throws IOException {
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
