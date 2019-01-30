@@ -19,40 +19,48 @@ public class Reader {
 
     private void dataInput() throws IOException {
         Person person = new Person();
-        System.out.println("exit - system.exit");
-        System.out.println("press enter - to input");
+        print("exit - system.exit");
+        print("press enter - to input");
         String command = reader.readLine();
+        if (exit(command)) return;
+        header(person);
+        list.add(person);
+        print(convert(person));
+        dataInput();
+    }
 
+    private boolean exit(String command) throws IOException {
         if (command.equals("exit")) {
             exit();
-            return;
+            return true;
         }
-        System.out.println("Login:");
+        return false;
+    }
+
+    private void header(Person person) throws IOException {
+        print("Login:");
         person.setLogin(reader.readLine());
-        System.out.println("Name:");
+        print("Name:");
         person.setName(reader.readLine());
-        System.out.println("Email:");
+        print("Email:");
         person.setEmail(reader.readLine());
-        list.add(person);
-        /*System.out.println(convert(person));*/
-        System.out.println('\n' + "convert input user data 1: ");
-        System.out.println(convertInputToString1(person));
-        System.out.println('\n' + "convert input user data 2: ");
-        System.out.println(convertInputToString2(person));
-        System.out.println('\n' + "convert input user data 3: ");
-        System.out.println(convertInputToString3(person));
-        System.out.println('\n' + "convert input user data 4: ");
-        System.out.println(convertInputToString4(person));
-        System.out.println();
-        dataInput();
+    }
+
+    private void print(String s) {
+        System.out.println(s);
     }
 
     public String convert(Person person) {
         return
-        convertInputToString1(person) +
-        convertInputToString2(person) +
-        convertInputToString3(person) +
-        convertInputToString4(person);
+                convertInputToString1(person) + space() +
+                convertInputToString2(person) + space() +
+                convertInputToString3(person) + space() +
+                convertInputToString4(person) + space();
+
+    }
+
+    public String space() {
+        return '\n' + "-----------------------------" + '\n' ;
     }
 
     private void exit() throws IOException {
@@ -91,7 +99,8 @@ public class Reader {
         }
         return buffer.toString();
     }
-    public String convertInputToString4(Person person){
+
+    public String convertInputToString4(Person person) {
         buffer = new StringBuffer();
         buffer.append("Login; Name; Email; Password" + '\n');
         buffer.append(person.getLogin() + ", " +
@@ -99,7 +108,8 @@ public class Reader {
                 person.getEmail() + ", " + randomPassword());
         return buffer.toString();
     }
-    int randomPassword(){
+
+    int randomPassword() {
         int a = 0;
         int b = 10000;
         int num = a + (int) (Math.random() * b);

@@ -22,7 +22,7 @@ public class Reader {
                 if(check(person)){
                     base.register(person.getEmail(),person);
                 }
-                print("exit press: e , show persons press: s");
+                print("exit press: e , show persons press: s, continue press: Enter");
                 str = reader.readLine();
                 if(str.equals("e")){
                     System.exit(0);
@@ -35,7 +35,7 @@ public class Reader {
     }
     private boolean check(Person person) {
         try {
-            Middleware ware = new EmailValidation(person).linkWith(new AgeValidation(person));
+            /*Middleware ware = */new EmailValidation(person).linkWith(new AgeValidation(person));
         }catch (IllegalArgumentException e){
             print(e.getMessage());
             return false;
