@@ -12,13 +12,7 @@ public class Reader {
     public void read() throws IOException {
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
-                person = new Person();
-                print("set email:");
-                person.setEmail(reader.readLine());
-                print("set profession:");
-                person.setProfession(reader.readLine());
-                print("set age:");
-                person.setAge(Integer.parseInt(reader.readLine()));
+                setPersonValue(reader);
                 if(check(person)){
                     base.register(person.getEmail(),person);
                 }
@@ -33,6 +27,17 @@ public class Reader {
             }
         }
     }
+
+    public void setPersonValue(BufferedReader reader) throws IOException {
+        person = new Person();
+        print("set email:");
+        person.setEmail(reader.readLine());
+        print("set profession:");
+        person.setProfession(reader.readLine());
+        print("set age:");
+        person.setAge(Integer.parseInt(reader.readLine()));
+    }
+
     private boolean check(Person person) {
         try {
             /*Middleware ware = */new EmailValidation(person).linkWith(new AgeValidation(person));
