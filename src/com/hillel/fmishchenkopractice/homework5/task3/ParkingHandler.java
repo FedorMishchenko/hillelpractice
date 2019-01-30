@@ -5,10 +5,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Reader {
+public class ParkingHandler {
     private String command;
 
-    public void read() throws IOException {
+    public void process() throws IOException {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             print("Input parking size: ");

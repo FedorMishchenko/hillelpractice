@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Reader {
+public class PersonHandler {
     private DataBase base = new DataBase();
     private Person person;
     private String str;

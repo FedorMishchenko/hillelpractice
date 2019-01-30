@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ReaderTest {
+public class ParkingHandlerTest {
 
     @Test
     public void init() {

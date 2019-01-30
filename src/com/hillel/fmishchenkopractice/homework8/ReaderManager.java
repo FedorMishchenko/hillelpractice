@@ -1,7 +1,5 @@
 package com.hillel.fmishchenkopractice.homework8;
 
-import java.io.IOException;
-
 public class ReaderManager {
     public Reader reader;
 
@@ -9,12 +7,8 @@ public class ReaderManager {
         this.reader = source;
     }
 
-    public void read() {
-        try {
-            this.reader.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void process() {
+        this.reader.process();
     }
 
 }

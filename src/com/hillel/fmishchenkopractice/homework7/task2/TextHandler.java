@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reader {
+public class TextHandler {
 
     List<String> list = new ArrayList<>();
     String path = "E:/in.txt";
@@ -23,7 +23,7 @@ public class Reader {
             " behind the products and services, resources and" +
             " ideas that you’ll find here";
 
-    public void read() throws IOException {
+    public void process() throws IOException {
         createFile();
         writeDataInFile();
         dataOutputFromFile();

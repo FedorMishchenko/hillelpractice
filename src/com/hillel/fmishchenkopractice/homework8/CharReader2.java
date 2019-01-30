@@ -2,27 +2,20 @@ package com.hillel.fmishchenkopractice.homework8;
 
 import java.io.*;
 
-import static java.lang.System.getProperty;
-import static java.lang.System.in;
-import static java.lang.System.out;
-
 public class CharReader2 extends Reader {
     Dictionary dictionary = Dictionary.getInstance();
     StringBuilder builder = new StringBuilder();
     InputStreamReader reader;
 
-
     {
-        reader = new InputStreamReader(in);
+        reader = new InputStreamReader(System.in);
     }
-
 
     String command;
     String strE;
     String strR;
 
-    void read(){
-
+    void process() {
         while (true) {
             input();
             switch (command) {
@@ -39,16 +32,15 @@ public class CharReader2 extends Reader {
                     break;
             }
         }
-
     }
 
     private void errorMassege() {
-        out.println("Illegal argument: " + command
+        print("Illegal argument: " + command
                 + '\n' +
                 "Try input again.");
     }
 
-    private void exit(){
+    private void exit() {
         try {
             reader.close();
         } catch (IOException e) {
@@ -60,85 +52,73 @@ public class CharReader2 extends Reader {
     private void input() {
         builder.delete(0, builder.length());
         int b;
-        out.println("Input command:  add, tr, exit ");
+        print("Input command:  add, tr, exit ");
         try {
             while ((b = reader.read()) != 10) {
                 builder.append((char) b);
             }
             command = new String(builder);
         } catch (IOException e) {
-            out.println("error while input command:");
+            print("error while input command:");
             e.printStackTrace();
         }
     }
 
     void add() {
-        strE = null;
-        strR = null;
-        int b;
         if (reader != null) {
-            out.println("Input eng word: ");
-            readEnglishWord();
-            readRussianWord();
+            strE = readWord("eng");
+            strR = readWord("rus");
         }
         dictionary.put(strE, strR);
-        out.println();
+        print("");
     }
 
-    private void readRussianWord() {
-        int b;
+    private String readWord(String s) {
+        print("input " + s + " word:");
+        String str = new String();
         try {
-            builder.delete(0, builder.length());
-            while ((b = reader.read()) != 10) {
-                builder.append((char) b);
-            }
-            strR = new String(builder);
+            readChar();
+            str = new String(builder);
         } catch (IOException e) {
-            out.println("error input rus word");
+            print("error input" + s + " word");
             e.printStackTrace();
         }
+        return str;
     }
 
-    private void readEnglishWord() {
+    private void readChar() throws IOException {
         int b;
-        try {
-            builder.delete(0, builder.length());
-            while ((b = reader.read()) != 10) {
-                builder.append((char) b);
-            }
-            strE = new String(builder);
-        } catch (IOException e) {
-            out.println("error input eng word");
-            e.printStackTrace();
+        builder.delete(0, builder.length());
+        while ((b = reader.read()) != 10) {
+            builder.append((char) b);
         }
-        out.println("Input rus word: ");
     }
 
     private void translate() {
         String str = inputStringToTranslate();
         if (str != null) {
-            out.println(dictionary.toString(str));
+            print(dictionary.toString(str));
         } else {
             errorMassege();
         }
-        out.println();
+        print("");
     }
 
     private String inputStringToTranslate() {
         String str = null;
-        out.println("Input word: ");
+        print("Input word: ");
         try {
-            int b;
-            builder.delete(0, builder.length());
-            while ((b = reader.read()) != 10) {
-                builder.append((char) b);
-            }
+            readChar();
             str = (new String(builder));
         } catch (IOException e) {
-            out.println("Exception in input word");
+            print("Exception in input word");
             e.printStackTrace();
         }
         return str;
+    }
+
+    private void print(String s) {
+        System.out.println(s);
     }
 
 }

@@ -2,7 +2,7 @@ package com.hillel.fmishchenkopractice.homework7.task1;
 
 import org.junit.Test;
 
-public class ReaderTest {
+public class ParkingHandlerTest {
 
     @Test
     public void read() {

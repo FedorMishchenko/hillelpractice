@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-class Reader {
+class UserHandler {
 
     BufferedReader buffer =
             new BufferedReader(new InputStreamReader(System.in));
@@ -13,10 +13,10 @@ class Reader {
 
     HashMap<Integer, User> base = new HashMap<>();
 
-    public Reader() {
+    public UserHandler() {
     }
 
-    public void read() {
+    public void process() {
         {
             String command = inputCommand();
             try {
@@ -25,7 +25,7 @@ class Reader {
                 print("Input error");
             }
             crud(command);
-            read();
+            process();
 
         }
 
@@ -34,16 +34,16 @@ class Reader {
     private void crud(String command) {
         if (command.equals("create")) {
             base = createUser();
-            read();
+            process();
         } else if (command.equals("read")) {
             if (base.isEmpty()) print("Empty");
             else {
                 readData();
             }
-            read();
+            process();
         } else if (command.equals("update")) {
             base = updateUser();
-            read();
+            process();
         } else if (command.equals("all")) {
             getAll();
         } else if (command.equals("sort")) {
@@ -55,7 +55,7 @@ class Reader {
         } else if (command.equals("delete")) {
             int key = scanner.nextInt();
             base = deleteUser(key);
-            read();
+            process();
 
         } else if (command.equals("exit")) {
             try {
@@ -156,7 +156,7 @@ class Reader {
         int key = scanner.nextInt();
         System.out.println(base.containsKey(key));
         System.out.println(base.get(key));
-        read();
+        process();
 
     }
 

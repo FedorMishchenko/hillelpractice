@@ -2,10 +2,6 @@ package com.hillel.fmishchenkopractice.homework8;
 
 import java.io.*;
 
-
-import static java.lang.System.in;
-import static java.lang.System.out;
-
 public class CharReader extends Reader {
     Dictionary dictionary = Dictionary.getInstance();
     BufferedReader reader;
@@ -13,11 +9,15 @@ public class CharReader extends Reader {
 
     {
         try {
-            reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-            writer = new DataOutputStream(out);
+            reader = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
+            writer = new DataOutputStream(System.out);
         } catch (UnsupportedEncodingException e) {
-            out.println("encoding exception");
+            print("encoding exception");
         }
+    }
+
+    private void print(String s) {
+        System.out.println(s);
     }
 
 
@@ -25,7 +25,7 @@ public class CharReader extends Reader {
     String strE;
     String strR;
 
-    void read() {
+    void process() {
 
         while (true) {
             input();
@@ -47,7 +47,7 @@ public class CharReader extends Reader {
     }
 
     private void errorMassege() {
-        out.println("Illegal argument: " + command
+        print("Illegal argument: " + command
                 + '\n' +
                 "Try input again.");
     }
@@ -63,11 +63,11 @@ public class CharReader extends Reader {
     }
 
     private void input() {
-        out.println("Input command:  add, tr, exit ");
+        print("Input command:  add, tr, exit ");
         try {
             command = reader.readLine();
         } catch (IOException e) {
-            out.println("error while input command:");
+            print("error while input command:");
             e.printStackTrace();
         }
     }
@@ -79,34 +79,34 @@ public class CharReader extends Reader {
         char[] arrE = new char[25];
         char[] arrR = new char[25];
         if (reader != null) {
-            out.println("Input eng word: ");
             readEnglishWord(index, arrE);
-            out.println("Input rus word: ");
             readRussianWord(arrR);
         }
         dictionary.put(strE, strR);
-        out.println();
+        print("");
     }
 
     private void readRussianWord(char[] arrR) {
+        print("Input rus word: ");
         int index;
         index = 0;
         try {
             int b;
             while ((b = reader.read()) != 10) {
-                out.print((char) b);
+                System.out.print((char) b);
                 arrR[index] = (char) b;
                 index++;
             }
-            out.println();
+            print("");
             strR = new String(arrR);
         } catch (IOException e) {
-            out.println("error input rus word");
+            print("error input rus word");
             e.printStackTrace();
         }
     }
 
     private void readEnglishWord(int index, char[] arrE) {
+        print("Input eng word: ");
         try {
             int b;
             while ((b = reader.read()) != 10) {
@@ -114,10 +114,10 @@ public class CharReader extends Reader {
                 arrE[index] = (char) b;
                 index++;
             }
-            out.println();
+            print("");
             strE = new String(arrE);
         } catch (IOException e) {
-            out.println("error input eng word");
+            print("error input eng word");
             e.printStackTrace();
         }
     }
@@ -126,14 +126,14 @@ public class CharReader extends Reader {
         String str = null;
         char[] arr = new char[25];
         int index = 0;
-        out.println("Input word: ");
+        print("Input word: ");
         str = inputStringToTranslate(str, arr, index);
         if (str != null) {
-            out.println(dictionary.toString(str));
+            print(dictionary.toString(str));
         } else {
             errorMassege();
         }
-        out.println();
+        print("");
     }
 
     private String inputStringToTranslate(String str, char[] arr, int index) {
@@ -145,7 +145,7 @@ public class CharReader extends Reader {
             }
             str = (new String(arr));
         } catch (IOException e) {
-            out.println("Exception in input word");
+            print("Exception in input word");
             e.printStackTrace();
         }
         return str;

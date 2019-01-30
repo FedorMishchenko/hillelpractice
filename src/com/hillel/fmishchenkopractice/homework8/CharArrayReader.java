@@ -1,10 +1,6 @@
 package com.hillel.fmishchenkopractice.homework8;
-
-
 import java.io.*;
 
-import static java.lang.System.in;
-import static java.lang.System.out;
 
 public class CharArrayReader extends Reader {
     Dictionary dictionary = Dictionary.getInstance();
@@ -13,16 +9,16 @@ public class CharArrayReader extends Reader {
 
     {
         try {
-            reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-            writer = new DataOutputStream(out);
+            reader = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
+            writer = new DataOutputStream(System.out);
         } catch (UnsupportedEncodingException e) {
-            out.println("encoding exception");
+            print("encoding exception");
         }
     }
 
     String command;
 
-    void read() {
+    void process() {
 
         while (true) {
             input();
@@ -44,7 +40,7 @@ public class CharArrayReader extends Reader {
     }
 
     private void errorMassege(String s) {
-        out.println(s + command
+       print(s + command
                 + '\n' +
                 "Try input again.");
     }
@@ -60,67 +56,60 @@ public class CharArrayReader extends Reader {
     }
 
     private void input() {
-        out.println("Input command: add, tr, exit: ");
+        print("Input command: add, tr, exit: ");
         try {
             command = reader.readLine();
         } catch (IOException e) {
-            out.println("error while input command " + e);
+            print("error while input command " + e);
         }
     }
 
     private void add() {
-        String strE = null;
-        String strR = null;
-        out.println("Input eng word: ");
+        String strE = new String();
+        String strR = new String();
         if (reader != null) {
-            strE = inputEnglishWord(strE, "error input rus word");
-            out.println("Input rus word: ");
-            strR = inputRussianWord(strR, "error input eng word");
+            strE = inputWord("eng");
+            strR = inputWord("rus");
         }
         dictionary.put(strE, strR);
-        out.println();
+        print("");
     }
 
-    private String inputRussianWord(String strR, String s) {
+    private String inputWord(String s) {
+        print("input " + s + " word:");
+        String str = new String();
         try {
-            strR = reader.readLine();
-            out.println(strR);
+            str = reader.readLine();
         } catch (IOException e) {
-            out.println(s);
+            print("Invalid argument: " + str);
         }
-        return strR;
-    }
-
-    private String inputEnglishWord(String strE, String s) {
-        try {
-            strE = reader.readLine();
-            out.println(strE);
-        } catch (IOException e) {
-            out.println(s);
-        }
-        return strE;
+        return str;
     }
 
     void translate() {
         String str = null;
-        out.println("Input word: ");
+        print("Input word: ");
         str = inputStringToTranslate(str);
 
         if (str != null) {
-            out.println(dictionary.toString(str));
+            print(dictionary.toString(str));
         } else {
             errorMassege("Illegal argument: ");
         }
-        out.println();
+        print("");
     }
 
     private String inputStringToTranslate(String str) {
         try {
             str = reader.readLine();
         } catch (IOException e1) {
-            out.println("exception read in translate method");
+            print("exception read in translate method");
         }
         return str;
+    }
+
+    private void print(String s) {
+        System.out.println(s);
     }
 
 }

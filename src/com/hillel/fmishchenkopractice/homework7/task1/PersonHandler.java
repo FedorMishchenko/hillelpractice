@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Reader {
+public class PersonHandler {
     BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
     ArrayList<Person> list = new ArrayList<>();
