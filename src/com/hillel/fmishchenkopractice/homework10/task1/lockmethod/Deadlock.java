@@ -21,6 +21,7 @@ public class Deadlock implements Runnable {
 
     @Override
     public void run() {
+        Thread.currentThread().setName("additional");
         print("try doY");
         y.doY(x);
         print("done doY");
@@ -32,22 +33,26 @@ public class Deadlock implements Runnable {
 
     class X {
         synchronized void doX(Y y) {
-            print("in doX thread blocked");
+            print("in doX thread "
+                    + Thread.currentThread().getName()
+                    + " blocked");
             try {
                 Thread.sleep(1000);
             }catch (InterruptedException ignore){
                 /*NOP*/
             }
             y.doY(x);
-            print("out doX");
+            /*unreachable code point*/
         }
     }
 
     class Y {
         synchronized void doY(X x) {
-            print("in doY thread blocked");
+            print("in doY thread "
+                    + Thread.currentThread().getName()
+                    + " blocked");
             x.doX(y);
-            print("out doY");
+            /*unreachable code point*/
         }
     }
 }
