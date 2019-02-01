@@ -42,7 +42,8 @@ public class Deadlock implements Runnable {
                 /*NOP*/
             }
             y.doY(x);
-            /*unreachable code point*/
+            /*unreachable code*/
+            print("out doY");
         }
     }
 
@@ -52,7 +53,8 @@ public class Deadlock implements Runnable {
                     + Thread.currentThread().getName()
                     + " blocked");
             x.doX(y);
-            /*unreachable code point*/
+            /*unreachable code*/
+            print("out doX");
         }
     }
 }
