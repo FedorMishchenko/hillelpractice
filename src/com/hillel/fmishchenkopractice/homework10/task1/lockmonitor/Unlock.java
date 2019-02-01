@@ -41,7 +41,8 @@ public class Unlock {
                     }
                 }
 
-            } finally {
+            }
+            finally {
                 lock.unlock();
             }
         }

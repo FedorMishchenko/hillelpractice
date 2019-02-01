@@ -48,7 +48,8 @@ public class PersonHandler {
 
     private boolean check(Person person) {
         try {
-            new EmailValidation(person).linkWith(new AgeValidation(person));
+            new EmailValidation(person).linkWith(new AgeValidation(person))
+                    .linkWith(new ProfessionValidation(person));
         }catch (IllegalArgumentException e){
             print(e.getMessage());
             return false;
