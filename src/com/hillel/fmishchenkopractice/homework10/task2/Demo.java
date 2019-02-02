@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Demo {
     public static void main(String[] args) {
-        int size = 1_000_000;
+        int size = 10_000_000;
         int[] unsorted = new int[size];
         Random random = new Random();
         for (int i = 0; i < size; i++){

@@ -5,7 +5,7 @@ import static java.lang.Thread.activeCount;
 public class MultiMerger extends Thread{
     private int[] unsorted;
     private int[] sorted;
-    static final int MAX_THREADS_COUNT = 10;
+    static final int MAX_THREADS_COUNT = 2;
 
     public MultiMerger(int[] unsorted){
         this.unsorted = unsorted;
