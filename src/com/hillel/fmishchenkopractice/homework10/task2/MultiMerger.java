@@ -1,7 +1,5 @@
 package com.hillel.fmishchenkopractice.homework10.task2;
 
-import static java.lang.Thread.activeCount;
-
 public class MultiMerger extends Thread{
     private int[] unsorted;
     private int[] sorted;

@@ -4,15 +4,16 @@ import java.util.Random;
 
 public class Demo {
     public static void main(String[] args) {
-        int size = 10_000_000;
+        int size = 1_000_000;
+        long start,end;
         int[] unsorted = new int[size];
         Random random = new Random();
         for (int i = 0; i < size; i++){
             unsorted[i] = random.nextInt(10_000);
         }
-        long start = System.currentTimeMillis();
+        start = System.currentTimeMillis();
         new Merger(unsorted).sort();
-        long end = System.currentTimeMillis();
+        end = System.currentTimeMillis();
         print("Merger time: ", end - start + '\n');
 
         start = System.currentTimeMillis();
@@ -29,6 +30,15 @@ public class Demo {
         end = System.currentTimeMillis();
         print("MultiMerger time: ", end - start);
         print("Threads count: ", MultiMerger.MAX_THREADS_COUNT);
+
+        start = System.currentTimeMillis();
+        for (int i = 0; i < size; i++){
+            unsorted[i] = random.nextInt(10_000);
+        }
+        MultiMerger2 merger2 = new MultiMerger2(unsorted);
+        merger2.start();
+        end = System.currentTimeMillis();
+        print("MultiMerger2 time: ", end - start);
     }
 
     public static void print(String s, long l) {
