@@ -1,58 +1,48 @@
 package com.hillel.fmishchenkopractice.homework10.task2;
 
-public class MultiMerger extends Thread{
-    private int[] unsorted;
-    private int[] sorted;
-    static final int MAX_THREADS_COUNT = 2;
+import java.util.Arrays;
 
-    public MultiMerger(int[] unsorted){
+public class MultiMerger extends Thread {
+    private volatile int[] unsorted;
+    private volatile int i;
+    private static int[] sorted;
+    static final int MAX_THREADS_COUNT = 10;
+    private int start;
+    private int end;
+
+    public MultiMerger(int[] unsorted, int start, int end){
+        this.unsorted = unsorted;
+        this.start = start;
+        this.end = end;
+    }
+
+    public MultiMerger(int[] unsorted) {
         this.unsorted = unsorted;
     }
 
     @Override
-    public void run() {
+    public void run(){
         int mid;
-        int[] left;
-        int[] right;
-
-        if(unsorted.length <= 1){
+        if(unsorted.length <= 1) {
             sorted = unsorted;
         }else {
-            mid = unsorted.length / 2;
-            left = new int[mid];
-            right = new int[unsorted.length - mid];
-
-            copy(mid, left, 0);
-            copy(unsorted.length - mid, right, mid);
-
+            mid = unsorted.length / MAX_THREADS_COUNT;
             if(activeCount() < MAX_THREADS_COUNT){
-                MultiMerger leftMerger = new MultiMerger(left);
-                MultiMerger rightMerger = new MultiMerger(right);
-                leftMerger.run();
-                rightMerger.run();
-                try {
-                    leftMerger.join();
-                    rightMerger.join();
-                    sorted = Merger.merge(leftMerger.getSorted(),rightMerger.getSorted());
-                }catch (InterruptedException e){
-                    /*NOP*/
+                for (i = 0; i < MAX_THREADS_COUNT; i++){
+                    start = mid * i;
+                    end = start + mid;
+                    Arrays.sort(unsorted,start,end);
+                    new MultiMerger(unsorted, start, end);
                 }
-                Merger leftSort = new Merger( left );
-                Merger rightSort = new Merger( right );
 
-                leftSort.sort();
-                rightSort.sort();
-
-                sorted = Merger.merge( leftSort.getSorted(), rightSort.getSorted() );
             }
         }
-
-    }
-    public int[] getSorted() {
-        return sorted;
+        print(Arrays.toString(unsorted));
+        print("Array size =  " + unsorted.length);
     }
 
-    public void copy(int mid, int[] part, int i) {
-        System.arraycopy(unsorted, i, part, 0, mid);
+    public void print(String s) {
+        System.out.println(s);
     }
+
 }

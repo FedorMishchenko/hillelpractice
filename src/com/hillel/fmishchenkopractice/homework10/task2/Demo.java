@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Demo {
     public static void main(String[] args) {
-        int size = 10_000_000;
+        int size = 100_000;
         long start,end;
         int[] unsorted = new int[size];
         Random random = new Random();
@@ -15,30 +15,17 @@ public class Demo {
         new Merger(unsorted).sort();
         end = System.currentTimeMillis();
         print("Merger time: ", end - start + '\n');
-
         start = System.currentTimeMillis();
         for (int i = 0; i < size; i++){
             unsorted[i] = random.nextInt(10_000);
         }
-        MultiMerger merger = new MultiMerger(unsorted);
-        merger.start();
-        try {
-            merger.join();
-        } catch ( Exception e ) {
-                /*NOP*/
-        }
-        end = System.currentTimeMillis();
-        print("MultiMerger time: ", end - start);
-        print("Threads count: ", MultiMerger.MAX_THREADS_COUNT);
-
-        start = System.currentTimeMillis();
-        for (int i = 0; i < size; i++){
-            unsorted[i] = random.nextInt(10_000);
-        }
-        MultiMerger2 merger2 = new MultiMerger2(unsorted);
+        MultiMerger merger2 = new MultiMerger(unsorted);
         merger2.start();
         end = System.currentTimeMillis();
-        print("MultiMerger2 time: ", end - start);
+        print("MultiMerger time: ", end - start);
+    }
+
+    private static void print(String sorted) {
     }
 
     public static void print(String s, long l) {
