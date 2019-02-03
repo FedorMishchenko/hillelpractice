@@ -101,7 +101,7 @@ public class CalculatorPanel extends JPanel {
         }
     }
 
-    public void calculate(double arg) {
+    public void calculate(double arg) {//todo: refactoring
 
         switch (lastCommand) {
             case "+":
@@ -124,11 +124,12 @@ public class CalculatorPanel extends JPanel {
                 result = arg;
                 break;
             case "Sqr":
-                SquareRoot sqr = (x) -> Math.sqrt(arg);
+                SquareRoot sqr = (x) -> Math.sqrt(x);
+
                 result = sqr.sqrt(arg);
             case "%":
                 Module mod = (x, y) -> x % y;
-                result = mod.module(result,arg);
+                result = mod.module(result, arg);
             case "x2":
                 Exponentiation exp = (x) -> x * x;
                 result = exp.exponent(arg);
