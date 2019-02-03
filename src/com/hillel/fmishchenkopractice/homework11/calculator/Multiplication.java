@@ -2,5 +2,5 @@ package com.hillel.fmishchenkopractice.homework11.calculator;
 
 @FunctionalInterface
 public interface Multiplication {
-    double multiply(int x);
+    int multiply(int x,int y);
 }

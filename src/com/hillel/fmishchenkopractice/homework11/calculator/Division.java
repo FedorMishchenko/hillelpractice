@@ -2,5 +2,5 @@ package com.hillel.fmishchenkopractice.homework11.calculator;
 
 @FunctionalInterface
 public interface Division {
-    double divide(int x);
+    int divide(int x,int y);
 }
