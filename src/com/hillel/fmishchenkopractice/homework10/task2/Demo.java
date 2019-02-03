@@ -8,16 +8,16 @@ public class Demo {
         long start,end;
         int[] unsorted = new int[size];
         for (int i = 0; i < size; i++){
-            unsorted[i] = ThreadLocalRandom.current().nextInt(0,1_000);
+            unsorted[i] = ThreadLocalRandom.current().nextInt(0,100);
         }
         start = System.currentTimeMillis();
         new Merger(unsorted).sort();
-        /*Arrays.sort(unsorted);*/
+       /* Arrays.sort(unsorted);*/
         end = System.currentTimeMillis();
         print("Merger time: ", end - start + '\n');
         start = System.currentTimeMillis();
         for (int i = 0; i < size; i++){
-            unsorted[i] = ThreadLocalRandom.current().nextInt(0,1_000);
+            unsorted[i] = ThreadLocalRandom.current().nextInt(0,100);
         }
         MultiMerger merger = new MultiMerger(unsorted);
         merger.start();
