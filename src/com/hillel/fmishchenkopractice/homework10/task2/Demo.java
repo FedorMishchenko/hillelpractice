@@ -1,6 +1,5 @@
 package com.hillel.fmishchenkopractice.homework10.task2;
 
-import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Demo {
