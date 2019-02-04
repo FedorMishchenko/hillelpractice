@@ -2,14 +2,14 @@ package com.hillel.fmishchenkopractice.homework10.task3;
 
 import java.io.*;
 
-public class SynchronizedBuffCopy {
+public class SyncBuffCopy {
     private int count;
     private volatile int index;
     private volatile byte[] buffer;
 
-    public SynchronizedBuffCopy(String fileNameOff, String fileNameDest,
-                                int bufferSize, int readersCount,
-                                int writersCount){
+    public SyncBuffCopy(String fileNameOff, String fileNameDest,
+                        int bufferSize, int readersCount,
+                        int writersCount){
         File source = new File(fileNameOff);
         File dest = new File(fileNameDest);
         buffer = new byte[bufferSize];
@@ -19,7 +19,7 @@ public class SynchronizedBuffCopy {
                     try {
                         index = 0;
                         while (true) {
-                            synchronized (SynchronizedBuffCopy.this) {
+                            synchronized (SyncBuffCopy.this) {
                                 if (count == 0) {
                                     count = in.read(buffer);
                                     index = buffer.length;
@@ -51,7 +51,7 @@ public class SynchronizedBuffCopy {
                 try (FileOutputStream out = new FileOutputStream(dest)) {
                     try {
                         while (true) {
-                            synchronized (SynchronizedBuffCopy.this) {
+                            synchronized (SyncBuffCopy.this) {
                                 if (count > 0) {
                                     out.write(buffer, 0, count);
                                     count = 0;
