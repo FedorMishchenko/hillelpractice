@@ -7,13 +7,13 @@ public class SynchronizedBuffCopy {
     private volatile int index;
     private volatile byte[] buffer;
 
-    public SynchronizedBuffCopy(String fileNameIn, String fileNameOut,
-                                int bufferSize, int readThreadsCount,
-                                int writeThreadsCount){
-        File source = new File(fileNameIn);
-        File dest = new File(fileNameOut);
+    public SynchronizedBuffCopy(String fileNameOff, String fileNameDest,
+                                int bufferSize, int readersCount,
+                                int writersCount){
+        File source = new File(fileNameOff);
+        File dest = new File(fileNameDest);
         buffer = new byte[bufferSize];
-        while (readThreadsCount > 0){
+        while (readersCount > 0){
             new Thread(() -> {
                 try (FileInputStream in = new FileInputStream(source)) {
                     try {
@@ -44,9 +44,9 @@ public class SynchronizedBuffCopy {
                     e.printStackTrace();
                 }
             }).start();
-            readThreadsCount--;
+            readersCount--;
         }
-        while (writeThreadsCount > 0){
+        while (writersCount > 0){
             new Thread(() -> {
                 try (FileOutputStream out = new FileOutputStream(dest)) {
                     try {
@@ -76,7 +76,7 @@ public class SynchronizedBuffCopy {
                     e.printStackTrace();
                 }
             }).start();
-            writeThreadsCount--;
+            writersCount--;
         }
     }
     private boolean isEmpty(byte[] buff){
