@@ -1,11 +1,18 @@
 package com.hillel.fmishchenkopractice.homework10.task3;
 
 import java.io.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class SyncBuffCopy {
     private int count;
-    private volatile int index;
     private volatile byte[] buffer;
+    /*ReentrantLock lock = new ReentrantLock(true);*/
+    ReadWriteLock rwl = new ReentrantReadWriteLock(true);
+    Lock readLock = rwl.readLock();
+    Lock writeLock = rwl.writeLock();
 
     public SyncBuffCopy(String fileNameOff, String fileNameDest,
                         int bufferSize, int readersCount,
@@ -17,24 +24,17 @@ public class SyncBuffCopy {
             new Thread(() -> {
                 try (FileInputStream in = new FileInputStream(source)) {
                     try {
-                        index = 0;
                         while (true) {
-                            synchronized (SyncBuffCopy.this) {
+                            synchronized (this) {
                                 if (count == 0) {
-                                    count = in.read(buffer);
-                                    index = buffer.length;
-                                    print(": read");
-                                }
-                                if(index == bufferSize){
-                                    notifyAll();
-                                    wait(100);
+                                    read(in);
                                 }
                                 if (count == -1) {
                                     break;
                                 }
                             }
                         }
-                    } catch (IOException | InterruptedException e) {
+                    } catch (IOException e) {
                         count = -1;
                         e.printStackTrace();
                     }
@@ -51,22 +51,16 @@ public class SyncBuffCopy {
                 try (FileOutputStream out = new FileOutputStream(dest)) {
                     try {
                         while (true) {
-                            synchronized (SyncBuffCopy.this) {
+                            synchronized (this) {
                                 if (count > 0) {
-                                    out.write(buffer, 0, count);
-                                    count = 0;
-                                    print(": write");
-                                }
-                                if(isEmpty(buffer)){
-                                    notifyAll();
-                                    wait(100);
+                                    write(out);
                                 }
                                 if (count == -1) {
                                     break;
                                 }
                             }
                         }
-                    } catch (IOException | InterruptedException e) {
+                    } catch (IOException e) {
                         count = -1;
                         e.printStackTrace();
                     }
@@ -79,11 +73,30 @@ public class SyncBuffCopy {
             writersCount--;
         }
     }
-    private boolean isEmpty(byte[] buff){
-        if(buff.length == 0){
-            return true;
+
+    public void read(FileInputStream in) throws IOException {
+        readLock.lock();
+        print(": lock");
+        try {
+            count = in.read(buffer);
+            print(": read");
+        }finally {
+            print(": unlock");
+            readLock.unlock();
         }
-        return false;
+    }
+
+    public void write(FileOutputStream out) throws IOException {
+        writeLock.lock();
+        print(": lock");
+        try {
+            out.write(buffer, 0, count);
+            count = 0;
+            print(": write");
+        }finally {
+            print(": unlock");
+            writeLock.unlock();
+        }
     }
     public void print(String s) {
         System.out.println(Thread.currentThread().getName() + s);
