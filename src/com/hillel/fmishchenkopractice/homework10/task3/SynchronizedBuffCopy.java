@@ -3,17 +3,15 @@ package com.hillel.fmishchenkopractice.homework10.task3;
 import java.io.*;
 
 public class SynchronizedBuffCopy {
-    private String fileName0 = "E:/example.txt";
-    private String fileName1 = "E:/example2.txt";
-    private final File source = new File(fileName0);
-    private File dest = new File(fileName1);
     private int count;
     private long totalBytes;
     private final Thread read;
     private final Thread write;
     private byte[] buffer;
 
-    public SynchronizedBuffCopy(int bufferSize){
+    public SynchronizedBuffCopy(String fileNameIn,String fileNameOut,int bufferSize){
+        File source = new File(fileNameIn);
+        File dest = new File(fileNameOut);
         buffer = new byte[bufferSize];
         read = new Thread(() -> {
             try(FileInputStream in = new FileInputStream(source)) {

@@ -5,9 +5,15 @@ public class Demo {
             copy();
     }
 
-    public static void copy() throws InterruptedException {
+    private static void copy() throws InterruptedException {
         for(int i = 0; i < 3; i++) {
-            System.out.println(new SynchronizedBuffCopy(10).copy().join().getTotalBytes());
+            System.out.println(new SynchronizedBuffCopy
+                           ("E:/example.txt",
+                            "E:/example2.txt",
+                            10)
+                            .copy()
+                            .join()
+                            .getTotalBytes());
         }
     }
 }
