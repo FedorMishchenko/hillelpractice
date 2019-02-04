@@ -4,8 +4,8 @@ import java.io.*;
 
 public class SynchronizedBuffCopy {
     private int count;
-    private long totalBytes;
-    private byte[] buffer;
+    private volatile int index;
+    private volatile byte[] buffer;
 
     public SynchronizedBuffCopy(String fileNameIn, String fileNameOut,
                                 int bufferSize, int readThreadsCount,
@@ -17,18 +17,24 @@ public class SynchronizedBuffCopy {
             new Thread(() -> {
                 try (FileInputStream in = new FileInputStream(source)) {
                     try {
+                        index = 0;
                         while (true) {
                             synchronized (SynchronizedBuffCopy.this) {
                                 if (count == 0) {
                                     count = in.read(buffer);
+                                    index = buffer.length;
                                     print(": read");
+                                }
+                                if(index == bufferSize){
+                                    notifyAll();
+                                    wait(100);
                                 }
                                 if (count == -1) {
                                     break;
                                 }
                             }
                         }
-                    } catch (IOException e) {
+                    } catch (IOException | InterruptedException e) {
                         count = -1;
                         e.printStackTrace();
                     }
@@ -48,16 +54,19 @@ public class SynchronizedBuffCopy {
                             synchronized (SynchronizedBuffCopy.this) {
                                 if (count > 0) {
                                     out.write(buffer, 0, count);
-                                    totalBytes += count;
                                     count = 0;
                                     print(": write");
+                                }
+                                if(isEmpty(buffer)){
+                                    notifyAll();
+                                    wait(100);
                                 }
                                 if (count == -1) {
                                     break;
                                 }
                             }
                         }
-                    } catch (IOException e) {
+                    } catch (IOException | InterruptedException e) {
                         count = -1;
                         e.printStackTrace();
                     }
@@ -69,6 +78,12 @@ public class SynchronizedBuffCopy {
             }).start();
             writeThreadsCount--;
         }
+    }
+    private boolean isEmpty(byte[] buff){
+        if(buff.length == 0){
+            return true;
+        }
+        return false;
     }
     public void print(String s) {
         System.out.println(Thread.currentThread().getName() + s);

@@ -6,6 +6,6 @@ public class Demo {
         new SynchronizedBuffCopy(
                 "E:/example.txt",
                 "E:/example2.txt",
-                10,3,3);
+                10,2,3);
     }
 }
