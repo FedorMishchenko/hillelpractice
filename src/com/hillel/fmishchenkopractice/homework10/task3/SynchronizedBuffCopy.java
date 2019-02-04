@@ -64,7 +64,7 @@ public class SynchronizedBuffCopy {
             }
         });
     }
-    public SynchronizedBuffCopy process(){
+    public SynchronizedBuffCopy copy(){
         read.start();
         write.start();
         return this;

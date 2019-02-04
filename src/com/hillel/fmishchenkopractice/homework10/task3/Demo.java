@@ -2,7 +2,12 @@ package com.hillel.fmishchenkopractice.homework10.task3;
 
 public class Demo {
     public static void main(String[] args) throws InterruptedException {
-        SynchronizedBuffCopy copier = new SynchronizedBuffCopy(10);
-        System.out.println(copier.process().join().getTotalBytes());
+            copy();
+    }
+
+    public static void copy() throws InterruptedException {
+        for(int i = 0; i < 3; i++) {
+            System.out.println(new SynchronizedBuffCopy(10).copy().join().getTotalBytes());
+        }
     }
 }
