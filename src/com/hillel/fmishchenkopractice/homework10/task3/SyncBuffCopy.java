@@ -1,6 +1,7 @@
 package com.hillel.fmishchenkopractice.homework10.task3;
 
 import java.io.*;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -8,6 +9,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class SyncBuffCopy {
     private int count;
+    /*private BlockingQueue buffer;*/
     private volatile byte[] buffer;
     /*ReentrantLock lock = new ReentrantLock(true);*/
     ReadWriteLock rwl = new ReentrantReadWriteLock(true);
