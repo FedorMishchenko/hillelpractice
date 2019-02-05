@@ -2,7 +2,7 @@ package com.hillel.fmishchenkopractice.homework10.task3;
 
 import java.io.*;
 
-public class Test implements Runnable {
+public class StringCopy implements Runnable {
     private String line = "";
     private File inFile = new File("E:/example.txt");
     private File outFile = new File("E:/example2.txt");

@@ -1,7 +1,9 @@
 package com.hillel.fmishchenkopractice.homework10.task3;
 
-public class DemoSyncBuffCopy {
+public class DemoStringCopy {
+
     public static void main(String[] args) {
-        new SyncBuffCopy(3,3);
+        StringCopy test = new StringCopy();
+        new Thread(test).start();
     }
 }
