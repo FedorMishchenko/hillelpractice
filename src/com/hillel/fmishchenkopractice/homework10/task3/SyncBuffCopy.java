@@ -1,27 +1,21 @@
 package com.hillel.fmishchenkopractice.homework10.task3;
 
 import java.io.*;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class SyncBuffCopy {
     private int count;
-    /*private BlockingQueue buffer;*/
-    private volatile byte[] buffer;
-    /*ReentrantLock lock = new ReentrantLock(true);*/
+    private File source = new File("E:/example.txt");
+    private File dest = new File("E:/example2.txt");
+    long size = source.getAbsoluteFile().length();
+    private volatile byte[] buffer = new byte[Math.toIntExact(size)];
     ReadWriteLock rwl = new ReentrantReadWriteLock(true);
     Lock readLock = rwl.readLock();
     Lock writeLock = rwl.writeLock();
 
-    public SyncBuffCopy(String fileNameOff, String fileNameDest,
-                        int bufferSize, int readersCount,
-                        int writersCount){
-        File source = new File(fileNameOff);
-        File dest = new File(fileNameDest);
-        buffer = new byte[bufferSize];
+    public SyncBuffCopy(int readersCount,int writersCount){
         while (readersCount > 0){
             new Thread(() -> {
                 try (FileInputStream in = new FileInputStream(source)) {
