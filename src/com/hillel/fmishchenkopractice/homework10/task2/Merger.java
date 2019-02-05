@@ -1,61 +1,64 @@
 package com.hillel.fmishchenkopractice.homework10.task2;
 
 public class Merger {
-    private int[] unsorted;
-    private int[] sorted;
 
-    public Merger(int[] unsorted) {
-        this.unsorted = unsorted;
+    private int[] unsorted, sorted;
+
+    public Merger(int[] arrayIn){
+        this.unsorted = arrayIn;
     }
 
-    public void sort() {
-        int mid;
-        int[] left;
-        int[] right;
-        if (unsorted.length <= 1) {
-            sorted = unsorted;
+    public void sort(){
+        int middle;
+        int[] left, right;
+
+        if (unsorted.length > 1){
+            middle = unsorted.length / 2;
+            left = new int[middle];
+            right = new int[unsorted.length - middle];
+
+            System.arraycopy(unsorted, 0, left, 0, middle);
+            System.arraycopy(unsorted, middle, right, 0, unsorted.length - middle);
+            Merger leftSorter = new Merger(left);
+            Merger rightSorter = new Merger(right);
+
+            leftSorter.sort();
+            rightSorter.sort();
+            sorted = merge(leftSorter.getSorted(), rightSorter.getSorted());
         } else {
-            mid = unsorted.length / 2;
-            left = new int[mid];
-            right = new int[unsorted.length - mid];
-            copy(mid, left, 0);
-            copy(unsorted.length - mid, right, mid);
-            new Merger(left).sort();
-            new Merger(right).sort();
-            sorted = merge(left, right);
+            sorted = unsorted;
         }
     }
 
-    public static int[] merge(int[] left, int[] right) {
-        int cursorL = 0, cursorR = 0, index = 0;
-        int[] result = new int[left.length + right.length];
-        while (cursorL < left.length && cursorR < right.length) {
-            if (left[cursorL] <= right[cursorR]) {
-                result[index] = left[cursorL];
-                cursorL++;
+    public static int[] merge(int[] leftArray, int[] rightArray){
+        int pointLeft = 0;
+        int pointRight = 0;
+        int counter = 0;
+        int[] mergedArray = new int[leftArray.length + rightArray.length];
+
+        while (pointLeft < leftArray.length && pointRight < rightArray.length){
+            if (leftArray[pointLeft] <= rightArray[pointRight]) {
+                mergedArray[counter] = leftArray[pointLeft];
+                pointLeft++;
             } else {
-                result[index] = right[cursorR];
-                cursorR++;
+                mergedArray[counter] = rightArray[pointRight];
+                pointRight++;
             }
-            index++;
+            counter++;
         }
-        if (cursorL < left.length) {
-            copy(left, cursorL, index, result, result.length - index);
+
+        if (pointLeft < leftArray.length) {
+            System.arraycopy(leftArray, pointLeft, mergedArray, counter, mergedArray.length - counter);
         }
-        if (cursorR < right.length) {
-            copy(right, cursorR, index, result, result.length - index);
+        if (pointRight < rightArray.length) {
+            System.arraycopy(rightArray, pointRight, mergedArray, counter, mergedArray.length - counter);
         }
-        return result;
+
+        return mergedArray;
     }
 
-    public void copy(int mid, int[] part, int i) {
-        copy(unsorted, i, 0, part, mid);
-    }
-
-    public static void copy(int[] part, int cursor, int index, int[] result, int i) {
-        System.arraycopy(part, cursor, result, index, i);
-    }
-    public int[] getSorted(){
+    public int[] getSorted() {
         return sorted;
     }
+
 }
