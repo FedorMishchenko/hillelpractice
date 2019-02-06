@@ -49,9 +49,9 @@ public class MergerHandler {
 
 
     private static void printTime(String type, long startTime, long endTime){
-        StringBuilder loggerMulti = new StringBuilder(type + " sort : ");
-        loggerMulti.append( (double) (endTime - startTime) / 1000 );
-        loggerMulti.append(" seconds");
-        System.out.println(loggerMulti.toString());
+        StringBuilder sb = new StringBuilder(type + " sort : ");
+        sb.append( (double) (endTime - startTime) / 1000 );
+        sb.append(" seconds");
+        System.out.println(sb.toString());
     }
 }
