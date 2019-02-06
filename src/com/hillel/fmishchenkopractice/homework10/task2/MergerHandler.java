@@ -1,11 +1,12 @@
 package com.hillel.fmishchenkopractice.homework10.task2;
 
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MergerHandler {
 
     public static void main(String[] args) {
-        handler(1_000_000);
+        handler(100_000);
 
     }
 
@@ -14,30 +15,36 @@ public class MergerHandler {
         int[] unsorted = new int[size];
         long startTime, endTime;
         for (int i = 0; i < size; i++) {
-            unsorted[i] = ThreadLocalRandom.current().nextInt(1000);
+            unsorted[i] = ThreadLocalRandom.current().nextInt(100);
         }
-
+        /*print(unsorted, "unsorted: ");*/
         startTime = System.currentTimeMillis();
         Merger sorter = new Merger(unsorted);
         sorter.sort();
+        /*print(sorter.getSorted(), "sorted: ");*/
         endTime = System.currentTimeMillis();
         printTime("Simple", startTime, endTime);
-        int[] sorted = sorter.getSorted();
-
+        print();
         startTime = System.currentTimeMillis();
         MultiMerger multiSorter = new MultiMerger(unsorted);
-        for (int i = 0; i < size; i++) {
-            unsorted[i] = ThreadLocalRandom.current().nextInt(1000);
-        }
+        /*print(unsorted, "unsorted: ");*/
         multiSorter.start();
         try {
             multiSorter.join();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+       /* print(multiSorter.getSorted(), "sorted: ");*/
         endTime = System.currentTimeMillis();
         printTime("Multi thread", startTime, endTime);
-        int[] sortedMulti = multiSorter.getSorted();
+    }
+
+    private static void print() {
+        System.out.println();
+    }
+
+    private static void print(int[] unsorted, String s) {
+        System.out.println(s + Arrays.toString(unsorted));
     }
 
 
