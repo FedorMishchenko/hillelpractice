@@ -5,8 +5,8 @@ public class EmployeeMain {
         Employee employee = new Position();
         ((Position) employee).setId(1);
         ((Position) employee).setName("Иванов");
-        ((Position) employee).setPosition("руководитель отдела");
-        ((Position) employee).setSalary(1000);
+        ((Position) employee).setPosition();
+        ((Position) employee).setSalary();
 
         Engineer departmentHead = new Position(2,"Петров","менеджер",900);
         employee.print();

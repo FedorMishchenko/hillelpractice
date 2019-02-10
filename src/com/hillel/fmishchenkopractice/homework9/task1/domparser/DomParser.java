@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 /**
@@ -25,21 +26,28 @@ public class DomParser {
         if (node.getNodeName().equals("#text"))
             return "";
 
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
-        result.append("Element name = '" + node.getNodeName() + "'\n");
+        result.append("Element name = '")
+                .append(node.getNodeName())
+                .append("'\n");
 
         NamedNodeMap nodeMap = node.getAttributes();
 
         if (nodeMap != null) {
             for (int i = 0; i < nodeMap.getLength(); i++) {
-                result.append("Attribute name = '" + nodeMap.item(i).getNodeName()
-                        + "'; Attribute value = '" + nodeMap.item(i).getNodeValue() + "'\n");
+                result.append("Attribute name = '")
+                        .append(nodeMap.item(i).getNodeName())
+                        .append("'; Attribute value = '")
+                        .append(nodeMap.item(i).getNodeValue())
+                        .append("'\n");
             }
         }
 
-        if (getElementContent(node) != null && !(getElementContent(node).equals("")))
-            result.append("Element content = '" + getElementContent(node) + "'\n");
+        if (getElementContent(node) != null && !(Objects.equals(getElementContent(node), "")))
+            result.append("Element content = '")
+                    .append(getElementContent(node))
+                    .append("'\n");
 
         NodeList nodeList = node.getChildNodes();
 
@@ -47,7 +55,8 @@ public class DomParser {
             result.append(parseNode(nodeList.item(i)));
         }
 
-        result.append("Element closed, name = '" + node.getNodeName() + "'\n");
+        result.append("Element closed, name = '")
+                .append(node.getNodeName()).append("'\n");
 
         return result.toString();
     }
@@ -70,7 +79,7 @@ public class DomParser {
      */
     public void parseXML(String fileName) {
         fileName = "eng.xml";
-        String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
+        String s = Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource(fileName)).getFile();
         File xmlFile = new File(s);
 
         try {

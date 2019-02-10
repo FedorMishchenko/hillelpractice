@@ -4,6 +4,6 @@ import java.awt.*;
 
 public class Calculator {
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> new CalculatorFrame());
+        EventQueue.invokeLater(CalculatorFrame::new);
     }
 }

@@ -3,7 +3,7 @@ package com.hillel.fmishchenkopractice.homework5.task2.part1.list;
 class Node {
 
     String data;
-    Node next;
+    ThreadLocal<Node> next;
 
     Node(String aStr) {
 

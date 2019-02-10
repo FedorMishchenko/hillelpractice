@@ -6,13 +6,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ParkingHandler {
-    private String command;
 
     public void process() throws IOException {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             print("Input parking size: ");
-            command = reader.readLine();
+            String command = reader.readLine();
             Parking parking = new Parking(Integer.parseInt(command));
 
             while (true) {
@@ -35,7 +34,6 @@ public class ParkingHandler {
                         parking.print();
                         break;
                     default:
-                        continue;
                 }
             }
         }

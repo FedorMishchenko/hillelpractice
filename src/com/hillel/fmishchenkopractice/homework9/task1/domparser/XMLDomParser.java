@@ -11,11 +11,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
-public class XMLDomParser {
+class XMLDomParser {
     private Person person;
 
-    public Person parseXML(String fileName) throws IOException, SAXException, ParserConfigurationException {
+    Person parseXML(String fileName) throws IOException, SAXException, ParserConfigurationException {
         Document doc = getDocument(fileName);
         return getPerson(doc);
     }
@@ -45,7 +46,6 @@ public class XMLDomParser {
             }
             if ("age".equals(node.getNodeName())) {
                 parsedPerson.setAge(node.getTextContent());
-                continue;
             }
 
         }
@@ -53,7 +53,7 @@ public class XMLDomParser {
     }
 
     private Document getDocument(String fileName) throws ParserConfigurationException, SAXException, IOException {
-        String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
+        String s = Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource(fileName)).getFile();
         File xmlFile = new File(s);
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory

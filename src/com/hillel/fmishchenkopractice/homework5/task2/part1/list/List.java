@@ -1,6 +1,8 @@
 package com.hillel.fmishchenkopractice.homework5.task2.part1.list;
 
 
+import java.util.Objects;
+
 public class List {
 
     private Node head;
@@ -21,14 +23,14 @@ public class List {
         if (head == null)
             head = temp;
         else {
-            temp.next = head;
+            temp.next.set(head);
             head = temp;
         }
 
         ++size;
     }
 
-    public void pushBack(String string) {
+    void pushBack(String string) {
 
         Node temp = new Node(string);
 
@@ -37,23 +39,23 @@ public class List {
         else {
             Node aTemp = head;
 
-            while (aTemp.next != null)
-                aTemp = aTemp.next;
+            while (aTemp.next.get() != null)
+                aTemp = aTemp.next.get();
 
-            aTemp.next = temp;
+            aTemp.next.set(temp);
         }
 
         ++size;
     }
 
-    public void showList() {
+    void showList() {
 
         if (head != null) {
             Node temp = head;
 
             while (temp != null) {
                 System.out.println(temp.data);
-                temp = temp.next;
+                temp = temp.next.get();
             }
         } else
             System.out.println("Список пуст!");
@@ -63,18 +65,16 @@ public class List {
 
         while (head != null) {
 
-            Node temp = head, _temp = null;
+            Node temp = head;
 
-            while (temp.next != null) {
-                _temp = temp;
-                temp = temp.next;
+            while (temp.next.get() != null) {
+                temp = temp.next.get();
             }
 
-            if (head.next == null) {
+            if (head.next.get() == null) {
                 head = null;}
             else{
-                    temp = _temp;
-                    temp.next = null;
+                    Objects.requireNonNull(temp).next = null;
                 }
             }
 
@@ -86,9 +86,9 @@ public class List {
 
             if (head != null) {
 
-                String value = "";
+                String value;
 
-                if (head.next == null) {
+                if (head.next.get() == null) {
 
                     value = head.data;
                     head = null;
@@ -97,9 +97,9 @@ public class List {
                 } else {
                     Node temp = head, _temp = null;
 
-                    while (temp.next != null) {
+                    while (temp.next.get() != null) {
                         _temp = temp;
-                        temp = temp.next;
+                        temp = temp.next.get();
                     }
 
                     value = temp.data;

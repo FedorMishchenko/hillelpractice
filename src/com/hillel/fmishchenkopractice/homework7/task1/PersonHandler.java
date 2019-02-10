@@ -6,19 +6,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class PersonHandler {
-    BufferedReader reader = new BufferedReader(
+    private BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
-    ArrayList<Person> list = new ArrayList<>();
-    static StringBuffer buffer;
-    String domen;
-    Person person;
+    private ArrayList<Person> list = new ArrayList<>();
+    private static StringBuffer buffer;
 
     public void read() throws IOException {
         dataInput();
     }
 
     private void dataInput() throws IOException {
-        person = new Person();
+        Person person = new Person();
         print("exit - system.exit");
         print("press enter - to input");
         String command = reader.readLine();
@@ -50,7 +48,7 @@ public class PersonHandler {
         System.out.println(s);
     }
 
-    public String convert(Person person) {
+    private String convert(Person person) {
         return
                 convertInputToString1(person) + space() +
                 convertInputToString2(person) + space() +
@@ -59,7 +57,7 @@ public class PersonHandler {
 
     }
 
-    public String space() {
+    private String space() {
         return '\n' + "-----------------------------" + '\n' ;
     }
 
@@ -67,53 +65,51 @@ public class PersonHandler {
         reader.close();
     }
 
-    public static String convertInputToString1(Person person) {
+    private static String convertInputToString1(Person person) {
         buffer = new StringBuffer();
-        buffer.append(person.getLogin() + " ==> "
-                + person.getEmail());
+        buffer.append(person.getLogin()).append(" ==> ").append(person.getEmail());
 
         return buffer.toString();
     }
 
-    public static String convertInputToString2(Person person) {
+    private static String convertInputToString2(Person person) {
         buffer = new StringBuffer();
-        buffer.append(person.getName() + " " +
-                "(email: " + person.getEmail() + " )");
+        buffer.append(person.getName()).append(" ")
+                .append("(email: ").append(person.getEmail()).append(" )");
 
         return buffer.toString();
     }
 
-    public String convertInputToString3(Person person) {
+    private String convertInputToString3(Person person) {
         buffer = new StringBuffer();
         buffer.append(person.getEmail());
         int index = buffer.indexOf("@");
-        domen = buffer.substring(index);
+        String domain = buffer.substring(index);
         buffer.delete(0, buffer.length());
-        buffer.append(domen + " ==> ");
-        buffer.append(person.getLogin() + ", ");
-        for (int i = 0; i < list.size(); i++) {
-            Person tmp = list.get(i);
+        buffer.append(domain).append(" ==> ");
+        buffer.append(person.getLogin()).append(", ");
+        for (Person tmp : list) {
             if (person.compareTo(tmp) == 0) {
-                buffer.append(tmp.getLogin() + ", ");
-            } else continue;
+                buffer.append(tmp.getLogin()).append(", ");
+            }
         }
         return buffer.toString();
     }
 
-    public String convertInputToString4(Person person) {
+    private String convertInputToString4(Person person) {
         buffer = new StringBuffer();
         buffer.append("Login; Name; Email; Password" + '\n');
-        buffer.append(person.getLogin() + ", " +
-                person.getName() + "," +
-                person.getEmail() + ", " + randomPassword());
+        buffer.append(person.getLogin()).append(", ")
+                .append(person.getName()).append(",")
+                .append(person.getEmail()).append(", ")
+                .append(randomPassword());
         return buffer.toString();
     }
 
-    int randomPassword() {
+    private int randomPassword() {
         int a = 0;
         int b = 10000;
-        int num = a + (int) (Math.random() * b);
-        return num;
+        return a + (int) (Math.random() * b);
     }
 
 }

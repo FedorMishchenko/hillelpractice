@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Dictionary {
-    private static Dictionary instance;
+    private static final ThreadLocal<Dictionary> instance = new ThreadLocal<>();
     private Dictionary(){
     }
-    public static Dictionary getInstance(){
-        if(instance == null){
-            instance = new Dictionary();
+    static Dictionary getInstance(){
+        if(instance.get() == null){
+            instance.set(new Dictionary());
         }
-        return instance;
+        return instance.get();
     }
     private HashMap<String,String> dictionary = new HashMap<>();
 

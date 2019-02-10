@@ -7,7 +7,7 @@ public class Demo {
     public static void main(String[] args) {
         print(545);
         print(1212);
-        print(1);
+        print(101);
         print(2);
         print(12);
     }

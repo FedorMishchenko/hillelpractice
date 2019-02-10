@@ -3,9 +3,9 @@ package com.hillel.fmishchenkopractice.homework10.task4;
 import java.util.Random;
 
 public class TruckLoader implements Runnable{
-    Farm farm;
+    private Farm farm;
 
-    public TruckLoader(Farm farm){
+    TruckLoader(Farm farm){
         this.farm = farm;
     }
     @Override

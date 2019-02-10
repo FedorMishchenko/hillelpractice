@@ -4,7 +4,7 @@ public class Merger {
 
     private int[] unsorted, sorted;
 
-    public Merger(int[] arrayIn){
+    Merger(int[] arrayIn){
         this.unsorted = arrayIn;
     }
 
@@ -30,7 +30,7 @@ public class Merger {
         }
     }
 
-    public static int[] merge(int[] leftArray, int[] rightArray){
+    static int[] merge(int[] leftArray, int[] rightArray){
         int pointLeft = 0;
         int pointRight = 0;
         int counter = 0;
@@ -57,7 +57,7 @@ public class Merger {
         return mergedArray;
     }
 
-    public int[] getSorted() {
+    int[] getSorted() {
         return sorted;
     }
 

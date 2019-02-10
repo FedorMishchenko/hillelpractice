@@ -7,8 +7,8 @@ public class Flower {
     private String color;
     private Integer age;
     private Integer price;
-    public Flower(String name, String color,
-                  Integer age, Integer price) {
+    Flower(String name, String color,
+           Integer age, Integer price) {
         this.name = name;
         this.color = color;
         this.age = age;

@@ -9,8 +9,8 @@ public class Auto {
     private int year;
     private int price;
 
-    public Auto(String name, String body,
-                String color, int year, int price) {
+    Auto(String name, String body,
+         String color, int year, int price) {
         this.name = name;
         this.body = body;
         this.color = color;
@@ -18,7 +18,7 @@ public class Auto {
         this.price = price;
     }
 
-    public String getBody() {
+    private String getBody() {
         return body;
     }
 
@@ -26,7 +26,7 @@ public class Auto {
         this.body = body;
     }
 
-    public int getPrice() {
+    private int getPrice() {
         return price;
     }
 
@@ -34,7 +34,7 @@ public class Auto {
         this.price = price;
     }
 
-    public int getYear() {
+    private int getYear() {
         return year;
     }
 
@@ -42,7 +42,7 @@ public class Auto {
         this.year = year;
     }
 
-    public String getColor() {
+    private String getColor() {
         return color;
     }
 

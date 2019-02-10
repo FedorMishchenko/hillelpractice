@@ -6,15 +6,15 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MergerHandler {
 
     public static void main(String[] args) {
-        handler(100_000);
+        handler();
 
     }
 
-    private static void handler(int size){
+    private static void handler(){
 
-        int[] unsorted = new int[size];
+        int[] unsorted = new int[1_000_000];
         long startTime, endTime;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < 1_000_000; i++) {
             unsorted[i] = ThreadLocalRandom.current().nextInt(100);
         }
         /*print(unsorted, "unsorted: ");*/
@@ -49,9 +49,8 @@ public class MergerHandler {
 
 
     private static void printTime(String type, long startTime, long endTime){
-        StringBuilder sb = new StringBuilder(type + " sort : ");
-        sb.append( (double) (endTime - startTime) / 1000 );
-        sb.append(" seconds");
-        System.out.println(sb.toString());
+        String str = type + " sort : " + (double) (endTime - startTime) / 1000 +
+                " seconds";
+        System.out.println(str);
     }
 }

@@ -2,24 +2,20 @@ package com.hillel.fmishchenkopractice.homework3.task2.GeometryFigures;
 
 public class Square implements Figure {
     private int side;
-    private int tangle;
-    private int perimeter;
 
     public Square() {
     }
 
-    public Square(int side) {
+    Square(int side) {
         this.side = side;
     }
 
     public int getPerimeter(int side) {
-        perimeter = side * 4;
-        return perimeter;
+        return side * 4;
     }
 
     public int getTangle() {
-        this.tangle = 360 / 4;
-        return tangle;
+        return 360 / 4;
     }
 
 
@@ -39,8 +35,7 @@ public class Square implements Figure {
 
     @Override
     public boolean equals(Figure f) {
-        if(this.getPerimeter(this.getSide()) == f.getSide())return true;
-        return false;
+        return this.getPerimeter(this.getSide()) == f.getSide();
     }
 
     @Override

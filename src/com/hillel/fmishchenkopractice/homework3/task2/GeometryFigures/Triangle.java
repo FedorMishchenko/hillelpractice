@@ -2,25 +2,21 @@ package com.hillel.fmishchenkopractice.homework3.task2.GeometryFigures;
 
 public class Triangle implements Figure {
     private int side;
-    private int tangle;
-    private int perimeter;
 
     public Triangle() {
     }
 
-    public Triangle(int side) {
+    Triangle(int side) {
         this.side = side;
 
     }
 
     public int getPerimeter(int side) {
-        perimeter = side * 3;
-        return perimeter;
+        return side * 3;
     }
 
     public int getTangle() {
-        this.tangle = 180 / 3;
-        return tangle;
+        return 180 / 3;
     }
 
 

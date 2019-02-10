@@ -2,21 +2,17 @@ package com.hillel.fmishchenkopractice.homework3.task2.GeometryFigures;
 
 public class Rectangle implements Figure {
     private int side;
-    private int tangle;
-    private int perimeter;
 
-    public Rectangle(int side) {
+    Rectangle(int side) {
         this.side = side;
     }
 
     public int getPerimeter(int side) {
-        perimeter = side * 4;
-        return perimeter;
+        return side * 4;
     }
 
     public int getTangle() {
-        this.tangle = 360 / 4;
-        return tangle;
+        return 360 / 4;
     }
 
     public int getSide() {

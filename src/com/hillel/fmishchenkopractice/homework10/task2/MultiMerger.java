@@ -6,7 +6,7 @@ public class MultiMerger extends Thread {
     private int threadsMax;
     private final static int MAX_THREAD_DEFAULT = 8;
 
-    public MultiMerger(int[] arrayIn) {
+    MultiMerger(int[] arrayIn) {
         this.unsorted = arrayIn;
         this.threadsMax = MAX_THREAD_DEFAULT;
     }
@@ -52,7 +52,7 @@ public class MultiMerger extends Thread {
         }
     }
 
-    public int[] getSorted() {
+    private int[] getSorted() {
         return sorted;
     }
 }

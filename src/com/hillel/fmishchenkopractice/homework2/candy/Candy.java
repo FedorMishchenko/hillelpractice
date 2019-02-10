@@ -8,8 +8,8 @@ public class Candy {
     private boolean sugar;
     private int price;
 
-    public Candy(String name,String color,
-                 boolean sugar,int price) {
+    Candy(String name, String color,
+          boolean sugar, int price) {
         this.name = name;
         this.color = color;
         this.sugar = sugar;
@@ -24,7 +24,7 @@ public class Candy {
         this.name = name;
     }
 
-    public String getColor() {
+    private String getColor() {
         return color;
     }
 
@@ -32,7 +32,7 @@ public class Candy {
         this.color = color;
     }
 
-    public boolean isSugar() {
+    private boolean isSugar() {
         return sugar;
     }
 
@@ -40,7 +40,7 @@ public class Candy {
         this.sugar = sugar;
     }
 
-    public int getPrice() {
+    int getPrice() {
         return price;
     }
 

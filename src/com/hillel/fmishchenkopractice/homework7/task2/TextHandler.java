@@ -7,21 +7,23 @@ import java.util.List;
 public class TextHandler {
 
     List<String> list = new ArrayList<>();
-    String path = "E:/in.txt";
-    BufferedReader reader;
-    BufferedWriter writer;
-    File file = new File(path);
-    FileWriter fileWriter;
-    String text = "We’re working together" +
-            " with the educational community " +
-            "to make a difference address challenges" +
-            " and further positive change." +
-            "We find that we all agree: the" +
-            " best part of working in education is " +
+    private String path;
+    private File file = new File(path);
+    String text =
+            "We’re working together " +
+            "with the educational community " +
+            "to make a difference address challenges " +
+            "and further positive change." +
+            "We find that we all agree: the " +
+            "best part of working in education is " +
             "seeing learners make progress in their lives. " +
-            "That’s our inspiration and the inspiration" +
-            " behind the products and services, resources and" +
-            " ideas that you’ll find here";
+            "That’s our inspiration and the inspiration " +
+            "behind the products and services, resources and " +
+            "ideas that you’ll find here";
+
+    public TextHandler() {
+        path = "E:/in.txt";
+    }
 
     public void process() throws IOException {
         createFile();
@@ -35,7 +37,7 @@ public class TextHandler {
             String inputString;
             inputString = reader.readLine();
             if (inputString == null) {
-                System.out.println("File is empty!");
+                print("File is empty!");
             } else {
                 while (inputString != null) {
                     list.add(inputString);
@@ -43,23 +45,28 @@ public class TextHandler {
                 }
             }
             for (String str : list) {
-                System.out.println(str);
+                print(str);
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("FileNotFound error");
+            print("FileNotFound error");
         } catch (IOException e) {
-            System.out.println("Buffer read from file error");
+            print("Buffer read from file error");
         }
     }
 
+    private void print(String s) {
+        System.out.println(s);
+    }
+
     private void writeDataInFile() throws IOException {
+        FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(file.getAbsoluteFile());
         } catch (IOException e) {
             throw new IOException("Error in FileWriter " + e);
         }
-        writer = new BufferedWriter(fileWriter);
+        BufferedWriter writer = new BufferedWriter(fileWriter);
         try {
             writer.write(text);
             writer.flush();

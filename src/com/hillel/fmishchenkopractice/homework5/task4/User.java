@@ -1,5 +1,7 @@
 package com.hillel.fmishchenkopractice.homework5.task4;
 
+import java.util.Objects;
+
 public class User implements Comparable<User> {
 
     private int age;
@@ -13,7 +15,7 @@ public class User implements Comparable<User> {
         this.age = age;
     }
 
-    public User() {
+    User() {
 
     }
 
@@ -63,8 +65,7 @@ public class User implements Comparable<User> {
         return Integer.compare(age, user.age);
     }
     public boolean equals(User u){
-        if(this.email == u.email)return true;
-        return false;
+        return Objects.equals(this.email, u.email);
     }
 
 }

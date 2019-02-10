@@ -64,7 +64,7 @@ public class CharReader2 extends Reader {
         }
     }
 
-    void add() {
+    private void add() {
         if (reader != null) {
             strE = readWord("eng");
             strR = readWord("rus");
@@ -75,7 +75,7 @@ public class CharReader2 extends Reader {
 
     private String readWord(String s) {
         print("input " + s + " word:");
-        String str = new String();
+        String str = "";
         try {
             readChar();
             str = new String(builder);

@@ -7,13 +7,13 @@ import java.util.*;
 
 class UserHandler {
 
-    BufferedReader buffer =
+    private BufferedReader buffer =
             new BufferedReader(new InputStreamReader(System.in));
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    HashMap<Integer, User> base = new HashMap<>();
+    private HashMap<Integer, User> base = new HashMap<>();
 
-    public UserHandler() {
+    UserHandler() {
     }
 
     public void process() {
@@ -97,7 +97,7 @@ class UserHandler {
     private void age() {
         ArrayList<User> compareAge = new ArrayList<User>(base.values());
 
-        Collections.sort(compareAge, Comparator.comparingInt(User::getAge));
+        compareAge.sort(Comparator.comparingInt(User::getAge));
 
         for (User user : compareAge) {
             System.out.println(user.getName() + "\t" + user.getEmail() + "\t" +
@@ -108,7 +108,7 @@ class UserHandler {
     private void email() {
         ArrayList<User> compareEmail = new ArrayList<User>(base.values());
 
-        Collections.sort(compareEmail, (o1, o2) -> {
+        compareEmail.sort((o1, o2) -> {
             if (o1.getEmail().equals(o2.getEmail())) {
                 return 1;
             } else return -1;
@@ -123,7 +123,7 @@ class UserHandler {
     private void name() {
         ArrayList<User> compareName = new ArrayList<User>(base.values());
 
-        Collections.sort(compareName, (o1, o2) -> {
+        compareName.sort((o1, o2) -> {
             if (o1.getName().equals(o2.getName())) {
                 return 1;
             } else return -1;
@@ -160,7 +160,7 @@ class UserHandler {
 
     }
 
-    HashMap createUser() {
+    private HashMap createUser() {
         User user = new User();
         int key = user.hashCode();
         print("User id = " + key);

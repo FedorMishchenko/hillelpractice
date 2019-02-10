@@ -5,10 +5,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-public class HashDigest {
+class HashDigest {
 
 
-    public String hash(String password, String hashName) {
+    String hash(String password, String hashName) {
         MessageDigest messageDigest = null;
         byte[] digest = new byte[0];
         try {
@@ -20,13 +20,13 @@ public class HashDigest {
             System.out.println("No such algorithm");
         }
         BigInteger num = new BigInteger(1,digest);
-        String md5Hex = num.toString(16);
+        StringBuilder md5Hex = new StringBuilder(num.toString(16));
 
         while( md5Hex.length() < 32 ){
-            md5Hex = "0" + md5Hex;
+            md5Hex.insert(0, "0");
         }
         System.out.println("Algorithm: " + hashName);
         System.out.println(Arrays.toString(digest));
-        return md5Hex;
+        return md5Hex.toString();
     }
 }

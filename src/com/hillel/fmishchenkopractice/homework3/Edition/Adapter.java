@@ -3,7 +3,7 @@ package com.hillel.fmishchenkopractice.homework3.Edition;
 public class Adapter implements Edition {
     private Book adapter;
 
-    public Adapter(Book adapter){
+    Adapter(Book adapter){
         this.adapter = adapter;
     }
 

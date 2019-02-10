@@ -6,8 +6,8 @@ import java.util.function.Consumer;
 
 public class StackImpl<T> implements Stack<T>, Iterable<T> {
 
-    LinkedList<T> list = new LinkedList<>();
-    int count = 0;
+    private LinkedList<T> list = new LinkedList<>();
+    private int count = 0;
     int currentSize = list.size();
 
 

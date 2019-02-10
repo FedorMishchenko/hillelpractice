@@ -1,10 +1,8 @@
 package com.hillel.fmishchenkopractice.homework6.task3;
 
 public class EmailValidation extends Middleware {
-    private Person person;
 
-    public EmailValidation(Person person) {
-        this.person = person;
+    EmailValidation(Person person) {
         check(person);
     }
 

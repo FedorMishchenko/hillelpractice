@@ -1,19 +1,19 @@
 package com.hillel.fmishchenkopractice.homework2.text;
 
-public class Text {
+class Text {
     private String headLine;
     private String text;
 
-    public Text(String headLine,String text) {
+    Text(String headLine, String text) {
         this.headLine = headLine;
         this.text = text;
     }
 
-    public void setHeadline(String headLine) {
+    void setHeadline(String headLine) {
         this.headLine = headLine;
     }
 
-    public void outText(String text) {
+    void outText(String text) {
         this.text = text;
         if(headLine != null){
             System.out.println("\t\t\t" + headLine);

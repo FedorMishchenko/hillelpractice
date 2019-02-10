@@ -1,10 +1,8 @@
 package com.hillel.fmishchenkopractice.homework6.task3;
 
 public class AgeValidation extends Middleware {
-    private Person person;
 
-    public AgeValidation(Person person) {
-        this.person = person;
+    AgeValidation(Person person) {
         check(person);
     }
 

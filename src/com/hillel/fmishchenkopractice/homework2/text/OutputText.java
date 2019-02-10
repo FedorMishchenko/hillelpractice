@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class OutputText {
-    static String header;
-    static String text;
+    private static String header;
+    private static String text;
 
     public static void main(String[] args) throws IOException {
 

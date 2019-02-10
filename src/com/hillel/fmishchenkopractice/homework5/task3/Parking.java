@@ -9,7 +9,7 @@ public class Parking {
     private final static String FREE = "FREE";
     private HashMap<Integer, String> map = new HashMap<>();
 
-    public Parking(int size) {
+    Parking(int size) {
         this.size = size;
         for (int i = 0; i <= size; i++) {
             this.map.put(i, getStatus());
@@ -20,7 +20,7 @@ public class Parking {
         return size;
     }
 
-    public static String getStatus() {
+    private static String getStatus() {
         return FREE;
     }
 
@@ -28,26 +28,24 @@ public class Parking {
         this.size = size;
     }
 
-    public boolean arrivalAuto(String numberCar) {
+    void arrivalAuto(String numberCar) {
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             if (entry.getValue().equals(getStatus())) {
                 entry.setValue(numberCar);
-                return true;
+                return;
             }
         }
         System.out.println("All places are occupied");
-        return false;
     }
 
-    public boolean departureAuto(String numberCar) {
+    void departureAuto(String numberCar) {
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             if (entry.getValue().equals(numberCar)) {
                 entry.setValue(getStatus());
-                return true;
+                return;
             }
         }
         System.out.println("This car is not in the parking.");
-        return false;
     }
 
 

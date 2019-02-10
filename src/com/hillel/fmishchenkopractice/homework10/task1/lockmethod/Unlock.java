@@ -3,13 +3,13 @@ package com.hillel.fmishchenkopractice.homework10.task1.lockmethod;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Unlock implements Runnable {
-    static X x = new X();
-    static Y y = new Y();
-    ReentrantLock lock;
+    private static X x = new X();
+    private static Y y = new Y();
+    private ReentrantLock lock;
 
-    Unlock(X x, Y y, ReentrantLock lock) {
-        this.x = x;
-        this.y = y;
+    private Unlock(X x, Y y, ReentrantLock lock) {
+        Unlock.x = x;
+        Unlock.y = y;
         this.lock = lock;
         new Thread(this::run).start();
         new Thread(this::run2).start();
@@ -24,14 +24,14 @@ public class Unlock implements Runnable {
     public void run() {
         lock.lock();
         try {
-            this.x.doX(y);
+            x.doX(y);
             print(": lock run()");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ignore) {
 
             }
-            this.y.doY(x);
+            y.doY(x);
             print(": out from doY");
         } finally {
             lock.unlock();
@@ -39,10 +39,10 @@ public class Unlock implements Runnable {
         }
     }
 
-    public void run2() {
+    private void run2() {
         lock.lock();
         try {
-            this.y.doY(x);
+            y.doY(x);
             print(": lock run2()");
             try {
                 Thread.sleep(1000);
@@ -50,7 +50,7 @@ public class Unlock implements Runnable {
 
             }
 
-            this.x.doX(y);
+            x.doX(y);
             print(": out from doX");
 
         } finally {

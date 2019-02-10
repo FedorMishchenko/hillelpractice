@@ -15,9 +15,7 @@ public class FileInputAndReverseOutput {
         try (FileReader in = new FileReader(file);
              FileWriter out = new FileWriter(file2)) {
             int count;
-            while ((count = in.read()) != -1) {
-                stack.add((char) count);
-            }
+            while ((count = in.read()) != -1) stack.add((char) count);
             int size = stack.size();
             while (size != 0) {
                 out.write((char) stack.get());

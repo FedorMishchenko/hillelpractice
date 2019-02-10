@@ -1,32 +1,32 @@
 package com.hillel.fmishchenkopractice.homework3.Employee;
 
 abstract class Engineer implements Employee{
-    protected int id;
+    int id;
     protected String name;
-    protected int salary;
-    protected String position;
+    int salary;
+    String position;
 
     public String getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    void setPosition() {
+        this.position = "руководитель отдела";
     }
 
     public int getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    void setSalary() {
+        this.salary = 1000;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 

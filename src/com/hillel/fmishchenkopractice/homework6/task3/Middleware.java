@@ -1,17 +1,17 @@
 package com.hillel.fmishchenkopractice.homework6.task3;
 
 public abstract class Middleware {
-    private Middleware next;
-    public Middleware linkWith(Middleware next) {
-        this.next = next;
+    private final ThreadLocal<Middleware> next = new ThreadLocal<>();
+    Middleware linkWith(Middleware next) {
+        this.next.set(next);
         return next;
     }
     public abstract boolean check(Person person);
 
-    protected boolean checkNext(Person person) {
-        if (next == null) {
+    boolean checkNext(Person person) {
+        if (next.get() == null) {
             return true;
         }
-        return next.check(person);
+        return next.get().check(person);
     }
 }

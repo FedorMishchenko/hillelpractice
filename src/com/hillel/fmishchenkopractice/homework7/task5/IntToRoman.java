@@ -1,8 +1,8 @@
 package com.hillel.fmishchenkopractice.homework7.task5;
 
-public class IntToRoman {
+class IntToRoman {
 
-        public  String convert(int n) {
+        String convert(int n) {
             int tmp = n;
             String[] a = new String[]{"I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"};
             int[] b = new int[]{1,4,5,9,10,40,50,90,100,400,500,900,1000};

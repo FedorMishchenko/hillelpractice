@@ -17,7 +17,7 @@ abstract class PublicBuilding implements Building{
         return floors;
     }
 
-    public void setFloors(int floors) {
+    void setFloors(int floors) {
         this.floors = floors;
     }
 

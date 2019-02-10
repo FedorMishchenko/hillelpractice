@@ -2,14 +2,14 @@ package com.hillel.fmishchenkopractice.homework7.task2;
 
 import java.util.ArrayList;
 
-public class OutputMinMax {
-    static int minLength = 1;
-    static int maxLength = 1;
+class OutputMinMax {
+    private static int minLength = 1;
+    private static int maxLength = 1;
 
-    ArrayList<String> min = new ArrayList<>();
-    ArrayList<String> max = new ArrayList<>();
+    private ArrayList<String> min = new ArrayList<>();
+    private ArrayList<String> max = new ArrayList<>();
 
-    public void wordsMinMax(String text) {
+    void wordsMinMax(String text) {
         if (text == null) {
             return;
         }

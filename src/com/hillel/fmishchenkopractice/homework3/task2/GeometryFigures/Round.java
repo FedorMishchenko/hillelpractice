@@ -2,8 +2,6 @@ package com.hillel.fmishchenkopractice.homework3.task2.GeometryFigures;
 
 public class Round implements Figure {
     private int side;
-    private int tangle;
-    private int perimeter;
 
     public Round() {
     }
@@ -13,13 +11,11 @@ public class Round implements Figure {
     }
 
     public int getPerimeter(int side) {
-        perimeter = side;
-        return perimeter;
+        return side;
     }
 
     public int getTangle() {
-        this.tangle = 360;
-        return tangle;
+        return 360;
     }
 
 

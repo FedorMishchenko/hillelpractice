@@ -7,7 +7,7 @@ public class ElectricApps {
     private int power;
     private int price;
 
-    public ElectricApps(String name,int power,int price) {
+    ElectricApps(String name, int power, int price) {
         this.name = name;
         this.power = power;
         this.price = price;
@@ -21,7 +21,7 @@ public class ElectricApps {
         this.name = name;
     }
 
-    public int getPower() {
+    int getPower() {
         return power;
     }
 
@@ -29,7 +29,7 @@ public class ElectricApps {
         this.power = power;
     }
 
-    public int getPrice() {
+    private int getPrice() {
         return price;
     }
 

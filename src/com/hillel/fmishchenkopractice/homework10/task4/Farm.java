@@ -9,7 +9,7 @@ public class Farm {
     private static final int MIN_LOAD = 0;
     private int counter = 0;
 
-    public Farm(){
+    Farm(){
         store = new ArrayList<>();
     }
     public synchronized boolean add(Truck truck){

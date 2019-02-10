@@ -2,14 +2,14 @@ package com.hillel.fmishchenkopractice.homework3.task2.GeometryFigures;
 
 import java.util.Scanner;
 
-public class ConsoleReader {
+class ConsoleReader {
     private static ConsoleReader instance;
 
     private ConsoleReader() {
 
     }
 
-    public static ConsoleReader getInstance() {
+    static ConsoleReader getInstance() {
         if (instance == null)
             synchronized (ConsoleReader.class) {
                 if (instance == null)
@@ -18,7 +18,7 @@ public class ConsoleReader {
         return instance;
     }
 
-    public void consoleRead() {
+    void consoleRead() {
         while (true) {
             input();
             Scanner scanner = new Scanner(System.in);

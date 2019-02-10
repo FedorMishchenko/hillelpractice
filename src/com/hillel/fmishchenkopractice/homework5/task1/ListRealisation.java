@@ -5,8 +5,8 @@ import com.hillel.fmishchenkopractice.homework4.part3.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ListRealisation {
-    final static int MIN = 0;
-    final static int MAX = 100;
+    private final static int MIN = 0;
+    private final static int MAX = 100;
         public static void main(String[] args) {
             LinkedList<Integer> list = new LinkedList<>();
             for (int i = 0; i < 10; i++){

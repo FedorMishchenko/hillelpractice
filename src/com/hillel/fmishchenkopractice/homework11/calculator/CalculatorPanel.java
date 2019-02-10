@@ -10,7 +10,7 @@ import java.awt.event.*;
 public class CalculatorPanel extends JPanel {
     private JButton display;
     private JPanel panel;
-    private double result;
+    private double result;//todo: Optional
     private String lastCommand;
     private boolean start;
     public CalculatorPanel() {
@@ -124,7 +124,7 @@ public class CalculatorPanel extends JPanel {
                 result = arg;
                 break;
             case "Sqr":
-                SquareRoot sqr = (x) -> Math.sqrt(x);
+                SquareRoot sqr = Math::sqrt;
 
                 result = sqr.sqrt(arg);
             case "%":

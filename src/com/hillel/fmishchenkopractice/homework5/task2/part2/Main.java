@@ -1,19 +1,20 @@
 package com.hillel.fmishchenkopractice.homework5.task2.part2;
 
 import java.util.*;
+import static java.util.Comparator.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        TreeSet<String> set = new TreeSet<>(Comparator.comparingInt(String::length));
+        TreeSet<String> set = new TreeSet<>(comparingInt(String::length));
         List<String> lines = Arrays.asList(SONNET.split("\n"));
         set.addAll(lines);
-        String [] line = lines.toArray(new String[lines.size()]);
+        String [] line = lines.toArray(new String[0]);
         System.out.println('\n');
-        Arrays.sort(line, Comparator.comparingInt(String::length));
+        Arrays.sort(line, comparingInt(String::length));
         System.out.println(Arrays.toString(line));
         System.out.println("---------------------------------------");
-        Collections.sort(lines, Comparator.comparingInt(String::length));
+        lines.sort(comparingInt(String::length));
         lines.forEach(System.out::println);
         System.out.println("---------------------------------------");
         set.forEach(System.out::println);

@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 public class PersonHandler {
     private DataBase base = new DataBase();
     private Person person;
-    private String str;
 
     public void read() throws IOException {
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -19,24 +18,25 @@ public class PersonHandler {
         }
     }
 
-    public void register() {
+    private void register() {
         if(check(person)){
             base.register(person.getEmail(),person);
         }
     }
 
-    public void showAndExit(BufferedReader reader) throws IOException {
+    private void showAndExit(BufferedReader reader) throws IOException {
         print("exit press: e , show persons press: s, continue press: Enter");
-        str = reader.readLine();
+        String str = reader.readLine();
         if(str.equals("e")){
             System.exit(0);
         }else if(str.equals("s")){
-            base.server.entrySet().stream()
-                    .sorted().forEach(System.out::println);
-        }else return;
+            base.server.entrySet()
+                    .stream().sorted()
+                    .forEach(System.out::println);
+        }
     }
 
-    public void setPersonValue(BufferedReader reader) throws IOException {
+    private void setPersonValue(BufferedReader reader) throws IOException {
         person = new Person();
         print("set email:");
         person.setEmail(reader.readLine());

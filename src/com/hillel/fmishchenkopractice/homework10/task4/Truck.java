@@ -3,7 +3,7 @@ package com.hillel.fmishchenkopractice.homework10.task4;
 public class Truck {
     private int number;
 
-    public Truck(int number){
+    Truck(int number){
         this.number = number;
     }
 
@@ -12,7 +12,7 @@ public class Truck {
         this.number = number;
     }
 
-    public int getNumber() {
+    int getNumber() {
         return number;
     }
 

@@ -12,11 +12,11 @@ public class LinkedList<T> implements Iterable<T> {
         Node next;
         Node previous;
 
-        public Node(T element) {
+        Node(T element) {
             this.element = element;
         }
 
-        public Node() {
+        Node() {
         }
     }
 

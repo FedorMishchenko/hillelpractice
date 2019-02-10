@@ -5,7 +5,7 @@ public class ConstantKeeperMain {
         ConstantRealisation realisation = new ConstantRealisation();
         realisation.begin();
         realisation.inputData();
-        realisation.outputMessedge();
+        realisation.outputMassage();
 
 
 

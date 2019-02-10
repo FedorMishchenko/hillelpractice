@@ -1,16 +1,16 @@
 package com.hillel.fmishchenkopractice.homework3.task2.ConstantKeeper;
 
-public class ConstantRealisation implements ConstantKeeper {
+class ConstantRealisation implements ConstantKeeper {
 
-    public void begin() {
+    void begin() {
         System.out.println(BEGIN);
     }
 
-    public void inputData() {
+    void inputData() {
         System.out.println(INPUT);
     }
 
-    public void outputMessedge() {
+    void outputMassage() {
         System.out.println(SOMECODE);
     }
 }

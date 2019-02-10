@@ -1,22 +1,19 @@
 package com.hillel.fmishchenkopractice.homework8;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 public class CharArrayReader extends Reader {
-    Dictionary dictionary = Dictionary.getInstance();
-    BufferedReader reader;
-    DataOutputStream writer;
+    private Dictionary dictionary = Dictionary.getInstance();
+    private BufferedReader reader;
+    private DataOutputStream writer;
 
     {
-        try {
-            reader = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
-            writer = new DataOutputStream(System.out);
-        } catch (UnsupportedEncodingException e) {
-            print("encoding exception");
-        }
+        reader = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
+        writer = new DataOutputStream(System.out);
     }
 
-    String command;
+    private String command;
 
     void process() {
 
@@ -32,14 +29,14 @@ public class CharArrayReader extends Reader {
                 case "exit":
                     exit();
                 default:
-                    errorMassege("Invalid input: ");
+                    errorMassage("Invalid input: ");
                     break;
             }
         }
 
     }
 
-    private void errorMassege(String s) {
+    private void errorMassage(String s) {
        print(s + command
                 + '\n' +
                 "Try input again.");
@@ -65,8 +62,8 @@ public class CharArrayReader extends Reader {
     }
 
     private void add() {
-        String strE = new String();
-        String strR = new String();
+        String strE = "";
+        String strR = "";
         if (reader != null) {
             strE = inputWord("eng");
             strR = inputWord("rus");
@@ -77,7 +74,7 @@ public class CharArrayReader extends Reader {
 
     private String inputWord(String s) {
         print("input " + s + " word:");
-        String str = new String();
+        String str = "";
         try {
             str = reader.readLine();
         } catch (IOException e) {
@@ -86,7 +83,7 @@ public class CharArrayReader extends Reader {
         return str;
     }
 
-    void translate() {
+    private void translate() {
         String str = null;
         print("Input word: ");
         str = inputStringToTranslate(str);
@@ -94,7 +91,7 @@ public class CharArrayReader extends Reader {
         if (str != null) {
             print(dictionary.toString(str));
         } else {
-            errorMassege("Illegal argument: ");
+            errorMassage("Illegal argument: ");
         }
         print("");
     }

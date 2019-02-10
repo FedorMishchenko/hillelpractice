@@ -4,7 +4,7 @@ public class TruckFactory implements Runnable {
     private Farm farm;
     private  int num = 1;
 
-    public TruckFactory(Farm farm){
+    TruckFactory(Farm farm){
         this.farm = farm;
     }
 

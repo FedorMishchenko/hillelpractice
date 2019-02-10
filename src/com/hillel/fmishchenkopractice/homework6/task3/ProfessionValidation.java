@@ -1,10 +1,8 @@
 package com.hillel.fmishchenkopractice.homework6.task3;
 
 public class ProfessionValidation extends Middleware {
-    private Person person;
 
-    public ProfessionValidation(Person person) {
-        this.person = person;
+    ProfessionValidation(Person person) {
         check(person);
     }
 

@@ -4,7 +4,7 @@ public class Person implements Comparable<Person> {
     private String login;
     private String email;
     private String name;
-    StringBuffer buffer = new StringBuffer();
+    private StringBuffer buffer = new StringBuffer();
 
     public String getName() {
         return name;
@@ -22,11 +22,11 @@ public class Person implements Comparable<Person> {
         this.email = email;
     }
 
-    public String getLogin() {
+    String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    void setLogin(String login) {
         this.login = login;
     }
 
@@ -46,7 +46,6 @@ public class Person implements Comparable<Person> {
         return -1;
     }
     public boolean equals(Person p){
-        if(this.email == p.email)return true;
-        return false;
+        return this.email.equals(p.email);
     }
 }

@@ -1,11 +1,11 @@
 package com.hillel.fmishchenkopractice.homework10.task1.lockmethod;
 
 public class Deadlock implements Runnable {
-    X x = new X();
-    Y y = new Y();
+    private X x = new X();
+    private Y y = new Y();
 
-    Deadlock() {
-        new Thread(this::run).start();
+    private Deadlock() {
+        new Thread(this).start();
         print("try doX");
         x.doX(y);
         try {
@@ -27,7 +27,7 @@ public class Deadlock implements Runnable {
         print("done doY");
     }
 
-    public void print(String s) {
+    private void print(String s) {
         System.out.println(s);
     }
 

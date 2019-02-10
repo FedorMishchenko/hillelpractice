@@ -15,11 +15,11 @@ public class Unlock {
     }
 
     static class MyThread implements Runnable {
-        private Object res;
-        private Object res2;
+        private final Object res;
+        private final Object res2;
         ReentrantLock lock;
 
-        public MyThread(Object res,Object res2, ReentrantLock lock) {
+        MyThread(Object res, Object res2, ReentrantLock lock) {
             this.res = res;
             this.res2 = res2;
             this.lock = lock;
@@ -42,7 +42,7 @@ public class Unlock {
                 }
 
             }
-            finally {
+ finally {
                 lock.unlock();
             }
         }

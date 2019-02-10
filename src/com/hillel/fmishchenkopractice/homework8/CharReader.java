@@ -21,9 +21,9 @@ public class CharReader extends Reader {
     }
 
 
-    String command;
-    String strE;
-    String strR;
+    private String command;
+    private String strE;
+    private String strR;
 
     void process() {
 
@@ -72,7 +72,7 @@ public class CharReader extends Reader {
         }
     }
 
-    void add() {
+    private void add() {
         strE = null;
         strR = null;
         int index = 0;

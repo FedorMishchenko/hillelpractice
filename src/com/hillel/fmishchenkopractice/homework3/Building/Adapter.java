@@ -3,7 +3,7 @@ package com.hillel.fmishchenkopractice.homework3.Building;
 public class Adapter implements Building {
     private PublicBuilding adapter;
 
-    public Adapter(PublicBuilding adapter){
+    Adapter(PublicBuilding adapter){
         this.adapter = adapter;
     }
 

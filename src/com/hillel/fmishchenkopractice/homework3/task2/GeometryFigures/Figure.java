@@ -2,17 +2,17 @@ package com.hillel.fmishchenkopractice.homework3.task2.GeometryFigures;
 
 public interface Figure {
 
-        public int getPerimeter(int side);
+    int getPerimeter(int side);
 
-        public int getTangle();
+    int getTangle();
 
-        int getSide();
+    int getSide();
 
-        public String toString();
+    String toString();
 
-        public boolean equals(Figure f);
+    boolean equals(Figure f);
 
-        public int hashcode();
+    int hashcode();
 
 
 }

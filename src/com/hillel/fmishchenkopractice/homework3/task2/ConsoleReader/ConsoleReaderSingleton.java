@@ -2,10 +2,10 @@ package com.hillel.fmishchenkopractice.homework3.task2.ConsoleReader;
 
 import java.util.Scanner;
 
-public class ConsoleReaderSingleton {
+class ConsoleReaderSingleton {
     private static ConsoleReaderSingleton instance;
 
-    public static ConsoleReaderSingleton getInstance() {
+    static ConsoleReaderSingleton getInstance() {
         if (instance == null)
             synchronized (ConsoleReaderSingleton.class) {
                 if (instance == null)
@@ -13,8 +13,8 @@ public class ConsoleReaderSingleton {
             }
         return instance;
     }
-    public void consoleRead(){
-        String read = new String();
+    void consoleRead(){
+        String read;
              while(true) {
                  Scanner scanner = new Scanner(System.in);
                  read = scanner.nextLine();

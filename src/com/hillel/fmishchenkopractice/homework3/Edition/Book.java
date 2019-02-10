@@ -34,7 +34,7 @@ abstract class Book implements Edition{
         return author;
     }
 
-    public void setAuthor(String author) {
+    void setAuthor(String author) {
         this.author = author;
     }
 
