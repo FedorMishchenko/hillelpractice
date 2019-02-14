@@ -26,8 +26,8 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
     public T get() {
         if (this.count == 0)
         try {
-            throw new InvalidOperationException();
-        } catch (InvalidOperationException e){
+            throw new UnsupportedOperationException();
+        } catch (UnsupportedOperationException e){
             System.out.println("Stack is empty");
         }
         T result = list.getLast();
@@ -40,8 +40,8 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
     public void remove() {
         if(count == 0){
             try {
-                throw new InvalidOperationException();
-            } catch (InvalidOperationException e) {
+                throw new UnsupportedOperationException();
+            } catch (UnsupportedOperationException e) {
                 System.out.println("Stack is empty");
             }
         }
@@ -56,8 +56,8 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
     public void clear() {
         if (this.count == 0)
             try {
-                throw new InvalidOperationException();
-            } catch (InvalidOperationException e){
+                throw new UnsupportedOperationException();
+            } catch (UnsupportedOperationException e){
                 System.out.println("Stack is empty");
             }
             list.clear();
@@ -74,8 +74,8 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
     public T getStart() {
         if (this.count == 0)
             try {
-                throw new InvalidOperationException();
-            } catch (InvalidOperationException e){
+                throw new UnsupportedOperationException();
+            } catch (UnsupportedOperationException e){
                 System.out.println("Stack is empty");
             }
         return list.getFirst();
@@ -85,8 +85,8 @@ public class StackImpl<T> implements Stack<T>, Iterable<T> {
     public T getEnd() {
         if (this.count == 0)
             try {
-                throw new InvalidOperationException();
-            } catch (InvalidOperationException e){
+                throw new UnsupportedOperationException("Stack is empty");
+            } catch (UnsupportedOperationException e){
                 System.err.println("Stack is empty");
             }
         return list.getLast();

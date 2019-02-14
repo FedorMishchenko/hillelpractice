@@ -13,7 +13,7 @@ import java.io.*;
 
             List list = new List();
             list.showList();
-            System.out.println();
+            print("");
 
             String str;
 
@@ -22,7 +22,7 @@ import java.io.*;
                 str = br.readLine();
 
                 if (str == null) {
-                    System.out.println("Файл пуст!");
+                    print("Файл пуст!");
                 } else {
                     while (str != null) {
                         list.pushBack(str);
@@ -30,7 +30,7 @@ import java.io.*;
                     }
                 }
             } catch (IOException exc) {
-                System.out.println("I/O Error: " + exc);
+                print("I/O Error: " + exc);
             }
             list.showList();
             if (List.getSize() != 0) {
@@ -46,12 +46,16 @@ import java.io.*;
 
                     } while (str.compareTo("Список пуст!") != 0);
                 } catch (IOException exc) {
-                    System.out.println("I/O Error: " + exc);
+                    print("I/O Error: " + exc);
                 }
-                System.out.println();
-                System.out.println("Данные успешно записаны!");
+                print("");
+                print("Данные успешно записаны!");
                 list.showList();
             }
+        }
+
+        public static void print(String s) {
+            System.out.println(s);
         }
     }
 

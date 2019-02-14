@@ -8,9 +8,9 @@ import java.io.*;
 
 public class FileInputAndReverseOutput {
         public static void main(String[] args) throws IOException {
-        File file = new File("E:/text.txt");
-        File file2 = new File("E:/textReverse.txt");
-        Stack stack = new StackImpl<>();
+        File file = new File("E:/projects/text_examples/text.txt");
+        File file2 = new File("E:/projects/text_examples/textReverse.txt");
+        Stack stack = new StackImpl();
 
         try (FileReader in = new FileReader(file);
              FileWriter out = new FileWriter(file2)) {

@@ -32,40 +32,50 @@ class UserHandler {
     }
 
     private void crud(String command) {
-        if (command.equals("create")) {
-            base = createUser();
-            process();
-        } else if (command.equals("read")) {
-            if (base.isEmpty()) print("Empty");
-            else {
-                readData();
-            }
-            process();
-        } else if (command.equals("update")) {
-            base = updateUser();
-            process();
-        } else if (command.equals("all")) {
-            getAll();
-        } else if (command.equals("sort")) {
-            try {
-                sort();
-            } catch (IOException e) {
-                print("Sort failed");
-            }
-        } else if (command.equals("delete")) {
-            int key = scanner.nextInt();
-            base = deleteUser(key);
-            process();
+        switch (command) {
+            case "create":
+                base = createUser();
+                process();
+                break;
+            case "read":
+                if (base.isEmpty()) print("Empty");
+                else {
+                    readData();
+                }
+                process();
+                break;
+            case "update":
+                base = updateUser();
+                process();
+                break;
+            case "all":
+                getAll();
+                break;
+            case "sort":
+                try {
+                    sort();
+                } catch (IOException e) {
+                    print("Sort failed");
+                }
+                break;
+            case "delete":
+                int key = scanner.nextInt();
+                base = deleteUser(key);
+                process();
 
-        } else if (command.equals("exit")) {
-            try {
-                buffer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.exit(0);
-        } else print("Invalid command. Input command - " +
-                "create, read, update, delete, all, sort: ");
+                break;
+            case "exit":
+                try {
+                    buffer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.exit(0);
+            default:
+                print("Invalid command. Input command - " +
+                        "create, read, update, delete, all, sort: ");
+                break;
+        }
     }
 
     private String inputCommand() {
@@ -160,7 +170,7 @@ class UserHandler {
 
     }
 
-    private HashMap createUser() {
+    private HashMap<Integer, User> createUser() {
         User user = new User();
         int key = user.hashCode();
         print("User id = " + key);
@@ -170,7 +180,7 @@ class UserHandler {
 
     }
 
-    private HashMap updateUser() {
+    private HashMap<Integer, User> updateUser() {
         try {
             print("Input user id " +
                     "to update: ");
@@ -194,7 +204,7 @@ class UserHandler {
         return base;
     }
 
-    private HashMap deleteUser(int key) {
+    private HashMap<Integer, User> deleteUser(int key) {
         base.remove(key);
         return base;
     }

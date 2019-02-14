@@ -11,13 +11,12 @@ public class EditionMain {
         book.setName("Энциклопедия");
         book.setAuthor("Петров.");
 
-        edition.print();
-        book.print();
-
         Book book2 = new Directory();
         book2.setName("Энциклопедический словарь");
         book2.setAuthor("Сидоров.");
         Edition edition2 = new Adapter(book2);
+        edition.print();
+        book.print();
         edition2.print();
 
     }

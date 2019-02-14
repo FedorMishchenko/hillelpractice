@@ -1,6 +1,7 @@
 package com.hillel.fmishchenkopractice.homework5.task2.part2;
 
 import java.util.*;
+
 import static java.util.Comparator.*;
 
 public class Main {
@@ -9,16 +10,17 @@ public class Main {
         TreeSet<String> set = new TreeSet<>(comparingInt(String::length));
         List<String> lines = Arrays.asList(SONNET.split("\n"));
         set.addAll(lines);
-        String [] line = lines.toArray(new String[0]);
+        String[] line = lines.toArray(new String[0]);
         System.out.println('\n');
         Arrays.sort(line, comparingInt(String::length));
-        System.out.println(Arrays.toString(line));
-        System.out.println("---------------------------------------");
+        print(Arrays.toString(line));
+        printLine();
         lines.sort(comparingInt(String::length));
         lines.forEach(System.out::println);
-        System.out.println("---------------------------------------");
+        printLine();
         set.forEach(System.out::println);
     }
+
     private static final String SONNET =
 
             "From fairest creatures we desire increase," + '\n' +
@@ -38,5 +40,14 @@ public class Main {
 
                     "Pity the world, or else this glutton be," + '\n' +
                     "To eat the world's due, by the grave and thee";
+
+
+    public static void printLine() {
+        print("---------------------------------------");
+    }
+
+    public static void print(String s) {
+        System.out.println(s);
+    }
 }
 

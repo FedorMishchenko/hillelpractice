@@ -1,5 +1,7 @@
 package com.hillel.fmishchenkopractice.homework2.flowers;
 
+import java.util.stream.Stream;
+
 public class Demo {
     public static void main(String[] args) {
         FlowerFactory factory = Flower::new;
@@ -15,5 +17,6 @@ public class Demo {
         utils.add("chamomile",chamomile);
         utils.bouquet.forEach((k,v) -> System.out.println(
                 "Name = " + k + " " + v.toString()));
+
     }
 }

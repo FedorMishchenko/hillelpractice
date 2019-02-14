@@ -14,5 +14,6 @@ public class Demo {
         service.execute(task1);
         System.out.println(task1.map.size());
         /*service.execute(task2);*/
+        service.shutdown();
     }
 }

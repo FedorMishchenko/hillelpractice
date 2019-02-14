@@ -45,12 +45,12 @@ public class Parking {
                 return;
             }
         }
-        System.out.println("This car is not in the parking.");
+        System.out.println("Car absent in the parking.");
     }
 
 
     public String print() {
-        System.out.println("-----the status of parking spaces-----");
+        System.out.println("----- parking status -----");
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             System.out.printf("Place: %d,  number of the car: %s\n", entry.getKey(), entry.getValue());
         }

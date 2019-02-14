@@ -13,8 +13,6 @@ public class Demo {
         list.add((Candy) factory.create("Roshen","white",false,35));
         list.add((Candy) factory.create("Svitoch","black",true,60));
         list.forEach(System.out::println);
-        System.out.println("--------------------------------------------------------");
-
         Function<List<Candy>,List<Candy>> checkPrice = CandyUtils::checkForCandy;
         check = checkPrice.apply(list);
         check.forEach(System.out::println);
