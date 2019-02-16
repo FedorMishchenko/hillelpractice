@@ -1,6 +1,10 @@
 package com.hillel.fmishchenkopractice.homework7.task2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class OutputMinMax {
     private static int minLength = 1;

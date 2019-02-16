@@ -30,8 +30,10 @@ public class PersonHandler {
         if(str.equals("e")){
             System.exit(0);
         }else if(str.equals("s")){
-            base.server.entrySet()
-                    .stream().sorted()
+            base.server
+                    .entrySet()
+                    .stream()
+                    .sorted()
                     .forEach(System.out::println);
         }
     }

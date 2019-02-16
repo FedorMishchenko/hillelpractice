@@ -12,8 +12,8 @@ public class StackImplTest<T> {
     @Test
     public void add() {
         list = new StackImpl<>();
-        Integer value = new Integer(10);
-        Integer value2 = new Integer(20);
+        Integer value = 10;
+        Integer value2 = 20;
         list.add((T) value);
         list.add((T)value2);
         assertEquals(value2,list.get());
@@ -24,8 +24,8 @@ public class StackImplTest<T> {
     @Test
     public void get() {
         list = new StackImpl<>();
-        Integer value = new Integer(10);
-        Integer value2 = new Integer(20);
+        Integer value = 10;
+        Integer value2 = 20;
         list.add((T)value);
         list.add((T)value2);
         System.out.println("set size before get() = " + list.size());
@@ -39,8 +39,8 @@ public class StackImplTest<T> {
     @Test
     public void remove() {
         list = new StackImpl<>();
-        Integer value = new Integer(10);
-        Integer value2 = new Integer(20);
+        Integer value = 10;
+        Integer value2 = 20;
         list.add((T)value);
         list.add((T)value2);
         System.out.println("set size before remove() = " + list.size());
@@ -54,8 +54,8 @@ public class StackImplTest<T> {
     @Test
     public void clear() {
         list = new StackImpl<>();
-        Integer value = new Integer(10);
-        Integer value2 = new Integer(20);
+        Integer value = 10;
+        Integer value2 = 20;
         list.add((T)value);
         list.add((T)value2);
         System.out.println("set size before clear() = " + list.size());
@@ -67,8 +67,8 @@ public class StackImplTest<T> {
     @Test
     public void getStart() {
         list = new StackImpl<>();
-        Integer value = new Integer(10);
-        Integer value2 = new Integer(20);
+        Integer value = 10;
+        Integer value2 = 20;
         list.add((T)value);
         list.add((T)value2);
         assertEquals(value,list.getStart());
@@ -78,8 +78,8 @@ public class StackImplTest<T> {
     @Test
     public void getEnd() {
         list = new StackImpl<>();
-        Integer value = new Integer(10);
-        Integer value2 = new Integer(20);
+        Integer value = 10;
+        Integer value2 = 20;
         list.add((T)value);
         list.add((T)value2);
         assertEquals(value2,list.getEnd());

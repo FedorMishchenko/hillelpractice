@@ -1,7 +1,7 @@
 package com.hillel.fmishchenkopractice.homework7.task3;
 
 /**
- * revers input
+ * to Upper case first char
  */
 public class Demo {
     public static void main(String[] args) {
