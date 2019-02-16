@@ -5,7 +5,6 @@ abstract class Auto {
     private String model;
     private String color;
     private int maxSpeed;
-    enum type {TRUCK, CAR, MOTO, BUS}
 
     public abstract String getFuel();
 

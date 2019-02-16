@@ -5,26 +5,7 @@ import java.util.Objects;
 public class Car extends Auto {
     private String fuel;
     private String drive;
-    private type Type;
     private String additionalFuel;
-    private int loadCapacity;
-    private int passengerSeats;
-
-    public int getPassengerSeats() {
-        return passengerSeats;
-    }
-
-    public void setPassengerSeats(int passengerSeats) {
-        this.passengerSeats = passengerSeats;
-    }
-
-    public int getLoadCapacity() {
-        return loadCapacity;
-    }
-
-    public void setLoadCapacity(int loadCapacity) {
-        this.loadCapacity = loadCapacity;
-    }
 
     public String getAdditionalFuel() {
         return additionalFuel;
@@ -34,14 +15,10 @@ public class Car extends Auto {
         this.additionalFuel = additionalFuel;
     }
 
-    Car(type T, String fuel, String drive){
-        this.Type = T;
+    Car(String fuel, String drive){
         this.fuel = fuel;
         this.drive = drive;
 
-    }
-    public type getType(){
-        return this.Type;
     }
     @Override
     public String getFuel() {
@@ -58,11 +35,7 @@ public class Car extends Auto {
         return super.toString()  +
                 ", fuel= " + fuel  +
                 ", drive= " + drive  +
-                ", Type= " + Type +
-                ", additionalFuel= " + additionalFuel  +
-                ", loadCapacity= " + loadCapacity +
-                ", passengerSeats= " + passengerSeats +
-                '}';
+                ", additionalFuel= " + additionalFuel;
     }
 
     @Override
@@ -71,12 +44,11 @@ public class Car extends Auto {
         if (!(o instanceof Car)) return false;
         Car sedan = (Car) o;
         return getFuel().equals(sedan.getFuel()) &&
-                getDrive().equals(sedan.getDrive()) &&
-                getType() == sedan.getType();
+                getDrive().equals(sedan.getDrive());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFuel(), getDrive(), getType());
+        return Objects.hash(getFuel(), getDrive());
     }
 }
