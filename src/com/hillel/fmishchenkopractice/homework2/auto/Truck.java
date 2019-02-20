@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework2.car;
+package com.hillel.fmishchenkopractice.homework2.auto;
 
 public class Truck extends Car {
     private int loadCapacity;

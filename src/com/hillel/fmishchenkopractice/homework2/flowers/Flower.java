@@ -6,13 +6,59 @@ public class Flower {
     private String name;
     private String color;
     private Integer age;
-    private Integer price;
-    Flower(String name, String color,
-           Integer age, Integer price) {
-        this.name = name;
-        this.color = color;
-        this.age = age;
-        this.price = price;
+    private float price;
+
+
+    Flower(Builder builder) {
+        this.name = builder.getName();
+        this.color = builder.getColor();
+        this.age = builder.getAge();
+        this.price = builder.getPrice();
+    }
+    public static class Builder{
+        private String name;
+        private String color;
+        private Integer age;
+        private float price;
+
+        public String getName() {
+            return name;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public Builder color(String color) {
+            this.color = color;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Integer getAge() {
+            return age;
+        }
+
+        public Builder age(Integer age) {
+            this.age = age;
+            return this;
+        }
+
+        public float getPrice() {
+            return price;
+        }
+
+        public Builder price(float price) {
+            this.price = price;
+            return this;
+        }
+        public Flower build(){
+            return new Flower(this);
+        }
     }
 
     @Override

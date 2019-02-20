@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework2.car;
+package com.hillel.fmishchenkopractice.homework2.auto;
 
 import java.util.Objects;
 

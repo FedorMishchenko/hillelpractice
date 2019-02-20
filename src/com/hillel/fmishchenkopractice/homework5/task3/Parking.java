@@ -52,7 +52,7 @@ public class Parking {
     public String print() {
         System.out.println("----- parking status -----");
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            System.out.printf("Place: %d,  number of the car: %s\n", entry.getKey(), entry.getValue());
+            System.out.printf("Place: %d,  number of the auto: %s\n", entry.getKey(), entry.getValue());
         }
         return super.toString();
     }

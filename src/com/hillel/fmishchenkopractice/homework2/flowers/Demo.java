@@ -1,22 +1,20 @@
 package com.hillel.fmishchenkopractice.homework2.flowers;
 
-import java.util.stream.Stream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Demo {
     public static void main(String[] args) {
-        FlowerFactory factory = Flower::new;
-        Flower aster = factory.create("aster",
-                "red",5,50);
-        Flower rose = factory.create("rose",
-                "yellow",2,70);
-        Flower chamomile = factory.create("chamomile",
-                "white",1,15);
-        FlowerUtils utils = new FlowerUtils();
-        utils.add("aster",aster);
-        utils.add("rose",rose);
-        utils.add("chamomile",chamomile);
-        utils.bouquet.forEach((k,v) -> System.out.println(
-                "Name = " + k + " " + v.toString()));
+
+        Map<String,Flower> map = new HashMap<>();
+        map.put("1",new Flower.Builder()
+                .name("rose").color("red").age(10).price(10.55f).build());
+        map.put("2",new Flower.Builder()
+                .name("aster").color("yellow").age(8).price(12.5f).build());
+        map.put("3",new Flower.Builder()
+                .name("chamomile").color("white").age(3).price(3.25f).build());
+        map.forEach((k,v) -> System.out.println(
+                "Number=" + k + " : " + v.toString()));
 
     }
 }

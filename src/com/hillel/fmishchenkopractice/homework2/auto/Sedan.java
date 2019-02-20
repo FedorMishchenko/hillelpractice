@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework2.car;
+package com.hillel.fmishchenkopractice.homework2.auto;
 
 public class Sedan extends Car {
     private double engineCapacity;

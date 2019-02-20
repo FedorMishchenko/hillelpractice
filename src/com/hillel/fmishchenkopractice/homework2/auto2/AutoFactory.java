@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework2.auto;
+package com.hillel.fmishchenkopractice.homework2.auto2;
 
 public interface AutoFactory <T>{
     T create(String model,

@@ -4,10 +4,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class Candy extends Sweets{
+public class Bisquit extends Sweets {
     private String name;
     private String color;
-    private boolean sugar;
+    private boolean dough;
     private float price;
 
     public String getName() {
@@ -18,25 +18,25 @@ public class Candy extends Sweets{
         return color;
     }
 
-    public boolean isSugar() {
-        return sugar;
+    public boolean isDough() {
+        return dough;
     }
 
     public float getPrice() {
         return price;
     }
 
-    Candy(@NotNull Builder builder) {
+    Bisquit(@NotNull Builder builder){
         this.name = builder.getName();
         this.color = builder.getColor();
-        this.sugar = builder.isSugar();
+        this.dough = builder.isDough();
         this.price = builder.getPrice();
     }
 
     public static class Builder {
         private String name;
         private String color;
-        private boolean sugar;
+        private boolean dough;
         private float price;
 
         public String getName() {
@@ -57,12 +57,12 @@ public class Candy extends Sweets{
             return this;
         }
 
-        public boolean isSugar() {
-            return sugar;
+        public boolean isDough() {
+            return dough;
         }
 
-        public Builder sugar(boolean sugar) {
-            this.sugar = sugar;
+        public Builder dough(boolean sugar) {
+            this.dough = sugar;
             return this;
         }
 
@@ -74,33 +74,33 @@ public class Candy extends Sweets{
             this.price = price;
             return this;
         }
-        public Candy build(){
-            return new Candy(this);
+        public Bisquit build(){
+            return new Bisquit(this);
         }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Candy)) return false;
-        Candy candy = (Candy) o;
-        return sugar == candy.sugar &&
-                price == candy.price &&
-                name.equals(candy.name) &&
-                color.equals(candy.color);
+        if (!(o instanceof Bisquit)) return false;
+        Bisquit bisquit = (Bisquit) o;
+        return dough == bisquit.dough &&
+                Float.compare(bisquit.price, price) == 0 &&
+                name.equals(bisquit.name) &&
+                color.equals(bisquit.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, color, sugar, price);
+        return Objects.hash(name, color, dough, price);
     }
 
     @Override
     public String toString() {
-        return "Candy{" +
+        return "Bisquit{" +
                 "name='" + name + '\'' +
                 ", color='" + color + '\'' +
-                ", sugar=" + sugar +
+                ", dough=" + dough +
                 ", price=" + price +
                 '}';
     }

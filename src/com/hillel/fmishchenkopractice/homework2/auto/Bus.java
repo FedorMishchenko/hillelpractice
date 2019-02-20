@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework2.car;
+package com.hillel.fmishchenkopractice.homework2.auto;
 
 public class Bus extends Car {
     private int passengerSeats;

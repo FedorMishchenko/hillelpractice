@@ -15,18 +15,18 @@ public class ParkingHandler {
             Parking parking = new Parking(Integer.parseInt(command));
 
             while (true) {
-                print("1 - auto arrival");
-                print("2 - auto departure");
+                print("1 - auto2 arrival");
+                print("2 - auto2 departure");
                 print("3 - parking info");
                 command = reader.readLine();
                 switch (command) {
                     case "1":
-                        print("Input auto's id:");
+                        print("Input auto2's id:");
                         String num = reader.readLine();
                         parking.arrivalAuto(num);
                         break;
                     case "2":
-                        print("Input number auto to departure: ");
+                        print("Input number auto2 to departure: ");
                         String name = reader.readLine();
                         parking.departureAuto(name);
                         break;

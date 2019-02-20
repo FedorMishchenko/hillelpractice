@@ -1,20 +1,28 @@
 package com.hillel.fmishchenkopractice.homework2.candy;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class Demo {
     public static void main(String[] args) {
-        List<Candy> list = new ArrayList<>();
-        List<Candy> check;
-        CandyFactory factory = Candy::new;
-        list.add((Candy) factory.create("Avk","black",true,70));
-        list.add((Candy) factory.create("Roshen","white",false,35));
-        list.add((Candy) factory.create("Svitoch","black",true,60));
-        list.forEach(System.out::println);
-        Function<List<Candy>,List<Candy>> checkPrice = CandyUtils::checkForCandy;
-        check = checkPrice.apply(list);
-        check.forEach(System.out::println);
+        Stream.of(
+                new Candy.Builder().name("avk").color("black").sugar(true).price(43.22f).build(),
+                new Candy.Builder().name("roshen").color("black").sugar(true).price(22.08f).build(),
+                new Candy.Builder().name("milka").color("black").sugar(true).price(32.08f).build(),
+                new Candy.Builder().name("milka").color("black").sugar(true).price(32.08f).build())
+                .distinct()
+                .sorted(new CandyComparator())
+                .forEach(x -> System.out.println(x.toString()));
+
+    }
+    private static class CandyComparator implements java.util.Comparator<Candy> {
+        @Override
+        public int compare(Candy o1, Candy o2) {
+            if (o1.getPrice() == o2.getPrice()) {
+                return 0;
+            } else if (o1.getPrice() > o2.getPrice()) {
+                return 1;
+            }
+            return -1;
+        }
     }
 }
