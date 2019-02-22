@@ -44,7 +44,7 @@ public class AnnotationsProcessor {
     }
 
 
-    static void inspectService(Class<?> service) {
+    private static void inspectService(Class<?> service) {
         if (service.isAnnotationPresent(Service.class)) {
             try {
                 loadService(className);
@@ -55,7 +55,7 @@ public class AnnotationsProcessor {
     }
 
 
-    static Object loadService(String className) throws ClassNotFoundException,
+    private static Object loadService(String className) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {
         Object ob = null;
         Class<?> clazz = Class.forName(className);

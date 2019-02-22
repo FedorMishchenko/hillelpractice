@@ -4,6 +4,7 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 public class DemoReflection {
     private  static Object object;
@@ -11,12 +12,11 @@ public class DemoReflection {
 
     private static String getClassNameFromXML() {
 
-        String s = ClassLoader.getSystemClassLoader().getResource("resources.properties").getFile();
+        String s = Objects.requireNonNull(ClassLoader.getSystemClassLoader()
+                .getResource("resources.properties")).getFile();
         File f = new File(s);
         try (BufferedReader reader = new BufferedReader(new FileReader(s))) {
             return reader.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,14 +24,14 @@ public class DemoReflection {
         return "";
     }
 
-    private Object createInstanceByReflection(String className) {
+    private Object createInstance(String className) {
         try {
             Class clazz = Class.forName(className);
             object = clazz.newInstance();
             try {
-                setDataToPrivateFields("Semen Semenich", "gorbunkov@com",
-                        "Dubrovka", "contrabandist", "50");
-                getPrivateMethod();
+                setData(
+                );
+                getMethod();
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
                 e.getMessage();
@@ -47,41 +47,34 @@ public class DemoReflection {
         return object;
     }
 
-    private void getPrivateMethod() throws NoSuchMethodException {
+    private void getMethod() throws NoSuchMethodException {
         method = object.getClass().getDeclaredMethod("isValidUser");
         method.setAccessible(true);
     }
 
-    private void setDataToPrivateFields(String aName, String aEmail,
-                                        String aAddress, String aProfession,
-                                        String aAge)
+    private void setData()
             throws NoSuchFieldException,
             IllegalAccessException, NoSuchMethodException,
             InvocationTargetException {
-        Field name;
-        Field email;
-        Field address;
-        Field profession;
-        Field age;
-        name = object.getClass().getDeclaredField("name");
-        object.getClass().getMethod("setName", name.getType()).invoke(object,aName);
+        Field name = object.getClass().getDeclaredField("name");
+        object.getClass().getMethod("setName", name.getType()).invoke(object, "Semen Semenich");
 
-        email = object.getClass().getDeclaredField("email");
-        object.getClass().getMethod("setEmail", email.getType()).invoke(object,aEmail);
+        Field email = object.getClass().getDeclaredField("email");
+        object.getClass().getMethod("setEmail", email.getType()).invoke(object, "gorbunkov@com");
 
-        address = object.getClass().getDeclaredField("address");
-        object.getClass().getMethod("setAddress", address.getType()).invoke(object,aAddress);
+        Field address = object.getClass().getDeclaredField("address");
+        object.getClass().getMethod("setAddress", address.getType()).invoke(object, "Dubrovka");
 
-        profession = object.getClass().getDeclaredField("profession");
-        object.getClass().getMethod("setProfession", profession.getType()).invoke(object,aProfession);
+        Field profession = object.getClass().getDeclaredField("profession");
+        object.getClass().getMethod("setProfession", profession.getType()).invoke(object, "contrabandist");
 
-        age = object.getClass().getDeclaredField("age");
-        object.getClass().getMethod("setAge", age.getType()).invoke(object,aAge);
+        Field age = object.getClass().getDeclaredField("age");
+        object.getClass().getMethod("setAge", age.getType()).invoke(object, "50");
     }
 
 
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
-        object = new DemoReflection().createInstanceByReflection(getClassNameFromXML());
+        object = new DemoReflection().createInstance(getClassNameFromXML());
         System.out.println(object.toString());
         System.out.println(method.invoke(object));
     }

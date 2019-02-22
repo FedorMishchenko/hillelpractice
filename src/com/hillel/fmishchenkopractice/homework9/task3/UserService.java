@@ -15,15 +15,16 @@ import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service(name = "Service",
         lazyLoad = false)
 public class UserService {
-    Class<?> clazz = Class.forName("com.hillel.fmishchenkopractice.homework9.task2.Person");
-    Person person;
-    String fileName = "obama.xml";
-    Map<String, String> valueFromXML = new HashMap<>();
-    Map<String, Object> entities = new HashMap<>();
+    private Class<?> clazz = Class.forName("com.hillel.fmishchenkopractice.homework9.task2.Person");
+    private Person person;
+    private String fileName = "obama.xml";
+    private Map<String, String> valueFromXML = new HashMap<>();
+    private Map<String, Object> entities = new HashMap<>();
 
     public UserService() throws ClassNotFoundException {
     }
@@ -74,7 +75,6 @@ public class UserService {
             }
             if ("age".equals(node.getNodeName())) {
                 map.put(("age"), node.getTextContent());
-                continue;
             }
         }
         System.out.println("fillMap");
@@ -83,7 +83,8 @@ public class UserService {
 
     private Document getDocument(String fileName) throws ParserConfigurationException,
             SAXException, IOException {
-        String s = ClassLoader.getSystemClassLoader().getResource(fileName).getFile();
+        String s = Objects.requireNonNull(ClassLoader.getSystemClassLoader()
+                .getResource(fileName)).getFile();
         File xmlFile = new File(s);
 
         System.out.println("getDocument");

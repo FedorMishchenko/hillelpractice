@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class UserService {
 
     private DBService dbService;
-    private ArrayList arrayList = new ArrayList();
+    private ArrayList<Integer> arrayList = new ArrayList<>();
 
     private int min = 0;
     private int max = 5;
@@ -51,10 +51,7 @@ public class UserService {
     }
 
     private void threadsPool() {
-        Thread thread = new Thread(() -> {
-            createUser();
-            dbService.list.add(arrayList);
-        });
+        Thread thread = new Thread(this::run);
         thread.start();
     }
 
@@ -74,6 +71,11 @@ public class UserService {
             arrayList.remove(arrayList.size() - 1);
             index--;
         }
+    }
+
+    private void run() {
+        createUser();
+        dbService.list.add(arrayList);
     }
 }
 
