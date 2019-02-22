@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,15 +19,19 @@ public class Test {
     @Contract(pure = true)
     static Set<String> findUserNamesUniqueInArray(User[] users){
         return null;
-    }
-    /*Integer findMinAge(User[] users){
-        Stream.of(users)
-                .filter(x -> )
-    }
-    Integer findMinAge(User[] users){
+    }//todo: realize
 
-    }*/
+    @NotNull
+    static Integer findMinAge(User[] users){
+        return Stream.of(users)
+                .min(new UserComparator()).get().getAge();
 
+    }
+    @NotNull
+    static Integer findMaxAge(User[] users){
+        return Stream.of(users)
+                .max(new UserComparator()).get().getAge();
+    }
 
     public static void main(String[] args) {
         User user1 = new User(new User.Builder().name("Bil").email("bil@email").age(30).salary(250f),
@@ -42,10 +47,13 @@ public class Test {
                 new User.Address().country("USA").city("New York").street("Avenue3")
                         .house(100).flat(2));
         List<User> users = Arrays.asList(user1, user2, user3, user1,copy);
+        User[] arr = (User[]) users.toArray();
 
         for (User user:findAllUserNamesWithoutRepeat(users)){
             print(user.getName());
         }
+        print("Min age = " + findMinAge(arr));
+        print("Max age = " + findMaxAge(arr));
 
     }
 
@@ -53,5 +61,11 @@ public class Test {
         System.out.println(str);
     }
 
+    private static class UserComparator implements Comparator<User> {
+        @Override
+        public int compare(User o1, User o2) {
+            return o1.getName().compareTo(o2.getName());
+        }
+    }
 }
 

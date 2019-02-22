@@ -31,7 +31,7 @@ public class User {
         return address;
     }
 
-    public User(@NotNull Builder builder, Address address){
+    public User(@NotNull Builder builder, Address address) {
         this.name = builder.getName();
         this.email = builder.getEmail();
         this.age = builder.getAge();
@@ -68,24 +68,51 @@ public class User {
                 '}';
     }
 
-    static class Builder{
+    static class Builder {
         private String name;
         private String email;
         private int age;
         private float salary;
 
-        String getName(){return this.name;}
-        String getEmail(){return this.email;}
-        int getAge(){return this.age;}
-        float getSalary(){return this.salary;}
-        Builder name(String name){this.name = name; return this;}
-        Builder email(String email){this.email = email; return this;}
-        Builder age(int age){this.age = age; return this;}
-        Builder salary(float salary){this.salary = salary; return this;}
+        String getName() {
+            return this.name;
+        }
+
+        String getEmail() {
+            return this.email;
+        }
+
+        int getAge() {
+            return this.age;
+        }
+
+        float getSalary() {
+            return this.salary;
+        }
+
+        Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        Builder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        Builder salary(float salary) {
+            this.salary = salary;
+            return this;
+        }
     }
 
 
-    static class Address{
+    static class Address {
         private String country;
         private String city;
         private String street;
@@ -101,51 +128,51 @@ public class User {
             this.flat = flat;
         }
 
-        public Address() {
+        Address() {
 
         }
 
-        public String getCountry() {
+        String getCountry() {
             return country;
         }
 
-        public String getCity() {
+        String getCity() {
             return city;
         }
 
-        public Address city(String city) {
+        Address city(String city) {
             this.city = city;
             return this;
         }
 
-        public Address country(String country) {
+        Address country(String country) {
             this.country = country;
             return this;
         }
 
-        public String getStreet() {
+        String getStreet() {
             return street;
         }
 
-        public Address street(String street) {
+        Address street(String street) {
             this.street = street;
             return this;
         }
 
-        public Integer getHouse() {
+        Integer getHouse() {
             return house;
         }
 
-        public Address house(Integer house) {
+        Address house(Integer house) {
             this.house = house;
             return this;
         }
 
-        public Integer getFlat() {
+        Integer getFlat() {
             return flat;
         }
 
-        public Address flat(Integer flat) {
+        Address flat(Integer flat) {
             this.flat = flat;
             return this;
         }
