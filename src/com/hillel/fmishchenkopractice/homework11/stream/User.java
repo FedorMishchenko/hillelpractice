@@ -1,14 +1,14 @@
 package com.hillel.fmishchenkopractice.homework11.stream;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.Objects;
 
 public class User {
     private String name;
     private String email;
     private int age;
-    private float salary;
+    private long salary;
     private Address address;
 
     public String getName() {
@@ -23,7 +23,7 @@ public class User {
         return age;
     }
 
-    public float getSalary() {
+    public  long getSalary() {
         return salary;
     }
 
@@ -40,6 +40,7 @@ public class User {
 
     }
 
+    @Contract(value = "null -> false", pure = true)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,11 +69,12 @@ public class User {
                 '}';
     }
 
+
     static class Builder {
         private String name;
         private String email;
         private int age;
-        private float salary;
+        private long salary;
 
         String getName() {
             return this.name;
@@ -86,7 +88,7 @@ public class User {
             return this.age;
         }
 
-        float getSalary() {
+        long getSalary() {
             return this.salary;
         }
 
@@ -105,7 +107,7 @@ public class User {
             return this;
         }
 
-        Builder salary(float salary) {
+        Builder salary(long salary) {
             this.salary = salary;
             return this;
         }
@@ -177,6 +179,7 @@ public class User {
             return this;
         }
 
+        @Contract(value = "null -> false", pure = true)
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
