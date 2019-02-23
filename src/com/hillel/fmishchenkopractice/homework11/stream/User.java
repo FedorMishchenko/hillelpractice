@@ -3,13 +3,20 @@ package com.hillel.fmishchenkopractice.homework11.stream;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
+import java.util.UUID;
 
 public class User {
     private String name;
+    private UUID id;
     private String email;
     private int age;
     private long salary;
     private Address address;
+
+
+    public UUID getId() {return id;}
+
+    public void setId(UUID id) {this.id = id;}
 
     public String getName() {
         return name;
@@ -31,12 +38,13 @@ public class User {
         return address;
     }
 
-    public User(@NotNull Builder builder, Address address) {
+    public User(@NotNull Builder builder) {
         this.name = builder.getName();
+        this.id = builder.getId();
         this.email = builder.getEmail();
         this.age = builder.getAge();
         this.salary = builder.getSalary();
-        this.address = address;
+        this.address = builder.getAddress();
 
     }
 
@@ -47,7 +55,8 @@ public class User {
         if (!(o instanceof User)) return false;
         User user = (User) o;
         return age == user.age &&
-                Float.compare(user.salary, salary) == 0 &&
+                user.salary == salary &&
+                id.equals(user.id) &&
                 name.equals(user.name) &&
                 email.equals(user.email) &&
                 address.equals(user.address);
@@ -55,14 +64,15 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, age, salary, address);
+        return Objects.hash(name,id, email, age, salary, address);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
+                "id=" + id  +
+                ", name=" + name +
+                ", email=" + email +
                 ", age=" + age +
                 ", salary=" + salary +
                 ", address=" + this.address.toString() +
@@ -75,6 +85,10 @@ public class User {
         private String email;
         private int age;
         private long salary;
+        private UUID uuid;
+        private Address address;
+
+        UUID getId(){return this.uuid;}
 
         String getName() {
             return this.name;
@@ -92,9 +106,27 @@ public class User {
             return this.salary;
         }
 
+        Address getAddress(){return this.address;}
+
+        Builder address(Address address){
+            this.address = address;
+            return this;
+        }
+
         Builder name(String name) {
             this.name = name;
             return this;
+        }
+
+        Builder id(UUID id){
+            if(uuid!= null){
+                this.uuid = id;
+            }
+            else this.uuid = UUID.randomUUID();
+            return this;
+        }
+        Builder id(){
+            return id(null);
         }
 
         Builder email(String email) {
@@ -201,9 +233,9 @@ public class User {
         @Override
         public String toString() {
             return "{" +
-                    "country='" + getCountry() + '\'' +
-                    ", city='" + getCity() + '\'' +
-                    ", street='" + getStreet() + '\'' +
+                    "country=" + getCountry() +
+                    ", city=" + getCity()  +
+                    ", street=" + getStreet()  +
                     ", house=" + getHouse() +
                     ", flat=" + getFlat() +
                     '}';

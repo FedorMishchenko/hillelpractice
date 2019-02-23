@@ -31,8 +31,8 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        Optional<Object> op = Optional.ofNullable(null);
-        System.out.println(op);
+       /* Optional<Object> op = Optional.ofNullable(null);
+        System.out.println(op);*/
 
         new Test().print(10.0f).print(new Object()).print("-0.22").print(new Test());
 

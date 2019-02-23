@@ -9,47 +9,49 @@ import java.util.stream.Stream;
 
 public class Test {
     @NotNull
-    public static List<User> list() {
-        User user1 = new User(new User.Builder().name("Bill").email("bil@email").age(19).salary(250),
-                new User.Address().country("USA").city("New York").street("Avenue12")
-                        .house(256).flat(12));
-        User copy = new User(new User.Builder().name("Bill").email("bil@email").age(19).salary(250),
-                new User.Address().country("USA").city("New York").street("Avenue12")
-                        .house(256).flat(12));
-        User user2 = new User(new User.Builder().name("Tom").email("tom@email").age(46).salary(180),
-                new User.Address().country("USA").city("New York").street("Avenue8")
-                        .house(3).flat(8));
-        User user3 = new User(new User.Builder().name("Jack").email("jack@email").age(30).salary(330),
-                new User.Address().country("USA").city("New York").street("Avenue3")
-                        .house(100).flat(2));
-        return Arrays.asList(user1, user2, user3, user1, copy);
+    public  List<User> list() {
+        User user1 = new User(new User.Builder().id().name("Bill")
+                .email("bill@email").age(19).salary(250)
+                .address(new User.Address().country("USA").city("New York")
+                .street("Avenue12").house(256).flat(12)));
+        User user2 = new User(new User.Builder().id().name("Tom")
+                .email("tom@email").age(27).salary(189)
+                .address(new User.Address().country("USA").city("New York")
+                .street("Avenue8").house(13).flat(9)));
+        User user3 = new User(new User.Builder().id().name("Jack")
+                .email("jack@email").age(31).salary(280)
+                .address(new User.Address().country("USA").city("New York")
+                .street("Avenue2").house(112).flat(89)));
+        User user4 = new User(new User.Builder().id().name("Sara")
+                .age(21).salary(200)
+                .address(new User.Address().country("USA").city("New York")
+                .street("Avenue12").house(258).flat(4)));
+        return Arrays.asList(user1, user2, user3, user1, user4);
     }
-    private static List<User> findAllUserNamesWithoutRepeat(@NotNull List<User> users) {
-        print("Find all User names without repeat: ");
+    private  List<User> findAllUserNamesWithoutRepeat(@NotNull List<User> users) {
         return users.stream().distinct().collect(Collectors.toList());
     }
 
     @NotNull
     @Contract(pure = true)
-    private static Set<String> findUserNamesUniqueInArray(User[] users) {
+    private  Set<String> findUserNamesUniqueInArray(User[] users) {
         Set<String> names = new HashSet<>();
         Set<User> tmp = Stream.of(users)
                 .collect(Collectors.toSet());
         for (User u : tmp) {
             names.add(u.getName());
         }
-        print("Find User names unique in array: ");
         return names;
     }
 
     @NotNull
-    private static Integer findMinAge(User[] users) {
+    private  Integer findMinAge(User[] users) {
         return Stream.of(users)
                 .min(new AgeComparator()).get().getAge();
     }
 
     @NotNull
-    private static Integer findMaxAge(User[] users) {
+    private  Integer findMaxAge(User[] users) {
         return Stream.of(users)
                 .max(new AgeComparator()).get().getAge();
     }
@@ -60,33 +62,54 @@ public class Test {
                  .collect(Collectors.summarizingLong(User::getSalary));
 
      }
-  /* List<User> findUsersWhereAgeBeatweenAndNameContainsSymbol(
+   private  List<User> findUsersWhereAgeBetweenAndNameContainsSymbol(
            Integer fromAge, Integer toAge, String symbol){
-
-   }*/
+        return list()
+                .stream()
+                .filter(x -> x.getAge() < toAge && x.getAge() > fromAge)
+                .filter(x -> x.getName().contains(symbol))
+                .collect(Collectors.toList());
+   }
+    private  List<User> deleteAllUsersWhereEmailIsNull(User [] users){
+        return Stream.of(users)
+                .filter(x -> x.getEmail()!= null)
+                .collect(Collectors.toList());
+    }
     public static void main(String[] args) {
+        Test x = new Test();
         print("All Users:");
-        for (User user : list()) {
+        for (User user : x.list()) {
             print(user.toString());
         }
         print("______________________________");
-        Map<Integer, User> map = new HashMap<>();
-        int i = 0;
-        for (User user : list()) map.put(i++, user);
-        User[] arr = (User[]) list().toArray();
-
-        for (User user : findAllUserNamesWithoutRepeat(list())) {
+    /*    Map<UUID, User> map = new HashMap<>();
+        for (User user : x.list()) map.put(user.getId(), user);*/
+        User[] arr = (User[]) x.list().toArray();
+        print("Find all User names without repeat: ");
+        for (User user : x.findAllUserNamesWithoutRepeat(x.list())) {
             print(user.getName());
         }
         print("______________________________");
-        for (String name : Objects.requireNonNull(findUserNamesUniqueInArray(arr))) {
+        print("Find User names unique in array: ");
+        for (String name : Objects.requireNonNull(x.findUserNamesUniqueInArray(arr))) {
             print(name);
         }
         print("______________________________");
-        print("Min age = " + findMinAge(arr));
-        print("Max age = " + findMaxAge(arr));
+        print("Min User age = " + x.findMinAge(arr));
+        print("Max User age = " + x.findMaxAge(arr));
         print("______________________________");
-        print(findSumOfSalariesForAllUsers(list()).toString());
+        print(findSumOfSalariesForAllUsers(x.list()).toString());
+        print("User's salaries sum = " + findSumOfSalariesForAllUsers(x.list()).getSum());
+        print("______________________________");
+        print("Find Users where age between and name contains symbol:");
+        for (User user:x.findUsersWhereAgeBetweenAndNameContainsSymbol(18,31,"B")){
+            print(user.toString());
+        }
+        print("______________________________");
+        print("Delete all Users where email is null:");
+        for(User user: x.deleteAllUsersWhereEmailIsNull(arr)){
+            print(user.getName() + ": " + user.getEmail());
+        }
         print("______________________________");
     }
 
