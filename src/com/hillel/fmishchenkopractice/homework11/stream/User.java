@@ -69,14 +69,14 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id  +
+        return "User[" +
+                "id= " + id  +
                 ", name=" + name +
                 ", email=" + email +
                 ", age=" + age +
                 ", salary=" + salary +
-                ", address=" + this.address.toString() +
-                '}';
+                ", address: " + this.address.toString();
+
     }
 
 
@@ -232,13 +232,12 @@ public class User {
 
         @Override
         public String toString() {
-            return "{" +
-                    "country=" + getCountry() +
+            return  "country=" + getCountry() +
                     ", city=" + getCity()  +
                     ", street=" + getStreet()  +
                     ", house=" + getHouse() +
                     ", flat=" + getFlat() +
-                    '}';
+                    ']';
         }
 
 

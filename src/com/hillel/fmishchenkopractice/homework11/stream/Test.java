@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class Test {
     @NotNull
     public  List<User> list() {
-        User user1 = new User(new User.Builder().id().name("Bill")
+        User user1 = new User(new User.Builder().id(new UUID(1L,3L)).name("Bill")
                 .email("bill@email").age(19).salary(250)
                 .address(new User.Address().country("USA").city("New York")
                 .street("Avenue12").house(256).flat(12)));
@@ -24,7 +24,7 @@ public class Test {
                 .street("Avenue2").house(112).flat(89)));
         User user4 = new User(new User.Builder().id().name("Sara")
                 .age(21).salary(200)
-                .address(new User.Address().country("USA").city("New York")
+                .address(new User.Address().country("Canada").city("Toronto")
                 .street("Avenue12").house(258).flat(4)));
         return Arrays.asList(user1, user2, user3, user1, user4);
     }
@@ -82,8 +82,6 @@ public class Test {
             print(user.toString());
         }
         print("______________________________");
-    /*    Map<UUID, User> map = new HashMap<>();
-        for (User user : x.list()) map.put(user.getId(), user);*/
         User[] arr = (User[]) x.list().toArray();
         print("Find all User names without repeat: ");
         for (User user : x.findAllUserNamesWithoutRepeat(x.list())) {

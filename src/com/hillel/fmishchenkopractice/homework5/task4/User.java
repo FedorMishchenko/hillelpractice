@@ -7,17 +7,7 @@ public class User implements Comparable<User> {
     private int age;
     private String name;
     private String email;
-    Integer id = this.hashCode();
-
-    public User(String name,String email,int age){
-        this.name = name;
-        this.email = email;
-        this.age = age;
-    }
-
-    User() {
-
-    }
+    private Integer id = this.hashCode();
 
     public String getEmail() {
         return email;
@@ -64,8 +54,20 @@ public class User implements Comparable<User> {
         }
         return Integer.compare(age, user.age);
     }
-    public boolean equals(User u){
-        return Objects.equals(this.email, u.email);
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getAge() == user.getAge() &&
+                getName().equals(user.getName()) &&
+                getEmail().equals(user.getEmail()) &&
+                id.equals(user.id);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAge(), getName(), getEmail(), id);
+    }
 }
