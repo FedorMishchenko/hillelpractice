@@ -1,5 +1,7 @@
 package com.hillel.fmishchenkopractice.homework5.task4;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
 public class User implements Comparable<User> {
@@ -9,24 +11,29 @@ public class User implements Comparable<User> {
     private String email;
     private Integer id = this.hashCode();
 
+    public User() {}
+
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public User email(String email) {
         this.email = email;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public User name(String name) {
         this.name = name;
+        return this;
     }
 
-    public void setAge(int age) {
+    public User age(int age) {
         this.age = age;
+        return this;
     }
 
     public int getAge() {
@@ -43,7 +50,7 @@ public class User implements Comparable<User> {
     }
 
     @Override
-    public int compareTo(User user) {
+    public int compareTo(@NotNull User user) {
         if (!getName().equals(user.getName())) {
             if (getName().compareTo(user.name) > 0) return 1;
             else return -1;

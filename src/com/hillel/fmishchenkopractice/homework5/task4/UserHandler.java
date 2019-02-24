@@ -1,223 +1,187 @@
 package com.hillel.fmishchenkopractice.homework5.task4;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
-class UserHandler {
-    private BufferedReader buffer =
-            new BufferedReader(new InputStreamReader(System.in));
-    private Scanner scanner = new Scanner(System.in);
-    private HashMap<Integer, User> base = new HashMap<>();
+public class UserHandler {
+    private Data data = new DataBase();
+    private BufferedReader reader = new BufferedReader(
+            new InputStreamReader(System.in));
 
-    public void process() {
-            String command = inputCommand();
-            try {
-                command = buffer.readLine();
-            } catch (IOException e) {
-                print("Input error");
+    public void process(){
+        try {
+            while (true) {
+                info();
+                crud(reader.readLine());
             }
-            crud(command);
+        } catch (IOException e) {
+            e.getMessage();
             process();
+        }
     }
 
-    private void crud(String command) {
-        switch (command) {
+    private void crud(@NotNull String args) throws IOException {
+        switch (args) {
             case "1":
-                createCase(createUser());
+                create();
                 break;
             case "2":
-                readCase();
+                read();
                 break;
             case "3":
-                createCase(updateUser());
+                update();
                 break;
             case "4":
-                getAll();
+                delete();
                 break;
             case "5":
-                sorted();
+                readAll();
                 break;
             case "6":
-                delete();
+                sort();
                 break;
             case "0":
                 exit();
+                break;
             default:
-                defaultCase();
                 break;
         }
     }
 
-    private void createCase(HashMap<Integer, User> user) {
-        base = user;
-        process();
-    }
-
-    private void readCase() {
-        if (base.isEmpty()) print("Empty");
-        else {
-            readData();
+    private void readAll() {
+        if(!isEmpty()) {
+            for (User x : data.getAll()) {
+                print(x.toString());
+                print("___________________");
+            }
         }
-        process();
     }
 
-    private void defaultCase() {
-        print("Invalid command. Input command - " +
-                "1:create, 2:read, 3:update, 4:all, 5:sort, 6:delete, 0:exit ");
-    }
-
-    private void exit() {
-        try {
-            buffer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void update() throws IOException {
+        if(!isEmpty()) {
+            print("Input key to update:");
+            Integer key = Integer.parseInt(reader.readLine());
+            User x = data.get(key);
+            print("Input field to update:");
+            print("Switch 1: name," + '\n' +
+                    "       2: email," + '\n' +
+                    "       3: age," + '\n' +
+                    "       4: update all.");
+            switch (reader.readLine()) {
+                case "1":
+                    print("input name:");
+                    x.name(reader.readLine());
+                    break;
+                case "2":
+                    print("input email:");
+                    x.email(reader.readLine());
+                    break;
+                case "3":
+                    print("input age:");
+                    x.age(Integer.parseInt(reader.readLine()));
+                    break;
+                case "4":
+                    print("input name:");
+                    x.name(reader.readLine());
+                    print("input email:");
+                    x.email(reader.readLine());
+                    print("input age:");
+                    x.age(Integer.parseInt(reader.readLine()));
+                    break;
+            }
+            data.put(key, x);
         }
+    }
+
+    private void exit() throws IOException {
+        reader.close();
         System.exit(0);
     }
 
-    private void delete() {
-        print("Insert user id:");
-        int key = scanner.nextInt();
-        createCase(deleteUser(key));
-    }
-
-    private void sorted() {
-        try {
-            sort();
-        } catch (IOException e) {
-            print("Sort failed");
-        }
-    }
-
-    private String inputCommand() {
-        String command = "";
-        print("Input command: ");
-        print("1 = create, 2 = read, 3 = update, 4 = all users, 5 = sort, 6 = delete ");
-        print("0 = system.exit");
-        return command;
-    }
-
     private void sort() throws IOException {
-        String choice = input();
-        switch (choice) {
-            case "name":
-                name();
-                break;
-            case "email":
-                email();
-                break;
-            case "age":
-                age();
-                break;
-            default:
-                printDefault();
+        if(!isEmpty()) {
+            print("Input:" + '\n'
+                    + "1 = sort, 2 = sort from age to age," +
+                    " 3 = sort by name startWith.");
+            switch (reader.readLine()) {
+                case "1":
+                    for (User x : data.sort()) {
+                        print(x.toString());
+                        print("___________________");
+                    }
+                    break;
+                case "2":
+                    print("Input form:");
+                    Integer arg1 = Integer.parseInt(reader.readLine());
+                    print("Input to:");
+                    Integer arg2 = Integer.parseInt(reader.readLine());
+                    for (User x : data.sort(arg1, arg2)) {
+                        print(x.toString());
+                        print("___________________");
+                    }
+                    break;
+                case "3":
+                    print("Input Name startWith:");
+                    for (User x : data.sort(reader.readLine())) {
+                        print(x.toString());
+                        print("___________________");
+                    }
+                    break;
+            }
         }
     }
 
-    private void printDefault() {
-        print("Can't sort.Invalid input command.");
+    private void delete() throws IOException {
+        if (!isEmpty()){
+            print("Input id for delete:");
+            data.delete(Integer.parseInt(reader.readLine()));
+        }
+    }
+
+    private boolean isEmpty() {
+        if (data.size() == 0) {
+            print("Is empty.");
+            return true;
+        }
+        return false;
+    }
+
+    private User initialize() throws IOException {
+        print("Input name:");
+        String name = reader.readLine();
+        print("Input email:");
+        String email = reader.readLine();
+        print("Input age:");
+        String age = reader.readLine();
+        return new User().name(name).email(email)
+                .age(Integer.parseInt(age));
+    }
+
+    private void read() throws IOException {
+        if(!isEmpty()){
+            print("Input key:");
+            String key = reader.readLine();
+            print(data.get(Integer.parseInt(key)).toString());
+        }
+    }
+
+    private void create() throws IOException {
+        print("Input key:");
+        data.put(Integer.parseInt(reader.readLine()), initialize());
+    }
+
+    @NotNull
+    private void info() {
+        print("Input: " + '\n' +
+                "1 = create, 2 = read, 3 = update," +
+                " 4 = delete, 5 = read all 6 = sort" + '\n' +
+                "0 = exit.");
     }
 
     private void print(String s) {
         System.out.println(s);
     }
-
-    private void age() {
-        ArrayList<User> compareAge = new ArrayList<>(base.values());
-        compareAge.sort(Comparator.comparingInt(User::getAge));
-        for (User user : compareAge) {
-            System.out.println(user.getName() + "\t" + user.getEmail() + "\t" +
-                    user.getAge());
-        }
-    }
-
-    private void email() {
-        ArrayList<User> compareEmail = new ArrayList<User>(base.values());
-        compareEmail.sort((o1, o2) -> {
-            if (o1.getEmail().equals(o2.getEmail())) {
-                return 1;
-            } else return -1;
-        });
-        for (User user : compareEmail) {
-            System.out.println(user.getName() + "\t" + user.getEmail() + "\t" +
-                    user.getAge());
-        }
-    }
-
-    private void name() {
-        ArrayList<User> compareName = new ArrayList<User>(base.values());
-        compareName.sort((o1, o2) -> {
-            if (o1.getName().equals(o2.getName())) {
-                return 1;
-            } else return -1;
-        });
-        for (User user : compareName) {
-            System.out.println(user.getName() + "\t" + user.getEmail() + "\t" +
-                    user.getAge());
-        }
-    }
-
-    private String input() throws IOException {
-        print("Input user's field for sort base:" +
-                " name, email, age");
-        return buffer.readLine();
-    }
-
-    private void getAll() {
-        if (!base.isEmpty()) {
-            ArrayList<User> list = new ArrayList<>(base.values());
-            for (User user : list) {
-                print(user.toString());
-                print("________________");
-            }
-        }
-    }
-
-    private void readData() {
-        print("Input user id " +
-                "to read: ");
-        int key = scanner.nextInt();
-        System.out.println(base.containsKey(key));
-        System.out.println(base.get(key));
-        process();
-
-    }
-
-    private HashMap<Integer, User> createUser() {
-        User user = new User();
-        int key = ThreadLocalRandom.current().nextInt(1,100);
-        print("User id = " + key);
-        base.put(key, user);
-        updateUser();
-        return base;
-
-    }
-
-    private HashMap<Integer, User> updateUser() {
-        try {
-            print("Input user id " +
-                    "to update: ");
-            int key = scanner.nextInt();
-            User user = base.get(key);
-            print("Set user name: ");
-            user.setName(buffer.readLine());
-            print("Set user email: ");
-            user.setEmail(buffer.readLine());
-            print("Set user age: ");
-            user.setAge(scanner.nextInt());
-            base.put(key, user);
-        } catch (IOException e) {
-            print("Update fail");
-        }
-        return base;
-    }
-
-    private HashMap<Integer, User> deleteUser(int key) {
-        base.remove(key);
-        return base;
-    }
 }
-
