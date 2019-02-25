@@ -12,8 +12,6 @@ public class User implements Comparable<User> {
     private String email;
     private Integer id;
 
-    public User() {}
-
     public String getEmail() {
         return email;
     }

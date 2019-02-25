@@ -50,6 +50,7 @@ public class UserMenu implements DatabaseManager {
                 exit();
                 break;
             default:
+                log.warning("Illegal argument");
                 break;
         }
     }
@@ -65,33 +66,30 @@ public class UserMenu implements DatabaseManager {
 
     private void update() throws IOException {
         if (!isEmpty()) {
-            print("Input key to update:");
+            print("Enter key to update:");
             Integer key = Integer.parseInt(reader.readLine());
             User x = data.get(key);
-            print("Input field to update:");
-            print("       1: Name," + '\n' +
-                  "       2: Email," + '\n' +
-                  "       3: Age," + '\n' +
-                  "       4: Update all.");
+            print("Enter field to update:");
+            format("%-15s", "1: Name", "2: Email", "3: Age", "4: Update all");
             switch (reader.readLine()) {
                 case "1":
-                    print("input name:");
+                    print("Enter name:");
                     x.name(reader.readLine());
                     break;
                 case "2":
-                    print("input email:");
+                    print("Enter email:");
                     x.email(reader.readLine());
                     break;
                 case "3":
-                    print("input age:");
+                    print("Enter age:");
                     x.age(Integer.parseInt(reader.readLine()));
                     break;
                 case "4":
-                    print("input name:");
+                    print("Enter name:");
                     x.name(reader.readLine());
-                    print("input email:");
+                    print("Enter email:");
                     x.email(reader.readLine());
-                    print("input age:");
+                    print("Enter age:");
                     x.age(Integer.parseInt(reader.readLine()));
                     break;
             }
@@ -115,9 +113,9 @@ public class UserMenu implements DatabaseManager {
                     }
                     break;
                 case "2":
-                    print("Input form:");
+                    print("Enter form:");
                     Integer arg1 = Integer.parseInt(reader.readLine());
-                    print("Input to:");
+                    print("Enter to:");
                     Integer arg2 = Integer.parseInt(reader.readLine());
                     printf();
                     for (User x : data.sort(arg1, arg2)) {
@@ -125,7 +123,7 @@ public class UserMenu implements DatabaseManager {
                     }
                     break;
                 case "3":
-                    print("Input Name startWith:");
+                    print("Enter Name startWith:");
                     printf();
                     for (User x : data.sort(reader.readLine())) {
                         printf(x);
@@ -144,7 +142,7 @@ public class UserMenu implements DatabaseManager {
 
     private void delete() throws IOException {
         if (!isEmpty()) {
-            print("Input id for delete:");
+            print("Enter id for delete:");
             data.delete(Integer.parseInt(reader.readLine()));
         }
     }
@@ -158,11 +156,11 @@ public class UserMenu implements DatabaseManager {
     }
 
     private User initialize(Integer id) throws IOException {
-        print("Input name:");
+        print("Enter name:");
         String name = reader.readLine();
-        print("Input email:");
+        print("Enter email:");
         String email = reader.readLine();
-        print("Input age:");
+        print("Enter age:");
         String age = reader.readLine();
         return new User().name(name).email(email)
                 .age(Integer.parseInt(age)).id(id);
@@ -170,7 +168,7 @@ public class UserMenu implements DatabaseManager {
 
     private void read() throws IOException {
         if (!isEmpty()) {
-            print("Input key:");
+            print("Enter key:");
             String key = reader.readLine();
             printf();
             printf(data.get(Integer.parseInt(key)));
@@ -178,7 +176,7 @@ public class UserMenu implements DatabaseManager {
     }
 
     private void create() throws IOException {
-        print("Input key:");
+        print("Enter key:");
         Integer id = Integer.parseInt(reader.readLine());
         data.put(id, initialize(id));
     }
@@ -196,6 +194,13 @@ public class UserMenu implements DatabaseManager {
         print("         SELECT Option:");
     }
 
+    private void format(String s, String s2, String s3, String s4, String s5) {
+        System.out.printf(s, s2);
+        System.out.printf("%-15s", s3);
+        System.out.printf("%-15s", s4);
+        System.out.printf("%-15s", s5);
+    }
+
     private void printf(@NotNull User x) {
         System.out.printf("%-5s",x.getId());
         System.out.printf("%-15s",x.getName());
@@ -205,10 +210,7 @@ public class UserMenu implements DatabaseManager {
     }
 
     private void printf() {
-        System.out.printf("%-5s","ID");
-        System.out.printf("%-15s","Name");
-        System.out.printf("%-15s","Email");
-        System.out.printf("%-15s","Age");
+        format("%-5s", "ID", "Name", "Email", "Age");
         print("");
     }
 

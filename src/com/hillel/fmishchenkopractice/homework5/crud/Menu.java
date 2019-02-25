@@ -9,38 +9,34 @@ import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 public class Menu implements DatabaseManager{
-    private static final Logger log = Logger.getLogger(Menu.class.getName());
-     private ProcessorManager processor;
-     private ProcessorManager getProcessor(ProcessorManager processor){
-         return this.processor = processor;
-     }
+     private static final Logger log = Logger.getLogger(Menu.class.getName());
+     private static final ProcessorManager processor = new MySQLProcessor();
+
      @Override
     public void displayMenu() {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))){
-            processor = getProcessor(new MySQLProcessor());
-            /*processor = getProcessor(new MapProcessor());*/
             menu();
-            options(reader, processor);
+            options(reader);
         }catch (IOException e){
             log.warning(e.toString());
         }
     }
 
-    private  void options(@NotNull BufferedReader reader, ProcessorManager processor) throws IOException{
+    private  void options(@NotNull BufferedReader reader) throws IOException{
         while (true) {
             switch (reader.readLine()) {
                 case "1":
-                    new Create(processor);
+                    new Create(Menu.processor);
                     break;
                 case "2":
-                    new Read(processor);
+                    new Read(Menu.processor);
                     break;
                 case "3":
-                    new Update(processor);
+                    new Update(Menu.processor);
                     break;
                 case "4":
-                    new Delete(processor);
+                    new Delete(Menu.processor);
                     break;
                 case "5":
                     exit();
