@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 class Create {
     private static final Logger log = Logger.getLogger(Create.class.getName());
-    Create(Strategy strategy){
+    Create(Processor processor){
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))){
             print("Create record:");
@@ -17,7 +17,7 @@ class Create {
             String email = reader.readLine();
             print("Enter age:");
             Integer age = Integer.parseInt(reader.readLine());
-            strategy.create(name,email,age);
+            processor.create(name,email,age);
             new Menu().displayMenu();
         }catch (IOException e){
             log.info(e.getMessage());

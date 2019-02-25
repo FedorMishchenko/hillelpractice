@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-public class DBProcessor implements Strategy{
-    private static final Logger log = Logger.getLogger(DBProcessor.class.getName());
+public class MySQLProcessor implements Processor {
+    private static final Logger log = Logger.getLogger(MySQLProcessor.class.getName());
     private Connection connection;
     private Statement statement = null;
     private ResultSet resultSet = null;
 
-    DBProcessor() {
+    MySQLProcessor() {
         String serverName = "localhost";
         String password = "password";
         Properties properties = new Properties();
@@ -33,14 +33,14 @@ public class DBProcessor implements Strategy{
         }
     }
     public void create(String name,String email,Integer age){
-        DBProcessor processor = new DBProcessor();
+        MySQLProcessor processor = new MySQLProcessor();
         String stmt = "INSERT INTO user (name,email,age) " +
                 "VALUES ('" + name + "','" + email + "','" + age + "')";
         processor.executeStatement(stmt);
     }
     public void read() {
         try {
-            DBProcessor processor = new DBProcessor();
+            MySQLProcessor processor = new MySQLProcessor();
             String stmt = "SELECT id, name, email, age FROM user";
             ResultSet resultSet = processor.readRecords(stmt);
             if (resultSet.next()) {
@@ -70,7 +70,7 @@ public class DBProcessor implements Strategy{
         String email = reader.readLine();
         print("Enter new age");
         String age = reader.readLine();
-        DBProcessor processor = new DBProcessor();
+        MySQLProcessor processor = new MySQLProcessor();
         String stmt = "UPDATE user SET name = '" +
                 name + "',email = '" + email + "',age = '" +
                 age + "' WHERE id = " + id;
@@ -78,7 +78,7 @@ public class DBProcessor implements Strategy{
     }
     private void updateRecord(String id) {
         try {
-            DBProcessor processor = new DBProcessor();
+            MySQLProcessor processor = new MySQLProcessor();
             String stmt = "SELECT id, name, email, age FROM user WHERE id = " + id;
             ResultSet resultSet = processor.readRecords(stmt);
             if(resultSet.next()){
@@ -103,7 +103,7 @@ public class DBProcessor implements Strategy{
         String confirm_delete = reader.readLine();
 
         if ("y".equals(confirm_delete)) {
-            DBProcessor processor = new DBProcessor();
+            MySQLProcessor processor = new MySQLProcessor();
             String stmt = "DELETE FROM user WHERE id = " + id;
             processor.executeStatement(stmt);
             print("Record successful delete");
@@ -112,7 +112,7 @@ public class DBProcessor implements Strategy{
 
     private void deleteRecord(String id) {
         try {
-            DBProcessor processor = new DBProcessor();
+            MySQLProcessor processor = new MySQLProcessor();
             String stmt = "SELECT id, name, email, age FROM user WHERE id = " + id;
             ResultSet resultSet = processor.readRecords(stmt);
             if (resultSet.next()) {

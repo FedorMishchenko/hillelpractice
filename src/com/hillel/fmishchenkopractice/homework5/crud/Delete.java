@@ -9,13 +9,13 @@ import java.util.logging.Logger;
 
 class Delete {
     private static final Logger log = Logger.getLogger(Delete.class.getName());
-    Delete(@NotNull Strategy strategy) {
+    Delete(@NotNull Processor processor) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))) {
             print("Delete record");
             print("Enter id to delete: ");
             String id = reader.readLine();
-            strategy.delete(reader, id);
+            processor.delete(reader, id);
             new Menu().displayMenu();
         } catch (IOException e) {
             log.info(e.getMessage());

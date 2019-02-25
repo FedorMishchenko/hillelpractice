@@ -10,36 +10,36 @@ import java.util.logging.Logger;
 
 public class Menu implements DatabaseManager{
     private static final Logger log = Logger.getLogger(Menu.class.getName());
-     private Strategy strategy;
-     private Strategy getStrategy(Strategy strategy){
-         return this.strategy = strategy;
+     private Processor processor;
+     private Processor getProcessor(Processor processor){
+         return this.processor = processor;
      }
      @Override
     public void displayMenu() {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))){
-            strategy = getStrategy(new DBProcessor());
+            processor = getProcessor(new MySQLProcessor());
             menu();
-            options(reader,strategy);
+            options(reader, processor);
         }catch (IOException e){
             log.info(e.getMessage());
         }
     }
 
-    private  void options(@NotNull BufferedReader reader, Strategy strategy) throws IOException{
+    private  void options(@NotNull BufferedReader reader, Processor processor) throws IOException{
         while (true) {
             switch (reader.readLine()) {
                 case "1":
-                    new Create(strategy);
+                    new Create(processor);
                     break;
                 case "2":
-                    new Read(strategy);
+                    new Read(processor);
                     break;
                 case "3":
-                    new Update(strategy);
+                    new Update(processor);
                     break;
                 case "4":
-                    new Delete(strategy);
+                    new Delete(processor);
                     break;
                 case "5":
                     exit();

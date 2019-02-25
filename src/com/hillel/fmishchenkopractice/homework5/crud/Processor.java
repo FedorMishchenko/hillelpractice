@@ -3,7 +3,7 @@ package com.hillel.fmishchenkopractice.homework5.crud;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public interface Strategy {
+public interface Processor {
     void create(String name,String email, Integer age);
     void read();
     void update(BufferedReader reader, String id) throws IOException;

@@ -9,13 +9,13 @@ import java.util.logging.Logger;
 
 class Update {
     private static final Logger log = Logger.getLogger(Update.class.getName());
-    Update(@NotNull Strategy strategy) {
+    Update(@NotNull Processor processor) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))){
             print("Update records:");
             print("Enter user id to update:");
             String id = reader.readLine();
-            strategy.update(reader, id);
+            processor.update(reader, id);
             print("Record update successful");
             new Menu().displayMenu();
         } catch (IOException e) {

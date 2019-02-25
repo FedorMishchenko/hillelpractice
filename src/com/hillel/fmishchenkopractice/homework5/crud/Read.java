@@ -3,9 +3,9 @@ package com.hillel.fmishchenkopractice.homework5.crud;
 import org.jetbrains.annotations.NotNull;
 
 class Read {
-    Read(@NotNull Strategy strategy) {
+    Read(@NotNull Processor processor) {
         try {
-            strategy.read();
+            processor.read();
         }finally {
             new Menu().displayMenu();
         }
