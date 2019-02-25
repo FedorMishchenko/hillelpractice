@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 class Create {
     private static final Logger log = Logger.getLogger(Create.class.getName());
-    Create(Processor processor){
+    Create(ProcessorManager processor){
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))){
             print("Create record:");

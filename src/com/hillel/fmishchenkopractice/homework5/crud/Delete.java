@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 class Delete {
     private static final Logger log = Logger.getLogger(Delete.class.getName());
-    Delete(@NotNull Processor processor) {
+    Delete(@NotNull ProcessorManager processor) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))) {
             print("Delete record");

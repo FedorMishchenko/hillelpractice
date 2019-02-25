@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-public class MySQLProcessor implements Processor {
+public class MySQLProcessor implements ProcessorManager {
     private static final Logger log = Logger.getLogger(MySQLProcessor.class.getName());
     private Connection connection;
     private Statement statement = null;

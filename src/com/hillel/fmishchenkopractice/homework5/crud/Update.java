@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 class Update {
     private static final Logger log = Logger.getLogger(Update.class.getName());
-    Update(@NotNull Processor processor) {
+    Update(@NotNull ProcessorManager processor) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))){
             print("Update records:");

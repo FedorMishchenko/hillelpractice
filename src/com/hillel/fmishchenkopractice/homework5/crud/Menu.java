@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 
 public class Menu implements DatabaseManager{
     private static final Logger log = Logger.getLogger(Menu.class.getName());
-     private Processor processor;
-     private Processor getProcessor(Processor processor){
-         return this.processor = processor;
+     private ProcessorManager processor;
+     private ProcessorManager getProcessor(ProcessorManager processorManager){
+         return this.processor = processorManager;
      }
      @Override
     public void displayMenu() {
@@ -26,7 +26,7 @@ public class Menu implements DatabaseManager{
         }
     }
 
-    private  void options(@NotNull BufferedReader reader, Processor processor) throws IOException{
+    private  void options(@NotNull BufferedReader reader, ProcessorManager processor) throws IOException{
         while (true) {
             switch (reader.readLine()) {
                 case "1":
