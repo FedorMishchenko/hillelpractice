@@ -29,7 +29,7 @@ public class MySQLProcessor implements ProcessorManager {
             connection = DriverManager
                     .getConnection(url, properties);
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.warning(e.getSQLState());
         }
     }
     public void create(String name,String email,Integer age){
@@ -57,7 +57,7 @@ public class MySQLProcessor implements ProcessorManager {
             }
             processor.disconnectFromDB();
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.warning(e.getSQLState());
         }
     }
 
@@ -93,16 +93,16 @@ public class MySQLProcessor implements ProcessorManager {
             }
             processor.disconnectFromDB();
         }catch (SQLException e){
-            log.info(e.getSQLState());
+            log.warning(e.getSQLState());
         }
     }
     public void delete(@NotNull BufferedReader reader, String id) throws IOException {
         deleteRecord(id);
         print();
-        print("Enter 'y' to confirm deletion: ");
-        String confirm_delete = reader.readLine();
+        log.info("Enter 'y' to confirm deletion: ");
+        String confirm = reader.readLine();
 
-        if ("y".equals(confirm_delete)) {
+        if ("y".equals(confirm)) {
             MySQLProcessor processor = new MySQLProcessor();
             String stmt = "DELETE FROM user WHERE id = " + id;
             processor.executeStatement(stmt);
@@ -133,7 +133,7 @@ public class MySQLProcessor implements ProcessorManager {
             }
             processor.disconnectFromDB();
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.warning(e.getSQLState());
         }
     }
 
@@ -153,7 +153,7 @@ public class MySQLProcessor implements ProcessorManager {
             statement = connection.createStatement();
             return statement.executeQuery(stmt);
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.warning(e.getSQLState());
         }
         return resultSet;
     }
@@ -163,7 +163,7 @@ public class MySQLProcessor implements ProcessorManager {
             statement = connection.createStatement();
             statement.executeUpdate(stmt);
         }catch (SQLException e){
-            log.info(e.getSQLState());
+            log.warning(e.getSQLState());
         }
     }
 
@@ -171,7 +171,7 @@ public class MySQLProcessor implements ProcessorManager {
         try {
             connection.close();
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.warning(e.getSQLState());
         }
     }
     private void printf(Object object) {

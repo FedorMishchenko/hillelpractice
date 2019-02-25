@@ -21,7 +21,7 @@ public class MapProcessor implements ProcessorManager {
             Integer id = Integer.parseInt(reader.readLine());
             map.put(id,new User().name(name).email(email).age(age).id(id));
         }catch (IOException e){
-            log.info(e.getLocalizedMessage());
+            log.warning(e.toString());
         }
 
     }
@@ -37,16 +37,13 @@ public class MapProcessor implements ProcessorManager {
 
     @Override
     public void update(BufferedReader reader, String id) throws IOException {
-        try (BufferedReader read = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Enter name:");
-            String name = read.readLine();
+            String name = reader.readLine();
             System.out.println("Enter email:");
-            String email = read.readLine();
+            String email = reader.readLine();
             System.out.println("Enter age:");
-            Integer age = Integer.parseInt(read.readLine());
+            Integer age = Integer.parseInt(reader.readLine());
             map.put(Integer.parseInt(id), new User().name(name).email(email).age(age).id(Integer.parseInt(id)));
-        }
-
     }
 
     @Override

@@ -20,7 +20,7 @@ class Create {
             processor.create(name,email,age);
             new Menu().displayMenu();
         }catch (IOException e){
-            log.info(e.getMessage());
+            log.warning(e.toString());
         }
     }
 

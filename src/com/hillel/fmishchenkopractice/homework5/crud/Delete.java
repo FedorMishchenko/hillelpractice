@@ -18,7 +18,7 @@ class Delete {
             processor.delete(reader, id);
             new Menu().displayMenu();
         } catch (IOException e) {
-            log.info(e.getMessage());
+            log.warning(e.toString());
         }
     }
 

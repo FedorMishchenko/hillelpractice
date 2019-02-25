@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class UserMenu implements DatabaseManager {
     private static final Logger log = Logger.getLogger(UserMenu.class.getName());
-    private Data data = new DataImpl();
+    private DataImpl data = new DataImpl();
     private BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
    @Override
@@ -68,8 +68,8 @@ public class UserMenu implements DatabaseManager {
             print("Input key to update:");
             Integer key = Integer.parseInt(reader.readLine());
             User x = data.get(key);
-            print("Input field number to update:");
-            print("Switch 1: Name," + '\n' +
+            print("Input field to update:");
+            print("       1: Name," + '\n' +
                   "       2: Email," + '\n' +
                   "       3: Age," + '\n' +
                   "       4: Update all.");
@@ -183,7 +183,6 @@ public class UserMenu implements DatabaseManager {
         data.put(id, initialize(id));
     }
 
-    @NotNull
     private void menu() {
         print("____________________________________________");
         print("         CRUD Options: ");

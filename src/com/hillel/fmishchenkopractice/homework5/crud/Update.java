@@ -19,7 +19,7 @@ class Update {
             print("Record update successful");
             new Menu().displayMenu();
         } catch (IOException e) {
-            log.info(e.getMessage());
+            log.warning(e.toString());
         }
     }
     private void print(String s) {

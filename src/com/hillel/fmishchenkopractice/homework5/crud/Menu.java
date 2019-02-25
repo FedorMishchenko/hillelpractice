@@ -23,7 +23,7 @@ public class Menu implements DatabaseManager{
             menu();
             options(reader, processor);
         }catch (IOException e){
-            log.info(e.getMessage());
+            log.warning(e.toString());
         }
     }
 
@@ -66,7 +66,7 @@ public class Menu implements DatabaseManager{
     }
 
     private void printEx() {
-        log.info("Illegal argument");
+        log.warning("Illegal argument");
     }
 
     private void print(String s) {
