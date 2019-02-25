@@ -29,8 +29,7 @@ public class DemoReflection {
             Class clazz = Class.forName(className);
             object = clazz.newInstance();
             try {
-                setData(
-                );
+                setData();
                 getMethod();
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();

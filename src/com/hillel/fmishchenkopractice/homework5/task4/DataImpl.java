@@ -6,9 +6,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class DataBase implements Data {
+public class DataImpl implements Data {
     private Map<Integer,User> map = new HashMap<>();
-
     @Override
     public Integer size(){
         return map.size();

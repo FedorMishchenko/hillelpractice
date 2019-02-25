@@ -1,29 +1,32 @@
 package com.hillel.fmishchenkopractice.homework5.task4;
 
+import com.hillel.fmishchenkopractice.homework5.crud.DatabaseManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Logger;
 
-public class UserHandler {
-    private Data data = new DataBase();
+public class UserMenu implements DatabaseManager {
+    private static final Logger log = Logger.getLogger(UserMenu.class.getName());
+    private Data data = new DataImpl();
     private BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
-
-    public void process(){
+   @Override
+    public void displayMenu() {
         try {
             while (true) {
-                info();
-                crud(reader.readLine());
+                menu();
+                options(reader.readLine());
             }
         } catch (IOException e) {
-            e.getMessage();
-            process();
+            log.info(e.getMessage());
+            displayMenu();
         }
     }
 
-    private void crud(@NotNull String args) throws IOException {
+    private void options(@NotNull String args) throws IOException {
         switch (args) {
             case "1":
                 create();
@@ -52,24 +55,24 @@ public class UserHandler {
     }
 
     private void readAll() {
-        if(!isEmpty()) {
+        if (!isEmpty()) {
+                printf();
             for (User x : data.getAll()) {
-                print(x.toString());
-                print("___________________");
+                printf(x);
             }
         }
     }
 
     private void update() throws IOException {
-        if(!isEmpty()) {
+        if (!isEmpty()) {
             print("Input key to update:");
             Integer key = Integer.parseInt(reader.readLine());
             User x = data.get(key);
-            print("Input field to update:");
-            print("Switch 1: name," + '\n' +
-                    "       2: email," + '\n' +
-                    "       3: age," + '\n' +
-                    "       4: update all.");
+            print("Input field number to update:");
+            print("Switch 1: Name," + '\n' +
+                  "       2: Email," + '\n' +
+                  "       3: Age," + '\n' +
+                  "       4: Update all.");
             switch (reader.readLine()) {
                 case "1":
                     print("input name:");
@@ -102,15 +105,13 @@ public class UserHandler {
     }
 
     private void sort() throws IOException {
-        if(!isEmpty()) {
-            print("Input:" + '\n'
-                    + "1 = sort, 2 = sort from age to age," +
-                    " 3 = sort by name startWith.");
+        if (!isEmpty()) {
+            info();
             switch (reader.readLine()) {
                 case "1":
+                    printf();
                     for (User x : data.sort()) {
-                        print(x.toString());
-                        print("___________________");
+                        printf(x);
                     }
                     break;
                 case "2":
@@ -118,24 +119,31 @@ public class UserHandler {
                     Integer arg1 = Integer.parseInt(reader.readLine());
                     print("Input to:");
                     Integer arg2 = Integer.parseInt(reader.readLine());
+                    printf();
                     for (User x : data.sort(arg1, arg2)) {
-                        print(x.toString());
-                        print("___________________");
+                        printf(x);
                     }
                     break;
                 case "3":
                     print("Input Name startWith:");
+                    printf();
                     for (User x : data.sort(reader.readLine())) {
-                        print(x.toString());
-                        print("___________________");
+                        printf(x);
                     }
                     break;
             }
         }
     }
 
+    private void info() {
+        print("         Enter:");
+        print("         1: Sort");
+        print("         2: Sort form age to age");
+        print("         3: Sort by Name startWith");
+    }
+
     private void delete() throws IOException {
-        if (!isEmpty()){
+        if (!isEmpty()) {
             print("Input id for delete:");
             data.delete(Integer.parseInt(reader.readLine()));
         }
@@ -149,7 +157,7 @@ public class UserHandler {
         return false;
     }
 
-    private User initialize() throws IOException {
+    private User initialize(Integer id) throws IOException {
         print("Input name:");
         String name = reader.readLine();
         print("Input email:");
@@ -157,29 +165,54 @@ public class UserHandler {
         print("Input age:");
         String age = reader.readLine();
         return new User().name(name).email(email)
-                .age(Integer.parseInt(age));
+                .age(Integer.parseInt(age)).id(id);
     }
 
     private void read() throws IOException {
-        if(!isEmpty()){
+        if (!isEmpty()) {
             print("Input key:");
             String key = reader.readLine();
-            print(data.get(Integer.parseInt(key)).toString());
+            printf();
+            printf(data.get(Integer.parseInt(key)));
         }
     }
 
     private void create() throws IOException {
         print("Input key:");
-        data.put(Integer.parseInt(reader.readLine()), initialize());
+        Integer id = Integer.parseInt(reader.readLine());
+        data.put(id, initialize(id));
     }
 
     @NotNull
-    private void info() {
-        print("Input: " + '\n' +
-                "1 = create, 2 = read, 3 = update," +
-                " 4 = delete, 5 = read all 6 = sort" + '\n' +
-                "0 = exit.");
+    private void menu() {
+        print("____________________________________________");
+        print("         CRUD Options: ");
+        print("         1: Create Database Records");
+        print("         2: Read Database Record");
+        print("         3: Update Database Records");
+        print("         4: Delete Database Records");
+        print("         5: Read All Database Records");
+        print("         6: Sort Records");
+        print("         0: Exit");
+        print("         SELECT Option:");
     }
+
+    private void printf(@NotNull User x) {
+        System.out.printf("%-5s",x.getId());
+        System.out.printf("%-15s",x.getName());
+        System.out.printf("%-15s",x.getEmail());
+        System.out.printf("%-15s",x.getAge());
+        print("");
+    }
+
+    private void printf() {
+        System.out.printf("%-5s","ID");
+        System.out.printf("%-15s","Name");
+        System.out.printf("%-15s","Email");
+        System.out.printf("%-15s","Age");
+        print("");
+    }
+
 
     private void print(String s) {
         System.out.println(s);

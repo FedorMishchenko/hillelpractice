@@ -1,5 +1,6 @@
 package com.hillel.fmishchenkopractice.homework5.task4;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -9,7 +10,7 @@ public class User implements Comparable<User> {
     private int age;
     private String name;
     private String email;
-    private Integer id = this.hashCode();
+    private Integer id;
 
     public User() {}
 
@@ -40,6 +41,15 @@ public class User implements Comparable<User> {
         return age;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public User id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
     public String toString() {
         return
                 "User name = " + this.name + '\n' +
@@ -62,6 +72,7 @@ public class User implements Comparable<User> {
         return Integer.compare(age, user.age);
     }
 
+    @Contract(value = "null -> false", pure = true)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
