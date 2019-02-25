@@ -8,6 +8,6 @@ public class Demo {
         this.manager = manager;
     }
     public static void main(String[] args) {
-        new Demo(new UserMenu()).manager.displayMenu();
+        new Demo(new Menu()).manager.displayMenu();
     }
 }

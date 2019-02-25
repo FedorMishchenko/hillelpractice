@@ -11,14 +11,15 @@ import java.util.logging.Logger;
 public class Menu implements DatabaseManager{
     private static final Logger log = Logger.getLogger(Menu.class.getName());
      private ProcessorManager processor;
-     private ProcessorManager getProcessor(ProcessorManager processorManager){
-         return this.processor = processorManager;
+     private ProcessorManager getProcessor(ProcessorManager processor){
+         return this.processor = processor;
      }
      @Override
     public void displayMenu() {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))){
             processor = getProcessor(new MySQLProcessor());
+            /*processor = getProcessor(new MapProcessor());*/
             menu();
             options(reader, processor);
         }catch (IOException e){
