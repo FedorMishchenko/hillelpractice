@@ -24,19 +24,20 @@ public class Menu implements DatabaseManager{
     }
 
     private  void options(@NotNull BufferedReader reader) throws IOException{
+        Options option = new Options();
         while (true) {
             switch (reader.readLine()) {
                 case "1":
-                    new Create(Menu.processor);
+                    option.create(Menu.processor);
                     break;
                 case "2":
-                    new Read(Menu.processor);
+                    option.read(Menu.processor);
                     break;
                 case "3":
-                    new Update(Menu.processor);
+                    option.update(Menu.processor);
                     break;
                 case "4":
-                    new Delete(Menu.processor);
+                    option.delete(Menu.processor);
                     break;
                 case "5":
                     exit();

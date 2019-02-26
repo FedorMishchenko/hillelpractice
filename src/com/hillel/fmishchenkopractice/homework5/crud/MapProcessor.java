@@ -43,7 +43,8 @@ public class MapProcessor implements ProcessorManager {
         String email = reader.readLine();
         print("Enter age:");
         Integer age = Integer.parseInt(reader.readLine());
-            map.put(Integer.parseInt(id), new User().name(name).email(email).age(age).id(Integer.parseInt(id)));
+        map.put(Integer.parseInt(id),map.get(id)
+                .name(name).email(email).age(age).id(Integer.parseInt(id)));
     }
 
     public void print(String s) {

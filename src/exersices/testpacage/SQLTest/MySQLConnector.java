@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class MySQLConnector {
     public static void main(String[] args) {
-        Connection connection;
+    /*    Connection connection;
         try {
             String driver = "com.mysql.jdbc.Driver";
             Class.forName(driver);
@@ -32,7 +32,7 @@ public class MySQLConnector {
         }
         catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private static void print(String s) {
