@@ -17,8 +17,7 @@ public class Options {
     public void create(QueryManager manager) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))) {
-            String stmt = manager.adminCreateQuery(reader);
-            new MySQLUtil().executeStatement(stmt);
+            new MySQLUtil().executeStatement(manager.adminCreateQuery(reader));
             System.out.println("The record successful created");
             new AdminMenu().displayMenu();
         } catch (IOException e) {
