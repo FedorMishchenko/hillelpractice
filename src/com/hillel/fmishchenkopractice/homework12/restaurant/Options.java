@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 public class Options {
     private static final Logger logger =
             Logger.getLogger(Options.class.getName());
-    private final String password = "www";
 
     public void create(Query query) {
         try (BufferedReader reader = new BufferedReader(
@@ -25,6 +24,7 @@ public class Options {
             else new Menu().displayMenu();
         } catch (IOException e) {
             logger.warning(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -38,12 +38,13 @@ public class Options {
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(System.in))){
                 /*System.out.println("Enter password:");*/
-                if((query.getClass().getName()).equals(AdminMenu.class.getName()))
+                /*if((query.getClass().getName()).equals(AdminMenu.class.getName()))*/
                     new AdminMenu().displayMenu();
-                else
-                    new Menu().displayMenu();
+             /*   else
+                    new Login().displayMenu();*/
             }catch (IOException e){
                 logger.warning(e.getMessage());
+                e.printStackTrace();
             }
         }
     }

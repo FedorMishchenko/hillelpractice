@@ -18,6 +18,7 @@ public class Menu {
             options(reader);
         }catch (IOException e){
             log.warning(e.toString());
+            e.printStackTrace();
         }
     }
     private void options(@NotNull BufferedReader reader)throws IOException{
@@ -53,7 +54,7 @@ public class Menu {
         }
     }
 
-    public static void menu(){
+    public void menu(){
         print("MENU:");
         print("1: Create order");
         print("2: Read order");
@@ -64,7 +65,7 @@ public class Menu {
         print("7: Create customer");
         print("0: Exit");
     }
-    private static void print(String s) {
+    private void print(String s) {
         System.out.println("         " + s);
     }
 }

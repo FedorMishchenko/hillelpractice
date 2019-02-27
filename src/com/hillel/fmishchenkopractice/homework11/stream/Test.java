@@ -77,7 +77,7 @@ public class Test {
     }
     public static void main(String[] args) {
         Test x = new Test();
-        print("All Users:");
+        print("All User:");
         for (User user : x.list()) {
             print(user.toString());
         }
@@ -99,12 +99,12 @@ public class Test {
         print(findSumOfSalariesForAllUsers(x.list()).toString());
         print("User's salaries sum = " + findSumOfSalariesForAllUsers(x.list()).getSum());
         print("______________________________");
-        print("Find Users where age between and name contains symbol:");
+        print("Find User where age between and name contains symbol:");
         for (User user:x.findUsersWhereAgeBetweenAndNameContainsSymbol(18,31,"B")){
             print(user.toString());
         }
         print("______________________________");
-        print("Delete all Users where email is null:");
+        print("Delete all User where email is null:");
         for(User user: x.deleteAllUsersWhereEmailIsNull(arr)){
             print(user.getName() + ": " + user.getEmail());
         }
