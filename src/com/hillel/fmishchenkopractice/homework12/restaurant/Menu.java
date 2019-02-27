@@ -1,60 +1,65 @@
 package com.hillel.fmishchenkopractice.homework12.restaurant;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.*;
 import java.util.logging.Logger;
+
+import static java.lang.System.exit;
 
 public class Menu {
     private static final Logger log = Logger.getLogger(Menu.class.getName());
-    private static Connection connection;
-    private static Statement statement = null;
-    private static ResultSet resultSet = null;
+    public void displayMenu(){
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(System.in))){
+            menu();
+            options(reader);
+        }catch (IOException e){
+            log.warning(e.toString());
+        }
+    }
+    private void options(@NotNull BufferedReader reader)throws IOException{
+        while (true){
+            switch (reader.readLine()){
+                case "1":
 
-    public static void main(String[] args) {
+                    break;
+                case "2":
 
+                    break;
+                case "3":
 
-        try {
-            String driver = "com.mysql.jdbc.Driver";
-            Class.forName(driver);
-            String serverName = "localhost";
-            String dataBaseName = "restaurant";
-            String url = "jdbc:mysql://" + serverName + "/" + dataBaseName;
-            String username = "root";
-            String password = "password";
-            connection = DriverManager.getConnection(url,username,password);
-            System.out.println("Connection: " + connection);
+                    break;
+                case "4":
 
-/*            try (BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(System.in))){
-                log.info("Enter item:");
-                String item = reader.readLine();
-                log.info("Enter price");
-                String price = reader.readLine();
-                String stmt = "INSERT INTO restaurant.menu (item, price)" +
-                        "VALUES ('"  + item + "','" + price + "')";
-                statement = connection.createStatement();
-                statement.executeUpdate(stmt);
-            }catch (IOException | SQLException e){
-                log.warning(e.toString());
-            }*/
-
-            String query = "Select * FROM restaurant.menu";
-            Statement stm = connection.createStatement();
-            try (ResultSet res = stm.executeQuery(query)) {
-                String id;
-                String item;
-                String price;
-                while (res.next()){
-                    item = res.getString(2);
-                    System.out.printf("%-10s",item);
-                }
-                connection.close();
+                    break;
+                case "5":
+                    new AdminMenu().check();
+                    break;
+                case "6":
+                    new Options().read();
+                    break;
+                case "0":
+                   exit(0);
+                    default:
+                        log.warning("Illegal argument");
             }
         }
-        catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+    }
+
+    public static void menu(){
+        print("MENU:");
+        print("1: Create order");
+        print("2: Update order");
+        print("3: Read order");
+        print("4: Delete order");
+        print("5: Admin menu");
+        print("6: Restaurant MENU");
+        print("0: Exit");
+    }
+    private static void print(String s) {
+        System.out.println("         " + s);
     }
 }
