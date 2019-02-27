@@ -13,16 +13,16 @@ public class MySQLUtil {
     public MySQLUtil() {
         try {
         String driver = "com.mysql.jdbc.Driver";
-            String username = "root";
-            String password = "password";
+        String username = "root";
+        String password = "password";
         Class.forName(driver);
         String serverName = "localhost";
         String dataBaseName = "restaurant";
         Properties properties = new Properties();
-            properties.setProperty("user", username);
-            properties.setProperty("password", password);
-            properties.setProperty("useSSL", "false");
-            properties.setProperty("autoReconnect", "true");
+        properties.setProperty("user", username);
+        properties.setProperty("password", password);
+        properties.setProperty("useSSL", "false");
+        properties.setProperty("autoReconnect", "true");
         String url = "jdbc:mysql://" + serverName + "/" + dataBaseName;
             connection = DriverManager.getConnection(url,properties );
         } catch (SQLException | ClassNotFoundException e) {
@@ -31,7 +31,6 @@ public class MySQLUtil {
     }
 
     public void disconnectFromDB() {
-
         try {
             resultSet.close();
             statement.close();

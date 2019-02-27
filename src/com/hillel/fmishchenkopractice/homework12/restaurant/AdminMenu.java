@@ -12,6 +12,7 @@ import static java.lang.System.exit;
 
 public class AdminMenu {
     private static final Logger logger = Logger.getLogger(AdminMenu.class.getName());
+    private final String password = "www";
     public void displayMenu(){
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))){
@@ -53,13 +54,13 @@ public class AdminMenu {
         print("2: Read menu");
         print("3: Update item");
         print("4: Delete item");
-        print("5: MENU");
+        print("5: Order menu");
         print("0: Exit");
     }
     public void check(){
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             print("Enter password:");
-            if((reader.readLine()).equals("www")) {
+            if((reader.readLine()).equals(password)) {
                 displayMenu();
             } else {
                 logger.info("Invalid password");

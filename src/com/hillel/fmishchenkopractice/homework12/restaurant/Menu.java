@@ -57,7 +57,7 @@ public class Menu {
         print("3: Read order");
         print("4: Delete order");
         print("5: Admin menu");
-        print("6: Restaurant MENU");
+        print("6: Items");
         print("0: Exit");
     }
     private static void print(String s) {

@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 public class Options {
     private static final Logger logger =
             Logger.getLogger(Options.class.getName());
+    private final String password = "www";
 
     public void create(Query query) {
         try (BufferedReader reader = new BufferedReader(
@@ -32,26 +33,39 @@ public class Options {
         } catch (SQLException e) {
             logger.warning(e.getSQLState().concat(e.getMessage()));
         } finally {
-            new AdminMenu().displayMenu();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
+                System.out.println("Enter password:");
+                if((reader.readLine()).equals(password))
+                    new AdminMenu().displayMenu();
+                else
+                    new Menu().displayMenu();
+            }catch (IOException e){
+                logger.warning(e.getMessage());
+            }
         }
     }
 
     public void update(Query query) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))) {
-            System.out.println("Enter item id:");
+            System.out.println("Enter record id:");
             String id = reader.readLine();
+            String stmt = null;
             try {
                 createResultSet(new MySQLUtil(), query.update(id));
             } catch (SQLException e) {
                 logger.warning(e.getSQLState().concat(e.getMessage()));
             }
-            System.out.println("Enter item:");
-            String item = reader.readLine();
-            System.out.println("Enter price:");
-            String price = reader.readLine();
-            String stmt = "UPDATE restaurant.menu SET item = '" +
-                    item + "' ,price = '" + price + "' WHERE id = " + id;
+            if((query.getClass().getName()).equals(AdminQuery.class.getName())) {
+                System.out.println("Enter item:");
+                String item = reader.readLine();
+                System.out.println("Enter price:");
+                String price = reader.readLine();
+                stmt = "UPDATE restaurant.menu SET item = '" +
+                        item + "' ,price = '" + price + "' WHERE id = " + id;
+            }else {
+                //todo: waiter query logic
+            }
             new MySQLUtil().executeStatement(stmt);
             System.out.println("The record successful updated");
             new AdminMenu().displayMenu();
@@ -62,14 +76,19 @@ public class Options {
 
     public void delete(Query query){
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
-            System.out.println("Enter item id to delete:");
+            System.out.println("Enter record id to delete:");
+            String stmt;
             String id = reader.readLine();
             MySQLUtil util = new MySQLUtil();
-            try {
-                String stmt = "SELECT id, item, price FROM restaurant.menu WHERE id = " + id;
-                createResultSet(new MySQLUtil(),stmt);
-            }catch (SQLException e){
-                logger.warning(e.getSQLState());
+            if((query.getClass().getName()).equals(AdminQuery.class.getName())){
+                try {
+                    stmt = "SELECT id, item, price FROM restaurant.menu WHERE id = " + id;
+                    createResultSet(new MySQLUtil(),stmt);
+                }catch (SQLException e){
+                    logger.warning(e.getSQLState());
+                }
+            }else {
+                //todo: waiter query logic
             }
             System.out.println("Enter 'y' to confirm delete");
             String confirmDelete = reader.readLine();
