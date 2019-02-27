@@ -20,7 +20,9 @@ public class Options {
                 new InputStreamReader(System.in))) {
             new MySQLUtil().executeStatement(query.create(reader));
             System.out.println("The record successful created");
+            if((query.getClass().getName()).equals(AdminMenu.class.getName()))
             new AdminMenu().displayMenu();
+            else new Menu().displayMenu();
         } catch (IOException e) {
             logger.warning(e.getMessage());
         }
@@ -33,9 +35,10 @@ public class Options {
         } catch (SQLException e) {
             logger.warning(e.getSQLState().concat(e.getMessage()));
         } finally {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
-                System.out.println("Enter password:");
-                if((reader.readLine()).equals(password))
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(System.in))){
+                /*System.out.println("Enter password:");*/
+                if((query.getClass().getName()).equals(AdminMenu.class.getName()))
                     new AdminMenu().displayMenu();
                 else
                     new Menu().displayMenu();
@@ -68,7 +71,9 @@ public class Options {
             }
             new MySQLUtil().executeStatement(stmt);
             System.out.println("The record successful updated");
+            if((query.getClass().getName()).equals(AdminMenu.class.getName()))
             new AdminMenu().displayMenu();
+            else new Menu().displayMenu();
         } catch (IOException e) {
             logger.warning(e.getMessage());
         }
@@ -88,7 +93,15 @@ public class Options {
                     logger.warning(e.getSQLState());
                 }
             }else {
-                //todo: waiter query logic
+                try{
+                    stmt = "SELECT id, item, price FROM restaurant.order WHERE " +
+                            "customer_id = " + id;
+                    createResultSet(new MySQLUtil(),stmt);
+                }catch (SQLException e){
+                    logger.warning(e.getSQLState());
+                }
+                util.executeStatement(query.delete(id));
+                new Menu().displayMenu();
             }
             System.out.println("Enter 'y' to confirm delete");
             String confirmDelete = reader.readLine();
@@ -126,5 +139,8 @@ public class Options {
             System.out.println();
         } while (resultSet.next());
         System.out.println();
+    }
+    public void createCustomer(){
+
     }
 }

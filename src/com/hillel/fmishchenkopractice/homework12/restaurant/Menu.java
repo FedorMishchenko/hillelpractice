@@ -42,6 +42,9 @@ public class Menu {
                 case "6":
                     new Options().read(new AdminQuery());
                     break;
+                case "7":
+                    new Options().createCustomer();
+                    break;
                 case "0":
                    exit(0);
                     default:
@@ -53,11 +56,12 @@ public class Menu {
     public static void menu(){
         print("MENU:");
         print("1: Create order");
-        print("2: Update order");
-        print("3: Read order");
+        print("2: Read order");
+        print("3: Update order");
         print("4: Delete order");
         print("5: Admin menu");
         print("6: Items");
+        print("7: Create customer");
         print("0: Exit");
     }
     private static void print(String s) {
