@@ -14,15 +14,10 @@ public class Options {
     private static final Logger logger =
             Logger.getLogger(Options.class.getName());
 
-    public void create() {
+    public void create(QueryManager manager) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))) {
-            System.out.println("Enter item:");
-            String item = reader.readLine();
-            System.out.println("Enter price:");
-            String price = reader.readLine();
-            String stmt = "INSERT INTO restaurant.menu (item, price)" +
-                    "VALUES ('" + item + "','" + price + "')";
+            String stmt = manager.adminCreateQuery(reader);
             new MySQLUtil().executeStatement(stmt);
             System.out.println("The record successful created");
             new AdminMenu().displayMenu();

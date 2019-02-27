@@ -26,7 +26,7 @@ public class AdminMenu {
         while (true){
             switch (reader.readLine()){
                 case "1":
-                    option.create();
+                    option.create(new QueryManager());
                     break;
                 case "2":
                     option.read();
