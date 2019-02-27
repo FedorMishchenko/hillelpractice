@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public class QueryManager {
-    private static final Logger logger = Logger.getLogger(QueryManager.class.getName());
+public class AdminQuery implements Query{
+    private static final Logger logger = Logger.getLogger(AdminQuery.class.getName());
 
-    String adminCreateQuery(BufferedReader reader) throws IOException {
+    public String create(BufferedReader reader) throws IOException {
         System.out.println("Enter item:");
         String item = reader.readLine();
         System.out.println("Enter price:");
@@ -16,32 +16,19 @@ public class QueryManager {
                 "VALUES ('" + item + "','" + price + "')";
     }
 
-    String adminReadQuery() {
+    public String read() {
         return "SELECT id, item, price FROM restaurant.menu";
     }
 
-    String adminUpdateQuery(String id) {
+    public String update(String id) {
         return "SELECT id, item, price FROM " +
                 "restaurant.menu WHERE id = " + id;
     }
 
-    String adminDeleteQuery(String id) {
+    public String delete(String id) {
         return "DELETE FROM restaurant.menu WHERE id = " + id;
     }
 
-    String createOrderQuery() {
-        return null;
-    }
-
-    String readOrdersQuery(String id) {
-        return "SELECT ";
-    }
-    String updateOrderQuery(){
-        return null;
-    }
-    String deleteOrderQuery(){
-        return null;
-    }
 
 }
 

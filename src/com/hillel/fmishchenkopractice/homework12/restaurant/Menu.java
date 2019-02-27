@@ -21,25 +21,26 @@ public class Menu {
         }
     }
     private void options(@NotNull BufferedReader reader)throws IOException{
+        Options option = new Options();
         while (true){
             switch (reader.readLine()){
                 case "1":
-
+                    option.create(new WaiterQuery());
                     break;
                 case "2":
-
+                    option.read(new WaiterQuery());
                     break;
                 case "3":
-
+                    option.update(new WaiterQuery());
                     break;
                 case "4":
-
+                    option.delete(new WaiterQuery());
                     break;
                 case "5":
                     new AdminMenu().check();
                     break;
                 case "6":
-                    new Options().read(new QueryManager());
+                    new Options().read(new AdminQuery());
                     break;
                 case "0":
                    exit(0);

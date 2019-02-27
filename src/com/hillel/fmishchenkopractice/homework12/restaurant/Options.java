@@ -14,10 +14,10 @@ public class Options {
     private static final Logger logger =
             Logger.getLogger(Options.class.getName());
 
-    public void create(QueryManager manager) {
+    public void create(Query query) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))) {
-            new MySQLUtil().executeStatement(manager.adminCreateQuery(reader));
+            new MySQLUtil().executeStatement(query.create(reader));
             System.out.println("The record successful created");
             new AdminMenu().displayMenu();
         } catch (IOException e) {
@@ -25,10 +25,10 @@ public class Options {
         }
     }
 
-    public void read(QueryManager manager) {
+    public void read(Query query) {
         try {
             MySQLUtil util = new MySQLUtil();
-            createResultSet(util, manager.adminReadQuery());
+            createResultSet(util, query.read());
         } catch (SQLException e) {
             logger.warning(e.getSQLState().concat(e.getMessage()));
         } finally {
@@ -36,13 +36,13 @@ public class Options {
         }
     }
 
-    public void update(QueryManager manager) {
+    public void update(Query query) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))) {
             System.out.println("Enter item id:");
             String id = reader.readLine();
             try {
-                createResultSet(new MySQLUtil(), manager.adminUpdateQuery(id));
+                createResultSet(new MySQLUtil(), query.update(id));
             } catch (SQLException e) {
                 logger.warning(e.getSQLState().concat(e.getMessage()));
             }
@@ -60,7 +60,7 @@ public class Options {
         }
     }
 
-    public void delete(QueryManager manager){
+    public void delete(Query query){
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             System.out.println("Enter item id to delete:");
             String id = reader.readLine();
@@ -74,7 +74,7 @@ public class Options {
             System.out.println("Enter 'y' to confirm delete");
             String confirmDelete = reader.readLine();
             if(confirmDelete.equals("y")){
-                util.executeStatement(manager.adminDeleteQuery(id));
+                util.executeStatement(query.delete(id));
                 System.out.println("The record has successful deleted");
                 new AdminMenu().displayMenu();
             }

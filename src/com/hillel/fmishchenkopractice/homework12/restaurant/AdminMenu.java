@@ -26,16 +26,16 @@ public class AdminMenu {
         while (true){
             switch (reader.readLine()){
                 case "1":
-                    option.create(new QueryManager());
+                    option.create(new AdminQuery());
                     break;
                 case "2":
-                    option.read(new QueryManager());
+                    option.read(new AdminQuery());
                     break;
                 case "3":
-                    option.update(new QueryManager());
+                    option.update(new AdminQuery());
                     break;
                 case "4":
-                    option.delete(new QueryManager());
+                    option.delete(new AdminQuery());
                     break;
                 case "5":
                     new Menu().displayMenu();
