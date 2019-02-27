@@ -14,5 +14,15 @@ public class QueryManager {
             return "INSERT INTO restaurant.menu (item, price)" +
                     "VALUES ('" + item + "','" + price + "')";
         }
+        public String adminReadQuery(){
+            return "SELECT id, item, price FROM restaurant.menu";
+        }
+        public String adminUpdateQuery(String id){
+        return "SELECT id, item, price FROM " +
+                    "restaurant.menu WHERE id = " + id;
+        }
+        public String adminDeleteQuery(String id){
+        return "DELETE FROM restaurant.menu WHERE id = " + id;
+        }
     }
 

@@ -25,11 +25,10 @@ public class Options {
         }
     }
 
-    public void read() {
+    public void read(QueryManager manager) {
         try {
             MySQLUtil util = new MySQLUtil();
-            String stmt = "SELECT id, item, price FROM restaurant.menu";
-            createResultSet(util, stmt);
+            createResultSet(util, manager.adminReadQuery());
         } catch (SQLException e) {
             logger.warning(e.getSQLState().concat(e.getMessage()));
         } finally {
@@ -37,16 +36,13 @@ public class Options {
         }
     }
 
-    public void update() {
+    public void update(QueryManager manager) {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in))) {
             System.out.println("Enter item id:");
             String id = reader.readLine();
             try {
-                MySQLUtil inner = new MySQLUtil();
-                String stmt = "SELECT id, item, price FROM " +
-                        "restaurant.menu WHERE id = " + id;
-                createResultSet(inner, stmt);
+                createResultSet(new MySQLUtil(), manager.adminUpdateQuery(id));
             } catch (SQLException e) {
                 logger.warning(e.getSQLState().concat(e.getMessage()));
             }
@@ -64,7 +60,7 @@ public class Options {
         }
     }
 
-    public void delete(){
+    public void delete(QueryManager manager){
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             System.out.println("Enter item id to delete:");
             String id = reader.readLine();
@@ -78,8 +74,7 @@ public class Options {
             System.out.println("Enter 'y' to confirm delete");
             String confirmDelete = reader.readLine();
             if(confirmDelete.equals("y")){
-                String stmt = "DELETE FROM restaurant.menu WHERE id = " + id;
-                util.executeStatement(stmt);
+                util.executeStatement(manager.adminDeleteQuery(id));
                 System.out.println("The record has successful deleted");
                 new AdminMenu().displayMenu();
             }

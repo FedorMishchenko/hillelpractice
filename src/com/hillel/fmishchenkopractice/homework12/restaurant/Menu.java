@@ -39,7 +39,7 @@ public class Menu {
                     new AdminMenu().check();
                     break;
                 case "6":
-                    new Options().read();
+                    new Options().read(new QueryManager());
                     break;
                 case "0":
                    exit(0);

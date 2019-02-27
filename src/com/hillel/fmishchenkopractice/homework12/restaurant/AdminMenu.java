@@ -29,13 +29,13 @@ public class AdminMenu {
                     option.create(new QueryManager());
                     break;
                 case "2":
-                    option.read();
+                    option.read(new QueryManager());
                     break;
                 case "3":
-                    option.update();
+                    option.update(new QueryManager());
                     break;
                 case "4":
-                    option.delete();
+                    option.delete(new QueryManager());
                     break;
                 case "5":
                     new Menu().displayMenu();
