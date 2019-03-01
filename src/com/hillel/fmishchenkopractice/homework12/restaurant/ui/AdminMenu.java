@@ -2,8 +2,7 @@ package com.hillel.fmishchenkopractice.homework12.restaurant.ui;
 
 
 import com.hillel.fmishchenkopractice.homework12.restaurant.dao.ItemDAO;
-import com.hillel.fmishchenkopractice.homework12.restaurant.service.Options;
-import org.jetbrains.annotations.NotNull;
+import com.hillel.fmishchenkopractice.homework12.restaurant.service.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,27 +22,27 @@ public class AdminMenu {
         menu.format("ADMIN MENU:", "1: Create item",
                 "2: CAFE MENU", "3: Update item",
                 "4: Delete item", "5: Order menu",
-                "0: Exit");
+                "0: Exit","SELECT OPTION:");
         options();
     }
 
     private void options() {
         try {
             Scanner scanner = new Scanner(System.in);
-            Options option = new Options();
+            Service service = new Service();
             while (true) {
                 switch (scanner.nextInt()) {
                     case 1:
-                        option.create(new ItemDAO());
+                        service.create(new ItemDAO());
                         break;
                     case 2:
-                        option.read(new ItemDAO());
+                        service.read(new ItemDAO());
                         break;
                     case 3:
-                        option.update(new ItemDAO());
+                        service.update(new ItemDAO());
                         break;
                     case 4:
-                        option.delete(new ItemDAO());
+                        service.delete(new ItemDAO());
                         break;
                     case 5:
                         new Menu().displayMenu();

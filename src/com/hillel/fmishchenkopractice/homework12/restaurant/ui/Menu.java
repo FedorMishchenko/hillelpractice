@@ -1,7 +1,7 @@
 package com.hillel.fmishchenkopractice.homework12.restaurant.ui;
 
 import com.hillel.fmishchenkopractice.homework12.restaurant.dao.ItemDAO;
-import com.hillel.fmishchenkopractice.homework12.restaurant.service.Options;
+import com.hillel.fmishchenkopractice.homework12.restaurant.service.Service;
 import com.hillel.fmishchenkopractice.homework12.restaurant.dao.OrderDAO;
 
 import java.util.InputMismatchException;
@@ -18,27 +18,27 @@ public class Menu {
                 "2: Read order", "3: Update order",
                 "3: Update order", "4: Delete order",
                 "5: Admin Menu", "6: User Menu",
-                "7: CAFE MENU", "0: Exit");
+                "7: CAFE MENU", "0: Exit","SELECT OPTION:");
         options();
     }
 
     private void options() {
         try {
             Scanner scanner = new Scanner(System.in);
-            Options option = new Options();
+            Service service = new Service();
             while (true) {
                 switch (scanner.nextInt()) {
                     case 1:
-                        option.create(new OrderDAO());
+                        service.create(new OrderDAO());
                         break;
                     case 2:
-                        option.read(new OrderDAO());
+                        service.read(new OrderDAO());
                         break;
                     case 3:
-                        option.update(new OrderDAO());
+                        service.update(new OrderDAO());
                         break;
                     case 4:
-                        option.delete(new OrderDAO());
+                        service.delete(new OrderDAO());
                         break;
                     case 5:
                         new AdminMenu().check();
@@ -46,7 +46,7 @@ public class Menu {
                     case 6:
                         new UserMenu().displayMenu();
                     case 7:
-                        new Options().read(new ItemDAO());
+                        new Service().read(new ItemDAO());
                     case 0:
                         exit(0);
                     default:

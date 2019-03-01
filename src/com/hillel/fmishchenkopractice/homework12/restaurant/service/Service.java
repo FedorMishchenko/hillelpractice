@@ -13,9 +13,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class Options {
+public class Service {
     private static final Logger logger =
-            Logger.getLogger(Options.class.getName());
+            Logger.getLogger(Service.class.getName());
     private Scanner scanner = new Scanner(System.in);
 
     public void create(Query query) {
@@ -28,8 +28,8 @@ public class Options {
 
     public void read(Query query) {
         try {
-            JdbcConnector util = new JdbcConnector();
-            createResultSet(util, query.read());
+            JdbcConnector connector = new JdbcConnector();
+            createResultSet(connector, query.read());
         } catch (SQLException e) {
             logger.warning(e.getSQLState().concat(e.getMessage()));
         } finally {
@@ -104,7 +104,7 @@ public class Options {
             }
     }
 
-    private void createResultSet(@NotNull JdbcConnector connector, String stmt) throws SQLException {
+    void createResultSet(@NotNull JdbcConnector connector, String stmt) throws SQLException {
         ResultSet resultSet = connector.readRecords(stmt);
         if (resultSet.next()) {
             printTable(resultSet);

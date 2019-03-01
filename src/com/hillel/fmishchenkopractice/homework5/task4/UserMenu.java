@@ -175,7 +175,7 @@ public class UserMenu implements DatabaseManager {
 
     private void menu() {
         print("____________________________________________");
-        print("         CRUD Options: ");
+        print("         CRUD Service: ");
         print("         1: Create Database Records");
         print("         2: Read Database Record");
         print("         3: Update Database Records");
