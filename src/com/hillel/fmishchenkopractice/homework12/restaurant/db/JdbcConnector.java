@@ -1,16 +1,16 @@
-package com.hillel.fmishchenkopractice.homework12.restaurant;
+package com.hillel.fmishchenkopractice.homework12.restaurant.db;
 
 import java.sql.*;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class MySQLUtil {
-    private static final Logger logger = Logger.getLogger(MySQLUtil.class.getName());
+public class JdbcConnector {
+    private static final Logger logger = Logger.getLogger(JdbcConnector.class.getName());
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
 
-    public MySQLUtil() {
+    public JdbcConnector() {
         try {
         String driver = "com.mysql.jdbc.Driver";
         String username = "root";

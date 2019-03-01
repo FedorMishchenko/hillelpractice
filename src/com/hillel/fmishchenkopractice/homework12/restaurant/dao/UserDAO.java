@@ -1,11 +1,8 @@
-package com.hillel.fmishchenkopractice.homework12.restaurant;
+package com.hillel.fmishchenkopractice.homework12.restaurant.dao;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-
-public class CustomerQuery implements Query {
+public class UserDAO implements Query {
     @Override
-    public String create(BufferedReader reader) throws IOException {
+    public String create(){
         return null;
     }
 

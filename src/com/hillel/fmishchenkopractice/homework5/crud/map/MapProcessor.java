@@ -1,28 +1,25 @@
-package com.hillel.fmishchenkopractice.homework5.crud;
+package com.hillel.fmishchenkopractice.homework5.crud.map;
 
+import com.hillel.fmishchenkopractice.homework5.crud.interfaces.ProcessorManager;
 import com.hillel.fmishchenkopractice.homework5.task4.User;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class MapProcessor implements ProcessorManager {
     private static final Logger log = Logger.getLogger(MapProcessor.class.getName());
     private Map<Integer, User> map = new HashMap<>();
+    private Scanner scanner = new Scanner(System.in);
 
     @Override
     public void create(String name, String email, Integer age) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
+
             print("Enter id");
-            Integer id = Integer.parseInt(reader.readLine());
+            Integer id = Integer.parseInt(scanner.nextLine());
             map.put(id,new User().name(name).email(email).age(age).id(id));
-        }catch (IOException e){
-            log.warning(e.toString());
-        }
 
     }
 
@@ -36,13 +33,13 @@ public class MapProcessor implements ProcessorManager {
     }
 
     @Override
-    public void update(BufferedReader reader, String id) throws IOException {
+    public void update(String id) {
         print("Enter name:");
-        String name = reader.readLine();
+        String name = scanner.nextLine();
         print("Enter email:");
-        String email = reader.readLine();
+        String email = scanner.nextLine();
         print("Enter age:");
-        Integer age = Integer.parseInt(reader.readLine());
+        Integer age = scanner.nextInt();
         map.put(Integer.parseInt(id),map.get(id)
                 .name(name).email(email).age(age).id(Integer.parseInt(id)));
     }
@@ -52,7 +49,7 @@ public class MapProcessor implements ProcessorManager {
     }
 
     @Override
-    public void delete(BufferedReader reader, String id){
+    public void delete(String id){
         map.remove(Integer.parseInt(id));
     }
 }

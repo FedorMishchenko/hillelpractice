@@ -1,52 +1,45 @@
 package com.hillel.fmishchenkopractice.homework5.task4;
 
-import com.hillel.fmishchenkopractice.homework5.crud.DatabaseManager;
+import com.hillel.fmishchenkopractice.homework5.crud.interfaces.DatabaseManager;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class UserMenu implements DatabaseManager {
     private static final Logger log = Logger.getLogger(UserMenu.class.getName());
     private DataImpl data = new DataImpl();
-    private BufferedReader reader = new BufferedReader(
-            new InputStreamReader(System.in));
-   @Override
+    private Scanner scanner = new Scanner(System.in);
+
+    @Override
     public void displayMenu() {
-        try {
-            while (true) {
-                menu();
-                options(reader.readLine());
-            }
-        } catch (IOException e) {
-            log.info(e.getMessage());
-            displayMenu();
-        }
+        menu();
+        options();
+
     }
 
-    private void options(@NotNull String args) throws IOException {
-        switch (args) {
-            case "1":
+
+    private void options() {
+        switch (scanner.nextInt()) {
+            case 1:
                 create();
                 break;
-            case "2":
+            case 2:
                 read();
                 break;
-            case "3":
+            case 3:
                 update();
                 break;
-            case "4":
+            case 4:
                 delete();
                 break;
-            case "5":
+            case 5:
                 readAll();
                 break;
-            case "6":
+            case 6:
                 sort();
                 break;
-            case "0":
+            case 0:
                 exit();
                 break;
             default:
@@ -57,75 +50,74 @@ public class UserMenu implements DatabaseManager {
 
     private void readAll() {
         if (!isEmpty()) {
-                printf();
+            printf();
             for (User x : data.getAll()) {
                 printf(x);
             }
         }
     }
 
-    private void update() throws IOException {
+    private void update() {
         if (!isEmpty()) {
             print("Enter key to update:");
-            Integer key = Integer.parseInt(reader.readLine());
+            Integer key = scanner.nextInt();
             User x = data.get(key);
             print("Enter field to update:");
             format("%-15s", "1: Name", "2: Email", "3: Age", "4: Update all");
-            switch (reader.readLine()) {
-                case "1":
+            switch (scanner.nextInt()) {
+                case 1:
                     print("Enter name:");
-                    x.name(reader.readLine());
+                    x.name(scanner.nextLine());
                     break;
-                case "2":
+                case 2:
                     print("Enter email:");
-                    x.email(reader.readLine());
+                    x.email(scanner.nextLine());
                     break;
-                case "3":
+                case 3:
                     print("Enter age:");
-                    x.age(Integer.parseInt(reader.readLine()));
+                    x.age(scanner.nextInt());
                     break;
-                case "4":
+                case 4:
                     print("Enter name:");
-                    x.name(reader.readLine());
+                    x.name(scanner.nextLine());
                     print("Enter email:");
-                    x.email(reader.readLine());
+                    x.email(scanner.nextLine());
                     print("Enter age:");
-                    x.age(Integer.parseInt(reader.readLine()));
+                    x.age(scanner.nextInt());
                     break;
             }
             data.put(key, x);
         }
     }
 
-    private void exit() throws IOException {
-        reader.close();
+    private void exit() {
         System.exit(0);
     }
 
-    private void sort() throws IOException {
+    private void sort() {
         if (!isEmpty()) {
             info();
-            switch (reader.readLine()) {
-                case "1":
+            switch (scanner.nextInt()) {
+                case 1:
                     printf();
                     for (User x : data.sort()) {
                         printf(x);
                     }
                     break;
-                case "2":
+                case 2:
                     print("Enter form:");
-                    Integer arg1 = Integer.parseInt(reader.readLine());
+                    Integer arg1 = scanner.nextInt();
                     print("Enter to:");
-                    Integer arg2 = Integer.parseInt(reader.readLine());
+                    Integer arg2 = scanner.nextInt();
                     printf();
                     for (User x : data.sort(arg1, arg2)) {
                         printf(x);
                     }
                     break;
-                case "3":
+                case 3:
                     print("Enter Name startWith:");
                     printf();
-                    for (User x : data.sort(reader.readLine())) {
+                    for (User x : data.sort(scanner.nextLine())) {
                         printf(x);
                     }
                     break;
@@ -140,10 +132,10 @@ public class UserMenu implements DatabaseManager {
         print("         3: Sort by Name startWith");
     }
 
-    private void delete() throws IOException {
+    private void delete() {
         if (!isEmpty()) {
             print("Enter id for delete:");
-            data.delete(Integer.parseInt(reader.readLine()));
+            data.delete(scanner.nextInt());
         }
     }
 
@@ -155,29 +147,29 @@ public class UserMenu implements DatabaseManager {
         return false;
     }
 
-    private User initialize(Integer id) throws IOException {
+    private User initialize(Integer id) {
         print("Enter name:");
-        String name = reader.readLine();
+        String name = scanner.nextLine();
         print("Enter email:");
-        String email = reader.readLine();
+        String email = scanner.nextLine();
         print("Enter age:");
-        String age = reader.readLine();
+        String age = scanner.nextLine();
         return new User().name(name).email(email)
                 .age(Integer.parseInt(age)).id(id);
     }
 
-    private void read() throws IOException {
+    private void read() {
         if (!isEmpty()) {
             print("Enter key:");
-            String key = reader.readLine();
+            Integer key = scanner.nextInt();
             printf();
-            printf(data.get(Integer.parseInt(key)));
+            printf(data.get(key));
         }
     }
 
-    private void create() throws IOException {
+    private void create() {
         print("Enter key:");
-        Integer id = Integer.parseInt(reader.readLine());
+        Integer id = scanner.nextInt();
         data.put(id, initialize(id));
     }
 
@@ -202,10 +194,10 @@ public class UserMenu implements DatabaseManager {
     }
 
     private void printf(@NotNull User x) {
-        System.out.printf("%-5s",x.getId());
-        System.out.printf("%-15s",x.getName());
-        System.out.printf("%-15s",x.getEmail());
-        System.out.printf("%-15s",x.getAge());
+        System.out.printf("%-5s", x.getId());
+        System.out.printf("%-15s", x.getName());
+        System.out.printf("%-15s", x.getEmail());
+        System.out.printf("%-15s", x.getAge());
         print("");
     }
 

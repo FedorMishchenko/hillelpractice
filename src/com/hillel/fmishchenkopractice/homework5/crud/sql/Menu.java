@@ -1,45 +1,42 @@
-package com.hillel.fmishchenkopractice.homework5.crud;
+package com.hillel.fmishchenkopractice.homework5.crud.sql;
 
+import com.hillel.fmishchenkopractice.homework5.crud.interfaces.DatabaseManager;
+import com.hillel.fmishchenkopractice.homework5.crud.interfaces.ProcessorManager;
+import com.hillel.fmishchenkopractice.homework5.crud.map.MapProcessor;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class Menu implements DatabaseManager{
-     private static final Logger log = Logger.getLogger(Menu.class.getName());
-     private static final ProcessorManager processor = new MySQLProcessor();
+public class Menu implements DatabaseManager {
+    private static final Logger log = Logger.getLogger(Menu.class.getName());
+    private static final ProcessorManager processor = new MySQLProcessor();
+    /*private static final ProcessorManager processor = new MapProcessor();*/
+    private Scanner scanner = new Scanner(System.in);
 
-     @Override
+    @Override
     public void displayMenu() {
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(System.in))){
-            menu();
-            options(reader);
-        }catch (IOException e){
-            log.warning(e.toString());
-        }
+        menu();
+        options();
     }
 
-    private  void options(@NotNull BufferedReader reader) throws IOException{
+    private void options() {
         Options option = new Options();
         while (true) {
-            switch (reader.readLine()) {
-                case "1":
+            switch (scanner.nextInt()) {
+                case 1:
                     option.create(Menu.processor);
                     break;
-                case "2":
+                case 2:
                     option.read(Menu.processor);
                     break;
-                case "3":
+                case 3:
                     option.update(Menu.processor);
                     break;
-                case "4":
+                case 4:
                     option.delete(Menu.processor);
                     break;
-                case "5":
+                case 5:
                     exit();
                 default:
                     printEx();
@@ -57,8 +54,9 @@ public class Menu implements DatabaseManager{
         print("         5: Exit");
         print("         SELECT Option:");
     }
+
     @Contract(" -> fail")
-    private void exit(){
+    private void exit() {
         System.exit(0);
     }
 

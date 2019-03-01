@@ -77,34 +77,34 @@ public class Test {
     }
     public static void main(String[] args) {
         Test x = new Test();
-        print("All User:");
+        print("All UserDTO:");
         for (User user : x.list()) {
             print(user.toString());
         }
         print("______________________________");
         User[] arr = (User[]) x.list().toArray();
-        print("Find all User names without repeat: ");
+        print("Find all UserDTO names without repeat: ");
         for (User user : x.findAllUserNamesWithoutRepeat(x.list())) {
             print(user.getName());
         }
         print("______________________________");
-        print("Find User names unique in array: ");
+        print("Find UserDTO names unique in array: ");
         for (String name : Objects.requireNonNull(x.findUserNamesUniqueInArray(arr))) {
             print(name);
         }
         print("______________________________");
-        print("Min User age = " + x.findMinAge(arr));
-        print("Max User age = " + x.findMaxAge(arr));
+        print("Min UserDTO age = " + x.findMinAge(arr));
+        print("Max UserDTO age = " + x.findMaxAge(arr));
         print("______________________________");
         print(findSumOfSalariesForAllUsers(x.list()).toString());
-        print("User's salaries sum = " + findSumOfSalariesForAllUsers(x.list()).getSum());
+        print("UserDTO's salaries sum = " + findSumOfSalariesForAllUsers(x.list()).getSum());
         print("______________________________");
-        print("Find User where age between and name contains symbol:");
+        print("Find UserDTO where age between and name contains symbol:");
         for (User user:x.findUsersWhereAgeBetweenAndNameContainsSymbol(18,31,"B")){
             print(user.toString());
         }
         print("______________________________");
-        print("Delete all User where email is null:");
+        print("Delete all UserDTO where email is null:");
         for(User user: x.deleteAllUsersWhereEmailIsNull(arr)){
             print(user.getName() + ": " + user.getEmail());
         }

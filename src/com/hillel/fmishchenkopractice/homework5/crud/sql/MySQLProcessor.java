@@ -1,11 +1,12 @@
 
-package com.hillel.fmishchenkopractice.homework5.crud;
+package com.hillel.fmishchenkopractice.homework5.crud.sql;
 
+import java.util.Scanner;
 import java.util.logging.Logger;
+
+import com.hillel.fmishchenkopractice.homework5.crud.interfaces.ProcessorManager;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
@@ -14,6 +15,7 @@ public class MySQLProcessor implements ProcessorManager {
     private Connection connection;
     private Statement statement = null;
     private ResultSet resultSet = null;
+    private Scanner scanner = new Scanner(System.in);
 
     MySQLProcessor() {
         String serverName = "localhost";
@@ -61,15 +63,15 @@ public class MySQLProcessor implements ProcessorManager {
         }
     }
 
-    public void update(@NotNull BufferedReader reader, String id) throws IOException {
+    public void update(String id)  {
         updateRecord(id);
         print();
         print("Enter new name:");
-        String name = reader.readLine();
+        String name = scanner.nextLine();
         print("Enter new email:");
-        String email = reader.readLine();
+        String email = scanner.nextLine();
         print("Enter new age");
-        String age = reader.readLine();
+        String age = scanner.nextLine();
         MySQLProcessor processor = new MySQLProcessor();
         String stmt = "UPDATE user SET name = '" +
                 name + "',email = '" + email + "',age = '" +
@@ -96,11 +98,11 @@ public class MySQLProcessor implements ProcessorManager {
             log.warning(e.getSQLState());
         }
     }
-    public void delete(@NotNull BufferedReader reader, String id) throws IOException {
+    public void delete(String id)  {
         deleteRecord(id);
         print();
         log.info("Enter 'y' to confirm deletion: ");
-        String confirm = reader.readLine();
+        String confirm = scanner.nextLine();
 
         if ("y".equals(confirm)) {
             MySQLProcessor processor = new MySQLProcessor();
@@ -175,6 +177,7 @@ public class MySQLProcessor implements ProcessorManager {
         }
     }
     private void printf(Object object) {
+
         System.out.printf("%-15s", object);
     }
     private void printf(@NotNull ResultSetMetaData metaData, int i) throws SQLException {

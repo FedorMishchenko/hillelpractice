@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 public class AnnotationsProcessor {
     public static String className =
-            "com.hillel.fmishchenkopractice.homework9.task3.UserService";
+            "com.hillel.fmishchenkopractice.homework9.task3.Service";
 
     public static void main(String[] args) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException {

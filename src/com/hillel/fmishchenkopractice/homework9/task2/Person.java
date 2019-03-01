@@ -108,7 +108,7 @@ public class Person {
             result = 31 * result + (address != null ? address.hashCode() : 0);
             return result;
         }
-        throw new RuntimeException("User by email " + this.getEmail() + " is not valid.");
+        throw new RuntimeException("UserDTO by email " + this.getEmail() + " is not valid.");
     }
 
     @Override

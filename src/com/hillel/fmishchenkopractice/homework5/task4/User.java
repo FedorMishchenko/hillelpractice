@@ -50,10 +50,10 @@ public class User implements Comparable<User> {
 
     public String toString() {
         return
-                "User name = " + this.name + '\n' +
-                        "User email = " +
+                "UserDTO name = " + this.name + '\n' +
+                        "UserDTO email = " +
                         this.email + '\n' +
-                        "User age = " +
+                        "UserDTO age = " +
                         this.age;
     }
 
