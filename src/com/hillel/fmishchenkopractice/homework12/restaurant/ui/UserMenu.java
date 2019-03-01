@@ -15,11 +15,11 @@ public class UserMenu {
     private Menu menu = new Menu();
 
     public void displayMenu(){
-        menu.format("USER MENU:","1: Log In",
+        menu.format("USER MENU:","1: Create Order",
                 "2: Read order","3: Update Order",
-                "3: Delete Order",
-                "4: Create User","5: Menu",
-                "6: CAFE MENU","0: Exit",
+                "4: Delete Order",
+                "5: Create User","6: Menu",
+                "7: CAFE MENU","0: Exit",
                  "SELECT OPTION:");
         options();
     }
@@ -30,23 +30,25 @@ public class UserMenu {
             while (true) {
                 switch (scanner.nextInt()) {
                     case 1:
-                        logger.info("Not realized");                      //todo: realize
-                        new UserMenu().displayMenu();
+                        service.create(new UserDAO());
                         break;
                     case 2:
                         service.read(new UserDAO());
                         break;
                     case 3:
-                        service.delete(new UserDAO());
+                        service.update(new UserDAO());
                         break;
                     case 4:
-                        logger.info("Not realized");                        //todo: realize
-                        new UserMenu().displayMenu();
+                        service.delete(new UserDAO());
                         break;
                     case 5:
-                        new Menu().displayMenu();
+                        logger.info("Not realized");
+                        new UserMenu().displayMenu();
                         break;
                     case 6:
+                        new Menu().displayMenu();
+                        break;
+                    case 7:
                         service.read(new ItemDAO());
                         break;
                     case 0:
