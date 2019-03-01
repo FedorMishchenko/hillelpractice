@@ -2,6 +2,7 @@ package com.hillel.fmishchenkopractice.homework5.crud;
 
 import com.hillel.fmishchenkopractice.homework5.crud.interfaces.DatabaseManager;
 import com.hillel.fmishchenkopractice.homework5.crud.sql.Menu;
+import com.hillel.fmishchenkopractice.homework5.task4.UserMenu;
 
 public class Demo {
     private DatabaseManager manager;
