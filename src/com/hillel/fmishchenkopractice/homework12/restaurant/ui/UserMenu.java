@@ -2,7 +2,7 @@ package com.hillel.fmishchenkopractice.homework12.restaurant.ui;
 
 import com.hillel.fmishchenkopractice.homework12.restaurant.dao.ItemDAO;
 import com.hillel.fmishchenkopractice.homework12.restaurant.dao.OrderDAO;
-import com.hillel.fmishchenkopractice.homework12.restaurant.service.UserService;
+import com.hillel.fmishchenkopractice.homework12.restaurant.service.UserOrderService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,47 +13,36 @@ import static java.lang.System.exit;
 public class UserMenu {
     private static final Logger logger = Logger.getAnonymousLogger();
     private Menu menu = new Menu();
+    private Scanner scanner = new Scanner(System.in);
+    private UserOrderService service = new UserOrderService();
 
     public void displayMenu(){
         menu.format("USER MENU:","1: Create Order",
-                "2: Read order","3: Update Order",
+                "2: Read Order","3: Update Order",
                 "4: Delete Order",
-                "5: Create User","6: Program Menu",
-                "7: CAFE MENU","8: Users", "0: Exit",
+                "5: Accounts","6: Program Menu",
+                "7: Cafe Menu", "0: Exit",
                  "SELECT OPTION:");
         options();
     }
     private void options(){
         try {
-            Scanner scanner = new Scanner(System.in);
-            UserService service = new UserService();
             while (true) {
                 switch (scanner.nextInt()) {
                     case 1:
                         service.create(new OrderDAO());
-                        break;
                     case 2:
                         service.read(new OrderDAO());
-                        break;
                     case 3:
                         service.update(new OrderDAO());
-                        break;
                     case 4:
                         service.delete(new OrderDAO());
-                        break;
                     case 5:
-                        logger.info("Not realized");
-                        new UserMenu().displayMenu();
-                        break;
+                        new Accounts().displayMenu();
                     case 6:
                         new Menu().displayMenu();
-                        break;
                     case 7:
                         service.read(new ItemDAO());
-                        break;
-                    case 8:
-                        logger.info("Not realized");
-                        new UserMenu().displayMenu();
                     case 0:
                         exit(0);
                     default:

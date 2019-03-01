@@ -1,6 +1,5 @@
 package com.hillel.fmishchenkopractice.homework12.restaurant.ui;
 
-import com.hillel.fmishchenkopractice.homework12.restaurant.dao.ItemDAO;
 import com.hillel.fmishchenkopractice.homework12.restaurant.service.Service;
 
 import java.util.InputMismatchException;
@@ -11,33 +10,27 @@ import static java.lang.System.exit;
 
 public class Menu {
     private static final Logger log = Logger.getLogger(Menu.class.getName());
+    private Scanner scanner = new Scanner(System.in);
+    private Service service = new Service();
 
     public void displayMenu() {
         format("MENU:",
                 "1: Admin Menu", "2: User Menu",
-                "3: CAFE MENU","4: Users",
+                "3: Accounts",
                 "0: Exit","SELECT OPTION:");
         options();
     }
 
     private void options() {
         try {
-            Scanner scanner = new Scanner(System.in);
-            Service service = new Service();
             while (true) {
                 switch (scanner.nextInt()) {
                     case 1:
                         new AdminMenu().check();
-                        break;
                     case 2:
                         new UserMenu().displayMenu();
-                        break;
                     case 3:
-                        service.read(new ItemDAO());
-                        break;
-                    case 4:
-                        log.info("Not realized");
-                        new Menu().displayMenu();
+                        new Accounts().displayMenu();
                     case 0:
                         exit(0);
                     default:
