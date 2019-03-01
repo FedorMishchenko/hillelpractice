@@ -1,7 +1,7 @@
 package com.hillel.fmishchenkopractice.homework12.restaurant.ui;
 
 import com.hillel.fmishchenkopractice.homework12.restaurant.dao.ItemDAO;
-import com.hillel.fmishchenkopractice.homework12.restaurant.dao.UserDAO;
+import com.hillel.fmishchenkopractice.homework12.restaurant.dao.OrderDAO;
 import com.hillel.fmishchenkopractice.homework12.restaurant.service.UserService;
 
 import java.util.InputMismatchException;
@@ -18,8 +18,8 @@ public class UserMenu {
         menu.format("USER MENU:","1: Create Order",
                 "2: Read order","3: Update Order",
                 "4: Delete Order",
-                "5: Create User","6: Menu",
-                "7: CAFE MENU","0: Exit",
+                "5: Create User","6: Program Menu",
+                "7: CAFE MENU","8: Users", "0: Exit",
                  "SELECT OPTION:");
         options();
     }
@@ -30,16 +30,16 @@ public class UserMenu {
             while (true) {
                 switch (scanner.nextInt()) {
                     case 1:
-                        service.create(new UserDAO());
+                        service.create(new OrderDAO());
                         break;
                     case 2:
-                        service.read(new UserDAO());
+                        service.read(new OrderDAO());
                         break;
                     case 3:
-                        service.update(new UserDAO());
+                        service.update(new OrderDAO());
                         break;
                     case 4:
-                        service.delete(new UserDAO());
+                        service.delete(new OrderDAO());
                         break;
                     case 5:
                         logger.info("Not realized");
@@ -51,6 +51,9 @@ public class UserMenu {
                     case 7:
                         service.read(new ItemDAO());
                         break;
+                    case 8:
+                        logger.info("Not realized");
+                        new UserMenu().displayMenu();
                     case 0:
                         exit(0);
                     default:

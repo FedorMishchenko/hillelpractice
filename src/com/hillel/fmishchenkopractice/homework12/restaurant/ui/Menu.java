@@ -2,7 +2,6 @@ package com.hillel.fmishchenkopractice.homework12.restaurant.ui;
 
 import com.hillel.fmishchenkopractice.homework12.restaurant.dao.ItemDAO;
 import com.hillel.fmishchenkopractice.homework12.restaurant.service.Service;
-import com.hillel.fmishchenkopractice.homework12.restaurant.dao.OrderDAO;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,11 +13,10 @@ public class Menu {
     private static final Logger log = Logger.getLogger(Menu.class.getName());
 
     public void displayMenu() {
-        format("MENU:", "1: Create order",
-                "2: Read order", "3: Update order",
-                "3: Update order", "4: Delete order",
-                "5: Admin Menu", "6: User Menu",
-                "7: CAFE MENU", "0: Exit","SELECT OPTION:");
+        format("MENU:",
+                "1: Admin Menu", "2: User Menu",
+                "3: CAFE MENU","4: Users",
+                "0: Exit","SELECT OPTION:");
         options();
     }
 
@@ -29,24 +27,17 @@ public class Menu {
             while (true) {
                 switch (scanner.nextInt()) {
                     case 1:
-                        service.create(new OrderDAO());
-                        break;
-                    case 2:
-                        service.read(new OrderDAO());
-                        break;
-                    case 3:
-                        service.update(new OrderDAO());
-                        break;
-                    case 4:
-                        service.delete(new OrderDAO());
-                        break;
-                    case 5:
                         new AdminMenu().check();
                         break;
-                    case 6:
+                    case 2:
                         new UserMenu().displayMenu();
-                    case 7:
-                        new Service().read(new ItemDAO());
+                        break;
+                    case 3:
+                        service.read(new ItemDAO());
+                        break;
+                    case 4:
+                        log.info("Not realized");
+                        new Menu().displayMenu();
                     case 0:
                         exit(0);
                     default:

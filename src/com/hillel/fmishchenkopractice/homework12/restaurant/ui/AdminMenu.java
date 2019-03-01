@@ -20,8 +20,9 @@ public class AdminMenu {
 
     public void displayMenu() {
         menu.format("ADMIN MENU:", "1: Create item",
-                "2: CAFE MENU", "3: Update item",
-                "4: Delete item", "5: Order menu",
+                "2: Update item",
+                "3: Delete item", "4: Order menu",
+                "5: CAFE MENU",
                 "0: Exit","SELECT OPTION:");
         options();
     }
@@ -36,16 +37,16 @@ public class AdminMenu {
                         service.create(new ItemDAO());
                         break;
                     case 2:
-                        service.read(new ItemDAO());
-                        break;
-                    case 3:
                         service.update(new ItemDAO());
                         break;
-                    case 4:
+                    case 3:
                         service.delete(new ItemDAO());
                         break;
-                    case 5:
+                    case 4:
                         new Menu().displayMenu();
+                        break;
+                    case 5:
+                        service.read(new ItemDAO());
                         break;
                     case 0:
                         exit(0);
@@ -62,17 +63,15 @@ public class AdminMenu {
 
 
         public void check () {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            Scanner scanner = new Scanner(System.in);
                 menu.format("Enter password:");
-                if ((reader.readLine()).equals(password)) {
+                if ((scanner.nextLine()).equals(password)) {
                     displayMenu();
                 } else {
                     logger.info("Invalid password");
                     new Menu().displayMenu();
                 }
-            } catch (IOException e) {
-                logger.warning(e.getMessage());
             }
         }
 
-    }
+
