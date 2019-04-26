@@ -19,7 +19,7 @@ public class AdminMenu {
     public void displayMenu() {
         menu.format("ADMIN MENU:", "1: Create Item",
                 "2: Update Item",
-                "3: Delete Item", "4: Order Menu",
+                "3: Delete Item", "4: Program Menu",
                 "5: Cafe Menu",
                 "0: Exit","SELECT OPTION:");
         options();

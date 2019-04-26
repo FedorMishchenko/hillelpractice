@@ -42,8 +42,8 @@ public class UserOrderService {
             String item = scanner.nextLine();
             System.out.println("Enter price:");
             String price = scanner.nextLine();
-            stmt = "UPDATE restaurant.order SET item = '" +
-            item + "' ,price = '" + price + "' WHERE id = " + id;
+            stmt = "UPDATE restaurant.order SET item = " +
+            item + " ,price = " + price + " WHERE id = " + id;
         new JdbcConnector().executeStatement(stmt);
         System.out.println("The record successful updated");
         new UserMenu().displayMenu();

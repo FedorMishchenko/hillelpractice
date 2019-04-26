@@ -1,4 +1,4 @@
-package com.hillel.fmishchenkopractice.homework11.interfaces;
+package com.hillel.fmishchenkopractice.homework11.calculator.interfaces;
 
 @FunctionalInterface
 public interface Multiplication {

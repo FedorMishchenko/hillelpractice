@@ -1,6 +1,6 @@
 package com.hillel.fmishchenkopractice.homework11.calculator;
 
-import com.hillel.fmishchenkopractice.homework11.interfaces.*;
+import com.hillel.fmishchenkopractice.homework11.calculator.interfaces.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;

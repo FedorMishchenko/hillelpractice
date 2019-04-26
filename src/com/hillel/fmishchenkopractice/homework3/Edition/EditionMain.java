@@ -3,9 +3,9 @@ package com.hillel.fmishchenkopractice.homework3.Edition;
 public class EditionMain {
 
     public static void main(String[] args) {
-        Edition edition = new Directory();
-        ((Directory) edition).setName("Справочник");
-        ((Directory) edition).setAuthor("Иванов И.И.");
+        Directory edition = new Directory();
+        edition.setName("Справочник");
+        edition.setAuthor("Иванов И.И.");
 
         Book book = new Encyclopedia();
         book.setName("Энциклопедия");

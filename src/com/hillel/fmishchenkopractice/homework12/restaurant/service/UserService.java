@@ -41,7 +41,7 @@ public class UserService {
         }
         System.out.println("Enter email");
         String email = scanner.nextLine();
-        stmt = "UPDATE restaurant.customer SET email = " + email;
+        stmt = "UPDATE restaurant.customer SET email = " + email + " WHERE id = ";
         new JdbcConnector().executeStatement(stmt);
         System.out.println("User successful updated");
         new Accounts().displayMenu();

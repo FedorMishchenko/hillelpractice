@@ -1,5 +1,6 @@
 package com.hillel.fmishchenkopractice.homework11.stream;
 
+import com.hillel.fmishchenkopractice.homework12.restaurant.ui.Menu;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -8,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Test {
+    private static Menu printf = new Menu();
     @NotNull
     public  List<User> list() {
         User user1 = new User(new User.Builder().id(new UUID(1L,3L)).name("Bill")
@@ -77,34 +79,38 @@ public class Test {
     }
     public static void main(String[] args) {
         Test x = new Test();
-        print("All UserDTO:");
+        print("All Users:");
         for (User user : x.list()) {
-            print(user.toString());
+            /*print(user.toString());*/
+            printf.format(user.getName());
+            printf.format(user.getEmail());
+            printf.format(Integer.toString(user.getAge()));
+            printf.format(user.getAddress().toString());
         }
         print("______________________________");
         User[] arr = (User[]) x.list().toArray();
-        print("Find all UserDTO names without repeat: ");
+        print("Find all User's names without repeat: ");
         for (User user : x.findAllUserNamesWithoutRepeat(x.list())) {
             print(user.getName());
         }
         print("______________________________");
-        print("Find UserDTO names unique in array: ");
+        print("Find User's names unique in array: ");
         for (String name : Objects.requireNonNull(x.findUserNamesUniqueInArray(arr))) {
             print(name);
         }
         print("______________________________");
-        print("Min UserDTO age = " + x.findMinAge(arr));
-        print("Max UserDTO age = " + x.findMaxAge(arr));
+        print("Min User age = " + x.findMinAge(arr));
+        print("Max User age = " + x.findMaxAge(arr));
         print("______________________________");
         print(findSumOfSalariesForAllUsers(x.list()).toString());
-        print("UserDTO's salaries sum = " + findSumOfSalariesForAllUsers(x.list()).getSum());
+        print("User's salaries sum = " + findSumOfSalariesForAllUsers(x.list()).getSum());
         print("______________________________");
-        print("Find UserDTO where age between and name contains symbol:");
+        print("Find Users where age between and name contains symbol:");
         for (User user:x.findUsersWhereAgeBetweenAndNameContainsSymbol(18,31,"B")){
             print(user.toString());
         }
         print("______________________________");
-        print("Delete all UserDTO where email is null:");
+        print("Delete all Users where email is null:");
         for(User user: x.deleteAllUsersWhereEmailIsNull(arr)){
             print(user.getName() + ": " + user.getEmail());
         }

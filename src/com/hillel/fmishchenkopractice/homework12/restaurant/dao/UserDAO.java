@@ -8,7 +8,7 @@ public class UserDAO implements Query{
     private final String SELECT_USERS =
             "SELECT id, email FROM restaurant.customer";
     private final String UPDATE_USER_BYID =
-            "SELECT email FROM restaurant.customer WHERE id = ";
+            "SELECT id, email FROM restaurant.customer WHERE id = ";
     private final String DELETE_USER =
             "DELETE FROM restaurant.customer WHERE id = ";
     private Scanner scanner = new Scanner(System.in);

@@ -34,7 +34,7 @@ public class OrderDAO implements Query {
 
     @Override
     public String update(String id) {
-        return UPDATE_ORDER_BYID;
+        return UPDATE_ORDER_BYID + id;
     }
 
     @Override

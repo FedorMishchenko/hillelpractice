@@ -1,5 +1,7 @@
 package com.hillel.fmishchenkopractice.homework9.task3;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Method;
 
 public class AnnotationsProcessor {
@@ -16,7 +18,7 @@ public class AnnotationsProcessor {
         initObj(object, methods);
     }
 
-    private static void initObj(Object object, Method[] methods) {
+    private static void initObj(Object object, @NotNull Method[] methods) {
         for (Method method : methods) {
             if (method.isAnnotationPresent(InitObject.class)) {
                 try {
@@ -28,7 +30,7 @@ public class AnnotationsProcessor {
         }
     }
 
-    private static void initMethod(Object object, Method[] methods) {
+    private static void initMethod(Object object, @NotNull Method[] methods) {
         for (Method method : methods) {
             if (method.isAnnotationPresent(Init.class)) {
                 try {
@@ -44,7 +46,7 @@ public class AnnotationsProcessor {
     }
 
 
-    private static void inspectService(Class<?> service) {
+    private static void inspectService(@NotNull Class<?> service) {
         if (service.isAnnotationPresent(Service.class)) {
             try {
                 loadService(className);

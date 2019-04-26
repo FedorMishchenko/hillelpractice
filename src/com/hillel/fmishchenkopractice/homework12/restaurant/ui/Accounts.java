@@ -7,6 +7,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static java.lang.System.exit;
+
 public class Accounts {
     private static final Logger logger = Logger.getAnonymousLogger();
     private Menu menu = new Menu();
@@ -17,7 +19,8 @@ public class Accounts {
         menu.format("USERS:","1: Create User",
                 "2: Users","3: Update User",
                 "4: Delete User","5: Program Menu",
-                "6: User Menu");
+                "6: User Menu","0: Exit",
+                "SELECT OPTION:");
         options();
     }
     private void options(){
@@ -35,6 +38,9 @@ public class Accounts {
                     case 5:
                         new Menu().displayMenu();
                     case 6:
+                        new UserMenu().displayMenu();
+                    case 0:
+                        exit(0);
                         new UserMenu().displayMenu();
                         default:
                             logger.warning("Illegal argument");
